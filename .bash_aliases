@@ -1,0 +1,7 @@
+alias cp="cp -i"
+alias mv="mv -i"
+alias rm="rm -i"
+alias ll="ls -alF"
+alias G++="g++ -c --std=c++11 -Wall"
+alias ressh="sudo service ssh --full-restart"
+alias vm="ssh -p 2222 liparadise@127.0.0.1"
