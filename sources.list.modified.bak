@@ -16,4 +16,5 @@ deb-src http://debian.csie.ntu.edu.tw/debian/ stretch-updates main contrib non-f
 
 # LIParadise Modifications
 deb http://dl.google.com/linux/chrome/deb stable main
+deb http://deb.debian.org/debian stretch-backports main contrib non-free
 # End of LIParadise Modifications
