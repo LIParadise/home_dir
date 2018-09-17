@@ -1,0 +1,1 @@
+aptitude install vim git tmux make cmake openssh-server openssh-sftp-server openssh-client gparted xfce4-terminal python3 python3-setuptools python python-setuptools rfkill
