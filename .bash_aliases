@@ -6,17 +6,28 @@ alias ressh="sudo service ssh --full-restart"
 alias vm="ssh -p 2222 liparadise@127.0.0.1"
 
 function G++ {
-  if [ $# != 1 ]
+  if [ $# == 1 ]
   then 
-    echo "Usage: G++ code.cc"
-    echo "where \"code.cc\" is a simple C++ code"
+    filename="${1%.*}"
+    obj_ext=".o"
+    filename_o=$filename$obj_ext
+    echo "g++ --std=c++11 -Wall -c $1"
+    g++ --std=c++11 -Wall -c $1
+    echo "g++ -o test $filename_o"
+    g++ -o test $filename_o
+  elif [ $# == 2 ]
+  then
+    filename="${1%.*}"
+    obj_ext=".o"
+    filename_o=$filename$obj_ext
+    echo "g++ --std=c++11 -Wall -c $1"
+    g++ --std=c++11 -Wall -c $1
+    echo "g++ -o $2 $filename_o"
+    g++ -o $2 $filename_o
+  else 
+    echo "Usage: G++ code.cc <executable>"
+    echo "where \"code.cc\" is a simple C++ code,"
+    echo "\"executable\" being final output filename"
     return 0
   fi
-  filename="${1%.*}"
-  obj_f=".o"
-  filename_o=$filename$obj_f
-  echo "g++ --std=c++11 -Wall -c $1"
-  g++ --std=c++11 -Wall -c $1
-  echo "g++ -o test $filename_o"
-  g++ -o test $filename_o
 }
