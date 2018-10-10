@@ -1,0 +1,14 @@
+# /etc/fstab: static file system information.
+#
+# Use 'blkid' to print the universally unique identifier for a
+# device; this may be used with UUID= as a more robust way to name devices
+# that works even if disks are added and removed. See fstab(5).
+#
+# <file system> <mount point>   <type>  <options>       <dump>  <pass>
+/dev/mapper/debian_vg-root /               xfs     defaults        0       0
+# /boot was on /dev/nvme0n1p1 during installation
+UUID=9a288764-08eb-4831-97c1-3480c19f5056 /boot           xfs     defaults        0       0
+# /boot/efi was on /dev/nvme0n1p2 during installation
+UUID=64F5-6369  /boot/efi       vfat    umask=0077      0       1
+/dev/mapper/debian_vg-home /home           xfs     defaults        0       0
+/dev/mapper/debian_vg-swap none            swap    sw              0       0
