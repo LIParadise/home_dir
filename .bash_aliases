@@ -31,3 +31,10 @@ function G++ {
     return 0
   fi
 }
+
+function dev-tmux {
+  tmux new-session -d -n vim
+  tmux new-window -n files
+  tmux selectw -t 0
+  tmux -2 attach-session -d
+}
