@@ -28,8 +28,8 @@ function My_dark_theme ()
   hi statement    term=underline ctermfg=113
   hi type         term=underline ctermfg=80
   hi constant     term=underline ctermfg=215
-  hi PreProc      term=underline ctermfg=104
-  hi comment      term=underline ctermfg=66
+  hi PreProc      term=underline ctermfg=105
+  hi comment      term=underline ctermfg=246
 endfunction
 
 " tab index support
