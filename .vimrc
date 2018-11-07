@@ -19,18 +19,27 @@ endfunction
 
 " handling different color scheme
 function My_light_theme ()
-  hi type         term=underline ctermfg=75
-  hi constant     term=underline ctermfg=172
-  hi PreProc      term=underline ctermfg=105
-  hi Statement    term=underline ctermfg=70
+  hi cursorlinenr cterm=NONE     ctermfg=232  ctermbg=NONE 
+  hi linenr       cterm=NONE     ctermfg=245  ctermbg=NONE 
+  if &filetype ==# 'c' || &filetype ==# 'cpp'
+    hi type         term=underline ctermfg=69
+    hi constant     term=underline ctermfg=172
+    hi PreProc      term=underline ctermfg=171
+    hi Statement    term=underline ctermfg=34
+    hi comment      term=underline ctermfg=244
+  endif
 endfunction
 
 function My_dark_theme ()
-  hi statement    term=underline ctermfg=113
-  hi type         term=underline ctermfg=80
-  hi constant     term=underline ctermfg=215
-  hi PreProc      term=underline ctermfg=105
-  hi comment      term=underline ctermfg=246
+  hi linenr       cterm=NONE     ctermfg=244  ctermbg=NONE
+  hi cursorlinenr cterm=NONE     ctermfg=255  ctermbg=NONE 
+  if &filetype ==# 'c' || &filetype ==# 'cpp'
+    hi statement    term=underline ctermfg=113
+    hi type         term=underline ctermfg=80
+    hi constant     term=underline ctermfg=215
+    hi PreProc      term=underline ctermfg=105
+    hi comment      term=underline ctermfg=246
+  endif
 endfunction
 
 " tab index support
