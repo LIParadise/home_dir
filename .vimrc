@@ -19,9 +19,10 @@ endfunction
 
 " handling different color scheme
 function My_light_theme ()
-  hi type         term=underline ctermfg=80
-  hi constant     term=underline ctermfg=33 
+  hi type         term=underline ctermfg=75
+  hi constant     term=underline ctermfg=172
   hi PreProc      term=underline ctermfg=105
+  hi Statement    term=underline ctermfg=70
 endfunction
 
 function My_dark_theme ()
