@@ -17,7 +17,20 @@ function Lambda_cpp()
   setlocal cindent cino=j1,(0,ws,Ws,N-s
 endfunction
 
+" handling different color scheme
+function My_light_theme ()
+  hi type         term=underline ctermfg=80
+  hi constant     term=underline ctermfg=33 
+  hi PreProc      term=underline ctermfg=105
+endfunction
 
+function My_dark_theme ()
+  hi statement    term=underline ctermfg=113
+  hi type         term=underline ctermfg=80
+  hi constant     term=underline ctermfg=215
+  hi PreProc      term=underline ctermfg=104
+  hi comment      term=underline ctermfg=66
+endfunction
 
 " tab index support
 if (exists("g:loaded_tabline_vim") && g:loaded_tabline_vim) || &cp
