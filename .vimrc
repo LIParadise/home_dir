@@ -20,12 +20,12 @@ endfunction
 " handling different color scheme
 function My_light_theme ()
   hi cursorlinenr cterm=NONE     ctermfg=232  ctermbg=NONE 
-  hi linenr       cterm=NONE     ctermfg=245  ctermbg=NONE 
+  hi linenr       cterm=NONE     ctermfg=246  ctermbg=NONE 
   if &filetype ==# 'c' || &filetype ==# 'cpp'
-    hi type         term=underline ctermfg=69
+    hi type         term=underline ctermfg=32
     hi constant     term=underline ctermfg=172
-    hi PreProc      term=underline ctermfg=171
-    hi Statement    term=underline ctermfg=34
+    hi PreProc      term=underline ctermfg=205
+    hi Statement    term=underline ctermfg=92
     hi comment      term=underline ctermfg=244
   endif
 endfunction
