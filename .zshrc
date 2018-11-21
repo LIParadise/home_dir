@@ -8,7 +8,7 @@
 # load a random theme each time oh-my-zsh is loaded, in which case,
 # to know which specific one was loaded, run: echo $RANDOM_THEME
 # See https://github.com/robbyrussell/oh-my-zsh/wiki/Themes
-ZSH_THEME="avit"
+ZSH_THEME="bira"
 
 # Set list of themes to pick from when loading at random
 # Setting this variable when ZSH_THEME=random will cause zsh to load
@@ -106,20 +106,21 @@ alias ressh="sudo service ssh --full-restart"
 alias vm="ssh -p 2222 liparadise@127.0.0.1"
 
 function G++ {
-  if [ $# == 1 ]
+  if [ "$#" = 1 ]
   then 
-    filename="${1%.*}"
+    filename="${1%\.*}"
     obj_ext=".o"
-    filename_o=$filename$obj_ext
+    filename_o=${filename}${obj_ext}
+    output="test"
     echo "g++ --std=c++11 -Wall -c $1"
     g++ --std=c++11 -Wall -c $1
     echo "g++ -o test $filename_o"
-    g++ -o test $filename_o
-  elif [ $# == 2 ]
+    g++ -o ${output} $filename_o
+  elif [ "$#" = 2 ]
   then
-    filename="${1%.*}"
+    filename="${1%\.*}"
     obj_ext=".o"
-    filename_o=$filename$obj_ext
+    filename_o=${filename}${obj_ext}
     echo "g++ --std=c++11 -Wall -c $1"
     g++ --std=c++11 -Wall -c $1
     echo "g++ -o $2 $filename_o"
