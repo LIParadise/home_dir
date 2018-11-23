@@ -12,6 +12,9 @@ let @e = 'zD'
 " @f: fold from this line to the end of the nearest {} quoted thing, like c-style functions;
 " @e: expand, ie.e unfold, something;
 
+" ctags
+set tags=./tags;/
+
 " handling lambda functions;
 function Lambda_cpp()
   setlocal cindent cino=j1,(0,ws,Ws,N-s
@@ -23,8 +26,8 @@ function My_light_theme ()
   hi linenr       cterm=NONE     ctermfg=246  ctermbg=NONE 
   if &filetype ==# 'c' || &filetype ==# 'cpp'
     hi type         term=underline ctermfg=32
-    hi constant     term=underline ctermfg=172
-    hi PreProc      term=underline ctermfg=205
+    hi constant     term=underline ctermfg=202
+    hi PreProc      term=underline ctermfg=198
     hi Statement    term=underline ctermfg=92
     hi comment      term=underline ctermfg=244
   endif
