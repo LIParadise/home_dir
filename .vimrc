@@ -1,4 +1,4 @@
-set nu ai expandtab tabstop=2 shiftwidth=2 history=200 cursorline laststatus=2 statusline+=%F t_Co=256 ignorecase smartcase
+set nu ai expandtab tabstop=2 shiftwidth=2 history=200 cursorline laststatus=2 statusline+=%m%F t_Co=256 ignorecase smartcase
 
 filetype indent on
 syntax on
