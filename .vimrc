@@ -28,10 +28,10 @@ function My_light_theme ()
   hi cursorlinenr cterm=NONE     ctermfg=232  ctermbg=NONE 
   hi linenr       cterm=NONE     ctermfg=246  ctermbg=NONE 
   if &filetype ==# 'c' || &filetype ==# 'cpp'
-    hi type         term=underline ctermfg=32
-    hi constant     term=underline ctermfg=202
-    hi PreProc      term=underline ctermfg=198
-    hi Statement    term=underline ctermfg=92
+    hi type         term=underline ctermfg=38
+    hi constant     term=underline ctermfg=166
+    hi PreProc      term=underline ctermfg=62
+    hi Statement    term=underline ctermfg=77
     hi comment      term=underline ctermfg=244
   endif
 endfunction
