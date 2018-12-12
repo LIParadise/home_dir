@@ -32,7 +32,7 @@ function My_light_theme ()
     hi constant     term=underline ctermfg=166
     hi PreProc      term=underline ctermfg=62
     hi Statement    term=underline ctermfg=77
-    hi comment      term=underline ctermfg=244
+    hi comment      term=underline ctermfg=243
   endif
 endfunction
 
