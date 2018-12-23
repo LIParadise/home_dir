@@ -27,7 +27,7 @@ endfunction
 function My_light_theme ()
   hi cursorlinenr cterm=NONE     ctermfg=232  ctermbg=NONE 
   hi linenr       cterm=NONE     ctermfg=246  ctermbg=NONE 
-  if &filetype ==# 'c' || &filetype ==# 'cpp'
+  if ( &filetype ==# 'c' || &filetype ==# 'cpp' )
     hi type         term=underline ctermfg=32
     hi constant     term=underline ctermfg=202
     hi PreProc      term=underline ctermfg=198
@@ -39,7 +39,7 @@ endfunction
 function My_dark_theme ()
   hi linenr       cterm=NONE     ctermfg=244  ctermbg=NONE
   hi cursorlinenr cterm=NONE     ctermfg=255  ctermbg=NONE 
-  if &filetype ==# 'c' || &filetype ==# 'cpp'
+  if ( &filetype ==# 'c' || &filetype ==# 'cpp' )
     hi statement    term=underline ctermfg=113
     hi type         term=underline ctermfg=80
     hi constant     term=underline ctermfg=215
