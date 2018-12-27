@@ -112,8 +112,8 @@ function G++ {
     obj_ext=".o"
     filename_o=${filename}${obj_ext}
     output="test"
-    echo "g++ --std=c++11 -Wall -c $1"
-    g++ --std=c++11 -Wall -c $1
+    echo "g++ --std=c++11 -Wall -O2 -c $1"
+    g++ --std=c++11 -Wall -O2 -c $1
     echo "g++ -o test $filename_o"
     g++ -o ${output} $filename_o
   elif [ "$#" = 2 ]
@@ -121,8 +121,36 @@ function G++ {
     filename="${1%\.*}"
     obj_ext=".o"
     filename_o=${filename}${obj_ext}
-    echo "g++ --std=c++11 -Wall -c $1"
-    g++ --std=c++11 -Wall -c $1
+    echo "g++ --std=c++11 -Wall -O2 -c $1"
+    g++ --std=c++11 -Wall -O2 -c $1
+    echo "g++ -o $2 $filename_o"
+    g++ -o $2 $filename_o
+  else 
+    echo "Usage: G++ code.cc <executable>"
+    echo "where \"code.cc\" is a simple C++ code,"
+    echo "\"executable\" being final output filename"
+    return 0
+  fi
+}
+
+function G++0 {
+  if [ "$#" = 1 ]
+  then 
+    filename="${1%\.*}"
+    obj_ext=".o"
+    filename_o=${filename}${obj_ext}
+    output="test"
+    echo "g++ --std=c++11 -Wall -O0 -c $1"
+    g++ --std=c++11 -Wall -O0 -c $1
+    echo "g++ -o test $filename_o"
+    g++ -o ${output} $filename_o
+  elif [ "$#" = 2 ]
+  then
+    filename="${1%\.*}"
+    obj_ext=".o"
+    filename_o=${filename}${obj_ext}
+    echo "g++ --std=c++11 -Wall -O0 -c $1"
+    g++ --std=c++11 -Wall -O0 -c $1
     echo "g++ -o $2 $filename_o"
     g++ -o $2 $filename_o
   else 
