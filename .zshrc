@@ -213,7 +213,6 @@ function myctags {
       then
         # in zsh, "..." expands to "../.."
 
-        tag_path="/tags"
         echo "input: ${1}"
         relative_path=`sed -r -E 's/\/[^/]+$//g' <<< ${1}`
 
