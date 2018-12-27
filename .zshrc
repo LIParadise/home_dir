@@ -1,27 +1,27 @@
 # If you come from bash you might have to change your $PATH.
-# export PATH=$HOME/bin:/usr/local/bin:$PATH
+  # export PATH=$HOME/bin:/usr/local/bin:$PATH
 
 # Path to your oh-my-zsh installation.
-  export ZSH="/home/liparadise/.oh-my-zsh"
+export ZSH="/home/liparadise/.oh-my-zsh"
 
 # Set name of the theme to load --- if set to "random", it will
-# load a random theme each time oh-my-zsh is loaded, in which case,
-# to know which specific one was loaded, run: echo $RANDOM_THEME
-# See https://github.com/robbyrussell/oh-my-zsh/wiki/Themes
-ZSH_THEME="bira"
+  # load a random theme each time oh-my-zsh is loaded, in which case,
+    # to know which specific one was loaded, run: echo $RANDOM_THEME
+    # See https://github.com/robbyrussell/oh-my-zsh/wiki/Themes
+    ZSH_THEME="gentoo"
 
 # Set list of themes to pick from when loading at random
 # Setting this variable when ZSH_THEME=random will cause zsh to load
 # a theme from this variable instead of looking in ~/.oh-my-zsh/themes/
 # If set to an empty array, this variable will have no effect.
-# ZSH_THEME_RANDOM_CANDIDATES=( "robbyrussell" "agnoster" )
+  # ZSH_THEME_RANDOM_CANDIDATES=( "robbyrussell" "agnoster" )
 
 # Uncomment the following line to use case-sensitive completion.
-# CASE_SENSITIVE="true"
+  # CASE_SENSITIVE="true"
 
 # Uncomment the following line to use hyphen-insensitive completion.
 # Case-sensitive completion must be off. _ and - will be interchangeable.
-# HYPHEN_INSENSITIVE="true"
+  # HYPHEN_INSENSITIVE="true"
 
 # Uncomment the following line to disable bi-weekly auto-update checks.
 # DISABLE_AUTO_UPDATE="true"
@@ -39,20 +39,20 @@ ZSH_THEME="bira"
 # ENABLE_CORRECTION="true"
 
 # Uncomment the following line to display red dots whilst waiting for completion.
-# COMPLETION_WAITING_DOTS="true"
+  # COMPLETION_WAITING_DOTS="true"
 
 # Uncomment the following line if you want to disable marking untracked files
-# under VCS as dirty. This makes repository status check for large repositories
-# much, much faster.
-# DISABLE_UNTRACKED_FILES_DIRTY="true"
+  # under VCS as dirty. This makes repository status check for large repositories
+    # much, much faster.
+    # DISABLE_UNTRACKED_FILES_DIRTY="true"
 
 # Uncomment the following line if you want to change the command execution time
-# stamp shown in the history command output.
-# You can set one of the optional three formats:
-# "mm/dd/yyyy"|"dd.mm.yyyy"|"yyyy-mm-dd"
-# or set a custom format using the strftime function format specifications,
-# see 'man strftime' for details.
-# HIST_STAMPS="mm/dd/yyyy"
+  # stamp shown in the history command output.
+  # You can set one of the optional three formats:
+  # "mm/dd/yyyy"|"dd.mm.yyyy"|"yyyy-mm-dd"
+  # or set a custom format using the strftime function format specifications,
+  # see 'man strftime' for details.
+    # HIST_STAMPS="mm/dd/yyyy"
 
 # Would you like to use another custom folder than $ZSH/custom?
 # ZSH_CUSTOM=/path/to/new-custom-folder
@@ -63,7 +63,7 @@ ZSH_THEME="bira"
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
 plugins=(
-  git
+git
 )
 
 source $ZSH/oh-my-zsh.sh
@@ -76,11 +76,11 @@ source $ZSH/oh-my-zsh.sh
 # export LANG=en_US.UTF-8
 
 # Preferred editor for local and remote sessions
-# if [[ -n $SSH_CONNECTION ]]; then
-#   export EDITOR='vim'
-# else
-#   export EDITOR='mvim'
-# fi
+  # if [[ -n $SSH_CONNECTION ]]; then
+    #   export EDITOR='vim'
+    # else
+      #   export EDITOR='mvim'
+      # fi
 
 # Compilation flags
 # export ARCHFLAGS="-arch x86_64"
@@ -92,10 +92,10 @@ source $ZSH/oh-my-zsh.sh
 # plugins, and themes. Aliases can be placed here, though oh-my-zsh
 # users are encouraged to define aliases within the ZSH_CUSTOM folder.
 # For a full list of active aliases, run `alias`.
-#
-# Example aliases
-# alias zshconfig="mate ~/.zshrc"
-# alias ohmyzsh="mate ~/.oh-my-zsh"
+  #
+  # Example aliases
+  # alias zshconfig="mate ~/.zshrc"
+  # alias ohmyzsh="mate ~/.oh-my-zsh"
 
 # LIParadise Modifications
 alias cp="cp -i"
@@ -170,5 +170,105 @@ function dev-tmux {
   tmux new-window -n misc
   tmux selectw -t 0
   tmux -2 attach-session -d
+}
+
+function myctags {
+
+  msg="\n\
+    Usage: mytags <your_path>\n\
+    Where your_path is where you want to put the ctags file\n\
+    ctags file would default have name \"tags\"\n\
+    When no arg., output would be \$HOME/.tags/tags\n"
+
+  if [ "$#" = 1 ]
+  then
+    if [[ ${1} =~ '--help' || ${1} =~ '-h' ]]
+    then
+      # somehow this would match "--h", etc. ...
+      echo ${msg}
+      return 0
+    else
+      # relative_path=`echo ${1} | sed -r -E 's/(.*)\/\w+\/?$/\1/g'`
+
+      tag_filename="/tags"
+      relative_path="hello, world"
+      tag_path="/tmp/tags"
+
+      if [[ ${1} =~ '\/$' ]]
+      then
+
+        if [[ -d ${1} ]]
+        then
+          echo "\nYou specified a diretory"
+          relative_path=`sed -r -E 's/\/+$//g' <<< ${1}`
+          tag_path=${relative_path}${tag_filename}
+        else
+          echo "\nThe directory \"${1}\" specified DNE."
+          echo "Maybe check existence of parent directory"
+          echo ${msg}
+          return 0
+        fi
+
+      elif [[ ${1} =~ '\w$' || ${1} =~ '\.{1,3}$' ]]
+      then
+        # in zsh, "..." expands to "../.."
+
+        tag_path="/tags"
+        echo "input: ${1}"
+        relative_path=`sed -r -E 's/\/[^/]+$//g' <<< ${1}`
+
+        if [[ -d ${1} ]]
+        then
+          echo "\nYou specified a directory"
+          echo "use default name \"tags\" as output"
+          tag_path=${1}${tag_filename}
+
+        elif [[ -f ${1} ]]
+        then
+          echo "\nYou specified a already-existent filename"
+          echo "ctags will use it as output"
+          tag_path=${1}
+
+        elif [[ -d ${relative_path} ]]
+        then
+          echo "\nYou specified a new file"
+          echo "ctags would use it as output"
+          tag_path=${1}
+        else
+          echo "relative_path is:  $relative_path"
+          echo "\nThe directory or file \"${1}\" specified DNE."
+          echo "Maybe check existence of parent directory"
+          echo ${msg} 
+          return 0
+        fi
+
+      else
+        echo "\nThe directory or file \"${1}\" specified is wierd."
+        echo "Maybe check existence of parent directory"
+        echo ${msg} 
+        return 0
+      fi
+
+      echo ""
+      echo "relative_path is:  $relative_path"
+      echo "tag_path is:       $tag_path"
+      echo "ctags --tag-relative=yes -f ${tag_path} -R ./*"
+      echo ""
+      ctags --tag-relative=yes -f ${tag_path} -R ./*
+      echo ""
+      return 0
+
+    fi
+
+  elif [ "$#" = 0 ]
+  then
+    echo "ctags --tag-relative=yes -f $HOME/.tags/tags -R ./*"
+    ctags --tag-relative=yes -f $HOME/.tags/tags -R ./*
+    echo ""
+    return 0
+  else
+    echo ${msg}
+    return 0
+  fi
 }
 # End of LIParadise Modifications
