@@ -16,8 +16,7 @@ let @e = 'zD'
 " @e: expand, ie.e unfold, something;
 
 " ctags
-set tags+=./tags
-set tags+=~/.tags/tags
+set tags=./tags,./TAGS,tags;~,TAGS;~
 
 " handling lambda functions;
 function Lambda_cpp()
