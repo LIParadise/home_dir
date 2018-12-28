@@ -1,7 +1,7 @@
 set nu ai expandtab tabstop=2 shiftwidth=2 history=200 cursorline laststatus=2 statusline+=%m%F t_Co=256 ignorecase smartcase
-set backupdir=~/.backup/,/tmp//
-set directory=~/.swp/,/tmp//
-set undodir=~/.undo/,/tmp//
+set undodir=~/.vim/.undo//
+set backupdir=~/.vim/.backup//
+set directory=~/.vim/.swp//
 
 filetype indent on
 syntax on
@@ -16,7 +16,7 @@ let @e = 'zD'
 " @e: expand, ie.e unfold, something;
 
 " ctags
-set tags=./tags;/
+set tags=./tags,./TAGS,tags;~,TAGS;~,~/.tags/tags,~/.tags/TAGS
 
 " handling lambda functions;
 function Lambda_cpp()
