@@ -163,11 +163,17 @@ function G++0 {
 
 function dev-tmux {
   tmux new-session -d -n vim
+
   tmux new-window -n files
+  tmux split-window -h
+  tmux selectp -t 0
+
   tmux new-window -n testing 
   tmux split-window -h
   tmux selectp -t 0
+
   tmux new-window -n misc
+
   tmux selectw -t 0
   tmux -2 attach-session -d
 }
