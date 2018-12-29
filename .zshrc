@@ -257,9 +257,9 @@ function myctags {
       echo ""
       echo "relative_path is:  $relative_path"
       echo "tag_path is:       $tag_path"
-      echo "ctags --tag-relative=yes -f ${tag_path} -R ./*"
+      echo "ctags --tag-relative=yes -f ${tag_path} -R src/* lib/* include/*"
       echo ""
-      ctags --tag-relative=yes -f ${tag_path} -R ./*
+      ctags --tag-relative=yes -f ${tag_path} -R src/* lib/* include/*
       echo ""
       return 0
 
@@ -267,8 +267,8 @@ function myctags {
 
   elif [ "$#" = 0 ]
   then
-    echo "ctags --tag-relative=yes -f $HOME/.tags/tags -R ./*"
-    ctags --tag-relative=yes -f $HOME/.tags/tags -R ./*
+    echo "ctags --tag-relative=yes -f $HOME/.tags/tags -R src/* lib/* include/*"
+    ctags --tag-relative=yes -f $HOME/.tags/tags -R src/* lib/* include/*
     echo ""
     return 0
   else
