@@ -133,6 +133,34 @@ function G++ {
   fi
 }
 
+function Clang++ {
+  if [ "$#" = 1 ]
+  then 
+    filename="${1%\.*}"
+    obj_ext=".o"
+    filename_o=${filename}${obj_ext}
+    output="test"
+    echo "clang++ --std=c++11 -Wall -O2 -c $1"
+    clang++ --std=c++11 -Wall -O2 -c $1
+    echo "clang++ -o test $filename_o"
+    clang++ -o ${output} $filename_o
+  elif [ "$#" = 2 ]
+  then
+    filename="${1%\.*}"
+    obj_ext=".o"
+    filename_o=${filename}${obj_ext}
+    echo "clang++ --std=c++11 -Wall -O2 -c $1"
+    clang++ --std=c++11 -Wall -O2 -c $1
+    echo "clang++ -o $2 $filename_o"
+    clang++ -o $2 $filename_o
+  else 
+    echo "Usage: Clang++ code.cc <executable>"
+    echo "where \"code.cc\" is a simple C++ code,"
+    echo "\"executable\" being final output filename"
+    return 0
+  fi
+}
+
 function G++0 {
   if [ "$#" = 1 ]
   then 
@@ -155,6 +183,34 @@ function G++0 {
     g++ -o $2 $filename_o
   else 
     echo "Usage: G++ code.cc <executable>"
+    echo "where \"code.cc\" is a simple C++ code,"
+    echo "\"executable\" being final output filename"
+    return 0
+  fi
+}
+
+function Clang++0 {
+  if [ "$#" = 1 ]
+  then 
+    filename="${1%\.*}"
+    obj_ext=".o"
+    filename_o=${filename}${obj_ext}
+    output="test"
+    echo "clang++ --std=c++11 -Wall -O0 -c $1"
+    clang++ --std=c++11 -Wall -O0 -c $1
+    echo "clang++ -o test $filename_o"
+    clang++ -o ${output} $filename_o
+  elif [ "$#" = 2 ]
+  then
+    filename="${1%\.*}"
+    obj_ext=".o"
+    filename_o=${filename}${obj_ext}
+    echo "clang++ --std=c++11 -Wall -O0 -c $1"
+    clang++ --std=c++11 -Wall -O0 -c $1
+    echo "clang++ -o $2 $filename_o"
+    clang++ -o $2 $filename_o
+  else 
+    echo "Usage: clang++ code.cc <executable>"
     echo "where \"code.cc\" is a simple C++ code,"
     echo "\"executable\" being final output filename"
     return 0
@@ -257,9 +313,9 @@ function myctags {
       echo ""
       echo "relative_path is:  $relative_path"
       echo "tag_path is:       $tag_path"
-      echo "ctags --tag-relative=yes -f ${tag_path} -R src/* lib/* include/*"
+      echo "ctags --language-force=c++ --tag-relative=yes -f ${tag_path} -R src/* lib/* include/*"
       echo ""
-      ctags --tag-relative=yes -f ${tag_path} -R src/* lib/* include/*
+      ctags --language-force=c++ --tag-relative=yes -f ${tag_path} -R src/* lib/* include/*
       echo ""
       return 0
 
@@ -267,8 +323,8 @@ function myctags {
 
   elif [ "$#" = 0 ]
   then
-    echo "ctags --tag-relative=yes -f $HOME/.tags/tags -R src/* lib/* include/*"
-    ctags --tag-relative=yes -f $HOME/.tags/tags -R src/* lib/* include/*
+    echo "ctags --language-force=c++ --tag-relative=yes -f $HOME/.tags/tags -R src/* lib/* include/*"
+    ctags --language-force=c++ --tag-relative=yes -f $HOME/.tags/tags -R src/* lib/* include/*
     echo ""
     return 0
   else
