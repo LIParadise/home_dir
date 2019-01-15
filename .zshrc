@@ -221,11 +221,11 @@ function Clang++0 {
 function dev-tmux {
   tmux new-session -d -n vim
 
-  tmux new-window -n files
+  tmux new-window -n testing 
   tmux split-window -h
   tmux selectp -t 0
 
-  tmux new-window -n testing 
+  tmux new-window -n files
   tmux split-window -h
   tmux selectp -t 0
 
