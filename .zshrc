@@ -183,7 +183,7 @@ function G++0 {
     echo "g++ -o $2 $filename_o"
     g++ -o $2 $filename_o
   else 
-    echo "Usage: G++ code.cc <executable>"
+    echo "Usage: G++0 code.cc <executable>"
     echo "where \"code.cc\" is a simple C++ code,"
     echo "\"executable\" being final output filename"
     return 0
@@ -211,12 +211,127 @@ function Clang++0 {
     echo "clang++ -o $2 $filename_o"
     clang++ -o $2 $filename_o
   else 
-    echo "Usage: clang++ code.cc <executable>"
+    echo "Usage: Clang++0 code.cc <executable>"
     echo "where \"code.cc\" is a simple C++ code,"
     echo "\"executable\" being final output filename"
     return 0
   fi
 }
+
+
+function GCC {
+  if [ "$#" = 1 ]
+  then 
+    filename="${1%\.*}"
+    obj_ext=".o"
+    filename_o=${filename}${obj_ext}
+    output="test"
+    echo "gcc --std=c99 -Wall -O2 -c $1"
+    gcc --std=c99 -Wall -O2 -c $1
+    echo "gcc -o test $filename_o"
+    gcc -o ${output} $filename_o
+  elif [ "$#" = 2 ]
+  then
+    filename="${1%\.*}"
+    obj_ext=".o"
+    filename_o=${filename}${obj_ext}
+    echo "gcc --std=c99 -Wall -O2 -c $1"
+    gcc --std=c99 -Wall -O2 -c $1
+    echo "gcc -o $2 $filename_o"
+    gcc -o $2 $filename_o
+  else 
+    echo "Usage: GCC code.cc <executable>"
+    echo "where \"code.cc\" is a simple C code,"
+    echo "\"executable\" being final output filename"
+    return 0
+  fi
+}
+
+function GCC0 {
+  if [ "$#" = 1 ]
+  then 
+    filename="${1%\.*}"
+    obj_ext=".o"
+    filename_o=${filename}${obj_ext}
+    output="test"
+    echo "gcc --std=c99 -Wall -O0 -c $1"
+    gcc --std=c99 -Wall -O0 -c $1
+    echo "gcc -o test $filename_o"
+    gcc -o ${output} $filename_o
+  elif [ "$#" = 2 ]
+  then
+    filename="${1%\.*}"
+    obj_ext=".o"
+    filename_o=${filename}${obj_ext}
+    echo "gcc --std=c99 -Wall -O0 -c $1"
+    gcc --std=c99 -Wall -O0 -c $1
+    echo "gcc -o $2 $filename_o"
+    gcc -o $2 $filename_o
+  else 
+    echo "Usage: GCC0 code.cc <executable>"
+    echo "where \"code.cc\" is a simple C code,"
+    echo "\"executable\" being final output filename"
+    return 0
+  fi
+}
+
+function CLANG {
+  if [ "$#" = 1 ]
+  then 
+    filename="${1%\.*}"
+    obj_ext=".o"
+    filename_o=${filename}${obj_ext}
+    output="test"
+    echo "clang --std=c99 -Wall -O2 -c $1"
+    clang --std=c99 -Wall -O2 -c $1
+    echo "clang -o test $filename_o"
+    clang -o ${output} $filename_o
+  elif [ "$#" = 2 ]
+  then
+    filename="${1%\.*}"
+    obj_ext=".o"
+    filename_o=${filename}${obj_ext}
+    echo "clang --std=c99 -Wall -O2 -c $1"
+    clang --std=c99 -Wall -O2 -c $1
+    echo "clang -o $2 $filename_o"
+    clang -o $2 $filename_o
+  else 
+    echo "Usage: CLANG code.cc <executable>"
+    echo "where \"code.cc\" is a simple C++ code,"
+    echo "\"executable\" being final output filename"
+    return 0
+  fi
+}
+
+function CLANG0 {
+  if [ "$#" = 1 ]
+  then 
+    filename="${1%\.*}"
+    obj_ext=".o"
+    filename_o=${filename}${obj_ext}
+    output="test"
+    echo "clang --std=c99 -Wall -O0 -c $1"
+    clang --std=c99 -Wall -O0 -c $1
+    echo "clang -o test $filename_o"
+    clang -o ${output} $filename_o
+  elif [ "$#" = 2 ]
+  then
+    filename="${1%\.*}"
+    obj_ext=".o"
+    filename_o=${filename}${obj_ext}
+    echo "clang --std=c99 -Wall -O0 -c $1"
+    clang --std=c99 -Wall -O0 -c $1
+    echo "clang -o $2 $filename_o"
+    clang -o $2 $filename_o
+  else 
+    echo "Usage: CLANG0 code.cc <executable>"
+    echo "where \"code.cc\" is a simple C++ code,"
+    echo "\"executable\" being final output filename"
+    return 0
+  fi
+}
+
+
 
 function dev-tmux {
   tmux new-session -d -n vim
