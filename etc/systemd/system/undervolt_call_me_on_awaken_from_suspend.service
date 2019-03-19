@@ -1,0 +1,11 @@
+[Unit]
+Description=apply undervolt on awaken from suspend
+After=suspend.target hibernate.target hybrid-sleep.target
+
+[Service]
+ExecStart=/root/undervolt/undervolt.py -v --temp 70 --core -55 --cache -55
+#User=my_user_name
+#Environment=DISPLAY=:0
+
+[Install]
+WantedBy=suspend.target hibernate.target hybrid-sleep.target
