@@ -3,6 +3,13 @@
 
 # Path to your oh-my-zsh installation.
 export ZSH="/home/liparadise/.oh-my-zsh"
+
+# NTUOSC ml environmental variables
+# export WORKON_HOME=$HOME/.virtualenvs
+# export VIRTUALENVWRAPPER_PYTHON=/usr/bin/python3
+# source /usr/local/bin/virtualenvwrapper.sh
+# end of NTUOSC ml environmental variables
+
 DISABLE_AUTO_UPDATE="true"
 
 # Set name of the theme to load --- if set to "random", it will
@@ -105,6 +112,7 @@ alias rm="rm -i"
 alias ll="ls -alF"
 alias ressh="sudo service ssh --full-restart"
 alias vm="ssh -p 2222 liparadise@127.0.0.1"
+cd
 
 function G++ {
   if [ "$#" = 1 ]
