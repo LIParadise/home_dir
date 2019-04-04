@@ -5,9 +5,9 @@
 export ZSH="/home/liparadise/.oh-my-zsh"
 
 # NTUOSC ml environmental variables
-# export WORKON_HOME=$HOME/.virtualenvs
-# export VIRTUALENVWRAPPER_PYTHON=/usr/bin/python3
-# source /usr/local/bin/virtualenvwrapper.sh
+export WORKON_HOME=$HOME/.virtualenvs
+export VIRTUALENVWRAPPER_PYTHON=/usr/bin/python3
+source /usr/local/bin/virtualenvwrapper.sh
 # end of NTUOSC ml environmental variables
 
 DISABLE_AUTO_UPDATE="true"
@@ -110,9 +110,10 @@ alias cp="cp -i"
 alias mv="mv -i"
 alias rm="rm -i"
 alias ll="ls -alF"
+alias so="source $HOME/.zshrc"
 alias ressh="sudo service ssh --full-restart"
+alias sshgit="eval \"$(ssh-agent -s)\"; ssh-add"
 alias vm="ssh -p 2222 liparadise@127.0.0.1"
-cd
 
 function G++ {
   if [ "$#" = 1 ]
@@ -355,7 +356,7 @@ function dev-tmux {
   tmux new-window -n misc
 
   tmux selectw -t 0
-  tmux -2 attach-session -d
+  tmux -2 attach-session -d -c `pwd -P`
 }
 
 function myctags {
