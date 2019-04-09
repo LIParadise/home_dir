@@ -3,6 +3,7 @@
 
 # Path to your oh-my-zsh installation.
 export ZSH="/home/liparadise/.oh-my-zsh"
+export ZDOTDIR="/home/liparadise/.zsh"
 
 # NTUOSC ml environmental variables
 export WORKON_HOME=$HOME/.virtualenvs
