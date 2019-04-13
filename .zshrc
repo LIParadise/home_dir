@@ -113,8 +113,46 @@ alias rm="rm -i"
 alias ll="ls -alF"
 alias so="source $HOME/.zshrc"
 alias ressh="sudo service ssh --full-restart"
-alias sshgit="eval \"$(ssh-agent -s)\"; ssh-add"
 alias vm="ssh -p 2222 liparadise@127.0.0.1"
+
+function sshgit {
+
+  key= 
+
+  if [[ ! -z "${1}" ]] ; then
+    key="${1}"
+  else
+    key="$HOME/.ssh/id_rsa_github_LIParadise"
+  fi
+
+  if [[ ! -z "${SSH_AGENT_PID}" ]]; then
+    echo "ssh-agent shall be running"
+  else
+    echo "eval \$(ssh-agent -s)"
+    eval $(ssh-agent -s)
+  fi
+
+  ssh-add $key
+}
+
+function killsshgit {
+  if [[ ! -z "${SSH_AGENT_PID}" ]]; then 
+    # "SSH_AGENT_PID" environmental variable is set
+    echo ""
+    echo "\$SSH_AGENT_PID is set, which is $SSH_AGENT_PID"
+    echo ""
+    echo "ssh-agent -k"
+    echo "====================================="
+    ssh-agent -k
+    echo "====================================="
+    echo ""
+    echo "SSH_AGENT_PID="
+    SSH_AGENT_PID=
+    echo ""
+  else
+    echo "\$SSH_AGENT_PID not set, abort"
+  fi
+}
 
 function G++ {
   if [ "$#" = 1 ]
