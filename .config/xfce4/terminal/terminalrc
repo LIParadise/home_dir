@@ -35,5 +35,4 @@ ScrollingLines=2000
 MiscShowRelaunchDialog=TRUE
 MiscNewTabAdjacent=FALSE
 DefaultWorkingDir=/home/liparadise
-CommandLoginShell=TRUE
 
