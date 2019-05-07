@@ -5,6 +5,9 @@
 export ZSH="/home/liparadise/.oh-my-zsh"
 export ZDOTDIR="/home/liparadise/.zsh"
 
+# Path for golang
+  export GOPATH=$HOME/go
+
 # NTUOSC ml environmental variables
 export WORKON_HOME=$HOME/.virtualenvs
 export VIRTUALENVWRAPPER_PYTHON=/usr/bin/python3
@@ -122,11 +125,17 @@ function sshgit {
   if [[ ! -z "${1}" ]] ; then
     key="${1}"
   else
-    key="$HOME/.ssh/id_rsa_github_LIParadise"
+    key="$HOME/.ssh/id_rsa_a58524andy"
   fi
 
-  if [[ ! -z "${SSH_AGENT_PID}" ]]; then
-    echo "ssh-agent shall be running"
+  if [[ ! -z $SSH_AGENT_PID ]] ; then
+    if ps -p $SSH_AGENT_PID > /dev/null 
+    then
+      echo "ssh-agent shall be running"
+    else
+      echo "weird, \$SSH_AGENT_PID is set but no ssh-agent process found"
+      echo "trying directly add the key"
+    fi
   else
     echo "eval \$(ssh-agent -s)"
     eval $(ssh-agent -s)
@@ -135,20 +144,36 @@ function sshgit {
   ssh-add $key
 }
 
-function killsshgit {
-  if [[ ! -z "${SSH_AGENT_PID}" ]]; then 
-    # "SSH_AGENT_PID" environmental variable is set
-    echo ""
-    echo "\$SSH_AGENT_PID is set, which is $SSH_AGENT_PID"
-    echo ""
-    echo "ssh-agent -k"
-    echo "====================================="
-    ssh-agent -k
-    echo "====================================="
-    echo ""
-    echo "SSH_AGENT_PID="
-    SSH_AGENT_PID=
-    echo ""
+function delsshgit {
+
+  # set variables
+  key=
+  if [[ ! -z "${1}" ]] ; then
+    key="${1}"
+  else
+    key="$HOME/.ssh/id_rsa_a58524andy"
+  fi
+
+  # check if ssh-agent is present; if so, delete the identity.
+  if [[ ! -z $SSH_AGENT_PID ]] ; then
+    if ps -p $SSH_AGENT_PID > /dev/null 
+    then 
+      # "SSH_AGENT_PID" environmental variable is set
+      # and the process is present
+      # directly delete the key from it
+      echo ""
+      echo "found ssh-agent process, of which PID is $SSH_AGENT_PID"
+      echo ""
+      echo "ssh-agent -d $key"
+      echo ""
+      echo "====================================="
+      ssh-agent -d $key
+      echo "====================================="
+      echo ""
+      echo ""
+    else
+      echo "weird, \$SSH_AGENT_PID is set but no ssh-agent process found"
+    fi
   else
     echo "\$SSH_AGENT_PID not set, abort"
   fi
