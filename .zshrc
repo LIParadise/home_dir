@@ -151,7 +151,7 @@ function delsshgit {
   if [[ ! -z "${1}" ]] ; then
     key="${1}"
   else
-    key="$HOME/.ssh/id_rsa_a58524andy"
+    key="$HOME/.ssh/id_rsa_a58524andy.pub"
   fi
 
   # check if ssh-agent is present; if so, delete the identity.
@@ -164,10 +164,10 @@ function delsshgit {
       echo ""
       echo "found ssh-agent process, of which PID is $SSH_AGENT_PID"
       echo ""
-      echo "ssh-agent -d $key"
+      echo "ssh-add -d $key"
       echo ""
       echo "====================================="
-      ssh-agent -d $key
+      ssh-add -d $key
       echo "====================================="
       echo ""
       echo ""
