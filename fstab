@@ -1,0 +1,17 @@
+
+#
+# /etc/fstab
+# Created by anaconda on Fri May 17 22:14:24 2019
+#
+# Accessible filesystems, by reference, are maintained under '/dev/disk/'.
+# See man pages fstab(5), findfs(8), mount(8) and/or blkid(8) for more info.
+#
+# After editing this file, run 'systemctl daemon-reload' to update systemd
+# units generated from this file.
+#
+/dev/mapper/debian_vg-root /                       ext4    defaults        1 1
+UUID=dc72a9f2-ac08-46c3-bb1f-82e7961963da /boot                   ext4    defaults        1 2
+UUID=0F44-AD03          /boot/efi               vfat    umask=0077,shortname=winnt 0 2
+/dev/mapper/debian_vg-home /home                   xfs     defaults        0 0
+/dev/mapper/debian_vg-swap none                    swap    defaults        0 0
+/dev/mapper/debian_vg-data /mnt/data               ext4    defaults        0 0
