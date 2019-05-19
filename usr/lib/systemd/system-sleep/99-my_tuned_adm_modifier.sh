@@ -6,6 +6,7 @@ case "$1" in
     sleep 2s # to ensure it's off.
     ;;
   post)
+    sleep 0.4s
     myac_adapter=$(acpi -a | cut -d' ' -f3 | cut -d- -f1)
     if [ "$myac_adapter" = "on" ]; then
       /usr/sbin/tuned-adm off
