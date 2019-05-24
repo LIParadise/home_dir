@@ -1,12 +1,3 @@
-# mbed-cli bash completion
-# check the following:
-# https://github.com/eddiezane/lunchy/issues/57
-# for more details
-autoload -U +X bashcompinit && bashcompinit
-autoload -U +X compinit && compinit
-# End of mbed-cli bash completion
-
-
 # If you come from bash you might have to change your $PATH.
   # export PATH=$HOME/bin:/usr/local/bin:$PATH
 
@@ -16,17 +7,6 @@ export ZDOTDIR="/home/liparadise/.zsh"
 
 # Path for golang
   export GOPATH=$HOME/go
-
-# NTUOSC ml environmental variables
-export WORKON_HOME=$HOME/.virtualenvs
-export VIRTUALENVWRAPPER_PYTHON=/usr/bin/python3
-source /usr/bin/virtualenvwrapper.sh
-# end of NTUOSC ml environmental variables
-
-
-# mbed-cli bash completion
-source /home/liparadise/mbed/.bash_completion.d/mbed
-# End of mbed-cli bash completion
 
 DISABLE_AUTO_UPDATE="true"
 
