@@ -1,0 +1,2 @@
+evdev:name:TPPS/2 IBM TrackPoint*
+    LIBINPUT_ATTR_TRACKPOINT_RANGE=50
