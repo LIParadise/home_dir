@@ -417,7 +417,7 @@ function CLANG0 {
 
 
 function dev-tmux {
-  tmux new-session -d -n vim
+  tmux new-session -d -n work
 
   tmux new-window -n testing 
   tmux split-window -h
