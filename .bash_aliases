@@ -61,7 +61,7 @@ function G++ {
 }
 
 function dev-tmux {
-  tmux new-session -d -n vim
+  tmux new-session -d -n work
 
   tmux new-window -n files
   tmux split-window -h
