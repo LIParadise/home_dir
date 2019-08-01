@@ -4,13 +4,13 @@
 # for more details
 autoload -U +X bashcompinit && bashcompinit
 autoload -U +X compinit && compinit
-source /home/liparadise/.bash_completion.d/mbed
+# source /home/liparadise/.bash_completion.d/mbed
 # End of mbed-cli bash completion
 
 # NTUOSC ml environmental variables
 export WORKON_HOME=$HOME/.virtualenvs
 export VIRTUALENVWRAPPER_PYTHON=/usr/bin/python3
-source /usr/bin/virtualenvwrapper.sh
+source /usr/local/bin/virtualenvwrapper.sh
 # end of NTUOSC ml environmental variables
 #
 
@@ -196,8 +196,8 @@ function G++ {
     obj_ext=".o"
     filename_o=${filename}${obj_ext}
     output="test"
-    echo "g++ --std=c++11 -Wall -O2 -c $1"
-    g++ --std=c++11 -Wall -O2 -c $1
+    echo "g++ --std=c++11 -Wall -O2  -march=native -mtune=native -c $1"
+    g++ --std=c++11 -Wall -O2  -march=native -mtune=native -c $1
     echo "g++ -o test $filename_o"
     g++ -o ${output} $filename_o
   elif [ "$#" = 2 ]
@@ -205,8 +205,8 @@ function G++ {
     filename="${1%\.*}"
     obj_ext=".o"
     filename_o=${filename}${obj_ext}
-    echo "g++ --std=c++11 -Wall -O2 -c $1"
-    g++ --std=c++11 -Wall -O2 -c $1
+    echo "g++ --std=c++11 -Wall -O2  -march=native -mtune=native -c $1"
+    g++ --std=c++11 -Wall -O2  -march=native -mtune=native -c $1
     echo "g++ -o $2 $filename_o"
     g++ -o $2 $filename_o
   else 
@@ -224,8 +224,8 @@ function Clang++ {
     obj_ext=".o"
     filename_o=${filename}${obj_ext}
     output="test"
-    echo "clang++ --std=c++11 -Wall -O2 -c $1"
-    clang++ --std=c++11 -Wall -O2 -c $1
+    echo "clang++ --std=c++11 -Wall -O2 -march=native -mtune=native  -c $1"
+    clang++ --std=c++11 -Wall -O2 -march=native -mtune=native  -c $1
     echo "clang++ -o test $filename_o"
     clang++ -o ${output} $filename_o
   elif [ "$#" = 2 ]
@@ -233,8 +233,8 @@ function Clang++ {
     filename="${1%\.*}"
     obj_ext=".o"
     filename_o=${filename}${obj_ext}
-    echo "clang++ --std=c++11 -Wall -O2 -c $1"
-    clang++ --std=c++11 -Wall -O2 -c $1
+    echo "clang++ --std=c++11 -Wall -O2 -march=native -mtune=native  -c $1"
+    clang++ --std=c++11 -Wall -O2 -march=native -mtune=native  -c $1
     echo "clang++ -o $2 $filename_o"
     clang++ -o $2 $filename_o
   else 
@@ -309,8 +309,8 @@ function GCC {
     obj_ext=".o"
     filename_o=${filename}${obj_ext}
     output="test"
-    echo "gcc --std=c99 -Wall -O2 -c $1"
-    gcc --std=c99 -Wall -O2 -c $1
+    echo "gcc --std=c99 -Wall -O2  -march=native -mtune=native -c $1"
+    gcc --std=c99 -Wall -O2 -march=native -mtune=native  -c $1
     echo "gcc -o test $filename_o"
     gcc -o ${output} $filename_o
   elif [ "$#" = 2 ]
@@ -318,8 +318,8 @@ function GCC {
     filename="${1%\.*}"
     obj_ext=".o"
     filename_o=${filename}${obj_ext}
-    echo "gcc --std=c99 -Wall -O2 -c $1"
-    gcc --std=c99 -Wall -O2 -c $1
+    echo "gcc --std=c99 -Wall -O2  -march=native -mtune=native -c $1"
+    gcc --std=c99 -Wall -O2 -march=native -mtune=native  -c $1
     echo "gcc -o $2 $filename_o"
     gcc -o $2 $filename_o
   else 
@@ -365,8 +365,8 @@ function CLANG {
     obj_ext=".o"
     filename_o=${filename}${obj_ext}
     output="test"
-    echo "clang --std=c99 -Wall -O2 -c $1"
-    clang --std=c99 -Wall -O2 -c $1
+    echo "clang --std=c99 -Wall -O2  -march=native -mtune=native -c $1"
+    clang --std=c99 -Wall -O2  -march=native -mtune=native -c $1
     echo "clang -o test $filename_o"
     clang -o ${output} $filename_o
   elif [ "$#" = 2 ]
@@ -374,8 +374,8 @@ function CLANG {
     filename="${1%\.*}"
     obj_ext=".o"
     filename_o=${filename}${obj_ext}
-    echo "clang --std=c99 -Wall -O2 -c $1"
-    clang --std=c99 -Wall -O2 -c $1
+    echo "clang --std=c99 -Wall -O2  -march=native -mtune=native -c $1"
+    clang --std=c99 -Wall -O2  -march=native -mtune=native -c $1
     echo "clang -o $2 $filename_o"
     clang -o $2 $filename_o
   else 
