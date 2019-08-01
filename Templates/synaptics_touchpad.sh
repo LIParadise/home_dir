@@ -16,7 +16,7 @@ command -v xinput >/dev/null 2>&1 || { echo >&2 "I require xinput but it's not i
 # the pros of this is it handles exit codes better then the commonly used util "which"
 # and that this is posix-compatible.
 
-xinput set-prop "Synaptics TM3276-022" "Device Accel Constant Deceleration" "2.5"
+xinput set-prop "Synaptics TM3276-022" "Device Accel Constant Deceleration" "2.2"
 
 fi
 #
