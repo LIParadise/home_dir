@@ -1,5 +1,5 @@
 echo ""
-undervolt --core -55 --cache -55 --temp 80
+undervolt --core -52 --cache -52 --temp 84
 echo "undervolt results:"
 undervolt --read
 echo ""

@@ -3,7 +3,7 @@ Description=apply undervolt on awaken from suspend
 After=suspend.target hibernate.target hybrid-sleep.target
 
 [Service]
-ExecStart=undervolt -v --temp 70 --core -55 --cache -55
+ExecStart=undervolt -v --temp 84 --core -52 --cache -52
 #User=my_user_name
 #Environment=DISPLAY=:0
 
