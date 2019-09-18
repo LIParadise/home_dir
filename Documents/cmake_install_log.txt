@@ -1,0 +1,3 @@
+: 1568837256:0;ll -tr
+: 1568837350:0;env CXXFLAGS="-fPIC -O2 -march=native -mtune=native -std=c++11" CFLAGS="-fPIC -O2 -march=native -mtune=native" LDFLAGS="-L${HOME}/algo_pkg/lib" CPPFLAGS="-I${HOME}/algo_pkg/include" ./bootstrap --prefix="${HOME}/algo_pkg" -- -DCMAKE_BUILD_TYPE:STRING=Release
+: 1568838308:0;cp .zsh_history home_dir/Documents/cmake_install_log.txt

@@ -1,74 +1,45 @@
 wget ftp://ftp.gnu.org/gnu/ncurses/ncurses-6.1.tar.gz
-ls
 tar xf ncurses-6.1.tar.gz 
-ls
-screen ls
-screen -ls
-screen -r
 which zsh
-screen -ls
-screen
 vim .zshenv
 cd algo_pkg/lib
-ls
 cd zsh
-ls
 cd 5.7.1/
-ls
 pwd -P
 fg
 zsh
 clear
-ls
-cd
-ls
 \ls -alF
-ls
-cd
 cd Downloads/
 
 git clone https://github.com/LIParadise/home_dir
 wget https://github.com/tmux/tmux/releases/download/2.9/tmux-2.9.tar.gz
 tar xvf tmux-2.9.tar.gz 
-ls
 cd tmux-2.9
-ls
 ./configure --prefix=${HOME}/algo_pkg CPPFLAGS="-I${HOME}/algo_pkg/include" LDFLAGS="-L$HOME/algo_pkg/lib" CXXFLAGS="-march=native -mtune=native" CFLAGS="-march=native -mtune=native"
 
 ./configure --prefix=${HOME}/algo_pkg CPPFLAGS="-I${HOME}/algo_pkg/include" LDFLAGS="-L$HOME/algo_pkg/lib" CXXFLAGS="-march=native -mtune=native" CFLAGS="-march=native -mtune=native"
 make -j;make install
-ls
 mv libevent-2.0.22-stable.tar.gz Downloads/
 cd Downloads/
-ls
 tar xvf libevent-2.0.22-stable.tar.gz 
-ls
 cd libevent-2.0.22-stable
 ./configure --prefix=/raid4/courses/algo2019/Alg19008/algo_pkg CFLAGS="-fPIC -march=native -mtune=native" CXXFLAGS="-fPIC -march=native -mtune=native"
 make ;make install
 cd ../tmux-2.9
-ls
-screen -ls
-screen -r 5766
 which tmux
 tmux
 vim .profile 
 source .profile
 which tmux
 tmux
-ls
-cd
 exit
-ls
 cp home_dir/.tmux.conf .
-ls
 vim .tmux.conf 
 tmux
 1;0cclear
-ls
 clear
 tmux
-ls
 vim .tmux.conf 
 tmux
 tmux a
