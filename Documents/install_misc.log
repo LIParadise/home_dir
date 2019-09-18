@@ -1,0 +1,9 @@
+./configure --prefix=${HOME}/algo_pkg CPPFLAGS="-I${HOME}/algo_pkg/include" LDFLAGS="-L$HOME/algo_pkg/lib" CXXFLAGS="-march=native -mtune=native" CFLAGS="-march=native -mtune=native"
+./configure --prefix=${HOME}/algo_pkg CPPFLAGS="-I${HOME}/algo_pkg/include" LDFLAGS="-L$HOME/algo_pkg/lib" CXXFLAGS="-march=native -mtune=native" CFLAGS="-march=native -mtune=native"
+./configure --prefix=/raid4/courses/algo2019/Alg19008/algo_pkg CFLAGS="-fPIC -march=native -mtune=native" CXXFLAGS="-fPIC -march=native -mtune=native"
+cat ~/home_dir/Documents/how_to_install_manually.txt | grep -i prefix
+./configure --prefix=${HOME}/algo_pkg CPPFLAGS="-I${HOME}/algo_pkg/include" LDFLAGS="-L${HOME}/algo_pkg/lib" CXXFLAGS="-fPIC -march=native -mtune=native -O2" CFLAGS="${CXXFLAGS}"
+./configure --prefix=${HOME}/algo_pkg CPPFLAGS="-I${HOME}/algo_pkg/include" LDFLAGS="-L${HOME}/algo_pkg/lib" CXXFLAGS="-fPIC -march=native -mtune=native -O2" CFLAGS="${CXXFLAGS}"
+./configure --prefix=${HOME}/algo_pkg --enable-cflags="-fPIC -march=native -mtune=native -O2" CPPFLAGS="-I${HOME}/algo_pkg/include" LDFLAGS="-L${HOME}/algo_pkg/lib" CXXFLAGS="-fPIC -march=native -mtune=native -O2" CFLAGS="${CXXFLAGS}"
+./configure --prefix=${HOME}/algo_pkg CPPFLAGS="-I${HOME}/algo_pkg/include" LDFLAGS="-L${HOME}/algo_pkg/lib" CXXFLAGS="-fPIC -march=native -mtune=native -O2" CFLAGS="${CXXFLAGS}"
+./configure --prefix=${HOME}/algo_pkg CPPFLAGS="-I${HOME}/algo_pkg/include" LDFLAGS="-L${HOME}/algo_pkg/lib" CXXFLAGS="-fPIC -march=native -mtune=native -O2" CFLAGS="${CXXFLAGS}"
