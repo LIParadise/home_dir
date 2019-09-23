@@ -1,0 +1,27 @@
+: 1568796424:0;wget https://ftp.nluug.nl/pub/vim/unix/vim-8.1.tar.bz2
+: 1568796446:0;ls
+: 1568796451:0;mv vim-8.1.tar.bz2 Downloads
+: 1568796453:0;cd Downloads
+: 1568796453:0;ls
+: 1568796457:0;tar xvf vim-8.1.tar.bz2
+: 1568796494:0;ls
+: 1568796496:0;cd vim81
+: 1568796496:0;ls
+: 1568796517:0;vim configure
+: 1568796535:0;dev-tmux
+: 1568796543:0;ls
+: 1568796544:0;clear
+: 1568796545:0;ls
+: 1568796551:0;cd
+: 1568796551:0;ls
+: 1568796557:0;vim home_dir/Documents/how_to_install_manually.txt
+: 1568796691:0;./configure --prefix=${HOME}/algo_pkg CPPFLAGS="-I${HOME}/algo_pkg/include" LDFLAGS="-L$HOME/algo_pkg/lib" CXXFLAGS="-march=native -mtune=native" CFLAGS="-march=native -mtune=native" --with-features=huge
+: 1568796815:0;make;make install
+: 1568796963:0;which vim
+: 1568796973:0;vim
+: 1568796982:0;vim --version
+: 1568796989:0;vim --version | grep -i term
+: 1568796994:0;vim 
+: 1568797003:0;clear
+: 1568797007:0;tmux
+: 1568797066:0;ls

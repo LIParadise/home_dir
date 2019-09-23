@@ -1,0 +1,7 @@
+: 1568846861:0;rm -rf Bootstrap.cmk
+: 1568846866:0;env CPPFLAGS="-I${HOME}/algo_pkg/include" LDFLAGS="-L${HOME}/algo_pkg/lib" CFLAGS="-O2 -march=native -mtune=native -fPIC" CXXFLAGS="-O2 -march=native -mtune=native -fPIC" ./bootstrap --prefix="${HOME}/algo_pkg" -- -DCMAKE_BUILD_TYPE:STRING=Release 
+: 1568846878:0;rm -rf Bootstrap.cmk
+: 1568846898:0;ls ~/algo_pkg/share/man
+: 1568846970:0;env CPPFLAGS="-I${HOME}/algo_pkg/include" LDFLAGS="-L${HOME}/algo_pkg/lib" CFLAGS="-O2 -march=native -mtune=native -fPIC" CXXFLAGS="-O2 -march=native -mtune=native -fPIC" ./bootstrap --prefix="${HOME}/algo_pkg" --mandir="${HOME}/algo_pkg/share/man" --docdir="${HOME}/algo_pkg/share/doc/cmake-3.4.3" -- -DCMAKE_BUILD_TYPE:STRING=Release 
+: 1568847526:0;make -j8;make install
+: 1568847556:0;which cmake
