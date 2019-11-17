@@ -10,7 +10,7 @@ autoload -U +X compinit && compinit
 # NTUOSC ml environmental variables
 export WORKON_HOME=$HOME/.virtualenvs
 export VIRTUALENVWRAPPER_PYTHON=/usr/bin/python3
-source /usr/local/bin/virtualenvwrapper.sh
+source /usr/bin/virtualenvwrapper.sh
 # end of NTUOSC ml environmental variables
 #
 
@@ -127,6 +127,10 @@ alias ll="ls -alF"
 alias so="source $HOME/.zshrc"
 alias ressh="sudo service ssh --full-restart"
 alias vm="ssh -p 2222 liparadise@127.0.0.1"
+
+function dclab() {
+  ssh team08@140.112.33.165 -i .ssh/dclab_2019 -p 12345 -t "source /home/team08/Chu\ Han/.zshrc; exec /usr/bin/zsh"
+}
 
 function sshgit {
 
@@ -417,20 +421,20 @@ function CLANG0 {
 
 
 function dev-tmux {
-  tmux new-session -d -n work
+  tmux -f "/home/liparadise/.tmux.conf" new-session -d -n work 
 
-  tmux new-window -n testing 
-  tmux split-window -h
+  tmux new-window -n git_manage -c "${PWD}"
+  # tmux split-window -h -c "${PWD}"
+  # tmux selectp -t 0
+
+  tmux new-window -n files -c "${PWD}"
+  tmux split-window -h -c "${PWD}"
   tmux selectp -t 0
 
-  tmux new-window -n files
-  tmux split-window -h
-  tmux selectp -t 0
-
-  tmux new-window -n misc
+  tmux new-window -n misc -c "${PWD}"
 
   tmux selectw -t 0
-  tmux -2 attach-session -d -c `pwd -P`
+  tmux -2 attach-session -d
 }
 
 function myctags {
