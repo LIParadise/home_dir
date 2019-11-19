@@ -10,7 +10,7 @@ autoload -U +X compinit && compinit
 # NTUOSC ml environmental variables
 export WORKON_HOME=$HOME/.virtualenvs
 export VIRTUALENVWRAPPER_PYTHON=/usr/bin/python3
-source /usr/bin/virtualenvwrapper.sh
+source /usr/local/bin/virtualenvwrapper.sh
 # end of NTUOSC ml environmental variables
 #
 
