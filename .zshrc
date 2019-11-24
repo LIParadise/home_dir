@@ -210,18 +210,18 @@ function G++ {
     myInputFilename_o=${myInputFilename}${myObj_Ext}
     myCompiledOutput="test"
     echo "${myCompiler} ${myCompileFlags} $1"
-    ${myCompiler} ${myCompileFlags} $1
-    echo "${myCompiler} ${myCompiledOutput} ${myLinkFlags} $myInputFilename_o"
-    ${myCompiler} ${myInputFilename_o} ${myLinkFlags} ${myCompiledOutput}
+    eval ${myCompiler} ${myCompileFlags} $1
+    echo "${myCompiler} ${myLinkFlags} ${myCompiledOutput} ${myInputFilename_o}"
+    eval ${myCompiler} ${myLinkFlags} ${myCompiledOutput} ${myInputFilename_o}
   elif [ "$#" = 2 ]
   then
     myInputFilename="${1%\.*}"
     myInputFilename_o=${myInputFilename}${myObj_Ext}
     myCompiledOutput=$2
     echo "${myCompiler} ${myCompileFlags} $1"
-    ${myCompiler} ${myCompileFlags} $1
-    echo "${myCompiler} ${myCompiledOutput} ${myLinkFlags} $myInputFilename_o"
-    ${myCompiler} ${myInputFilename_o} ${myLinkFlags} ${myCompiledOutput}
+    eval ${myCompiler} ${myCompileFlags} $1
+    echo "${myCompiler} ${myLinkFlags} ${myCompiledOutput} ${myInputFilename_o}"
+    eval ${myCompiler} ${myLinkFlags} ${myCompiledOutput} ${myInputFilename_o}
   else 
     echo "Usage: G++ code.cc <executable>"
     echo "where \"code.cc\" is a simple C++ code,"
@@ -247,18 +247,18 @@ function Clang++ {
     myInputFilename_o=${myInputFilename}${myObj_Ext}
     myCompiledOutput="test"
     echo "${myCompiler} ${myCompileFlags} $1"
-    ${myCompiler} ${myCompileFlags} $1
-    echo "${myCompiler} ${myCompiledOutput} ${myLinkFlags} $myInputFilename_o"
-    ${myCompiler} ${myInputFilename_o} ${myLinkFlags} ${myCompiledOutput}
+    eval ${myCompiler} ${myCompileFlags} $1
+    echo "${myCompiler} ${myLinkFlags} ${myCompiledOutput} ${myInputFilename_o}"
+    eval ${myCompiler} ${myLinkFlags} ${myCompiledOutput} ${myInputFilename_o}
   elif [ "$#" = 2 ]
   then
     myInputFilename="${1%\.*}"
     myInputFilename_o=${myInputFilename}${myObj_Ext}
     myCompiledOutput=$2
     echo "${myCompiler} ${myCompileFlags} $1"
-    ${myCompiler} ${myCompileFlags} $1
-    echo "${myCompiler} ${myCompiledOutput} ${myLinkFlags} $myInputFilename_o"
-    ${myCompiler} ${myInputFilename_o} ${myLinkFlags} ${myCompiledOutput}
+    eval ${myCompiler} ${myCompileFlags} $1
+    echo "${myCompiler} ${myLinkFlags} ${myCompiledOutput} ${myInputFilename_o}"
+    eval ${myCompiler} ${myLinkFlags} ${myCompiledOutput} ${myInputFilename_o}
   else 
     echo "Usage: Clang++ code.cc <executable>"
     echo "where \"code.cc\" is a simple C++ code,"
@@ -284,18 +284,18 @@ function G++0 {
     myInputFilename_o=${myInputFilename}${myObj_Ext}
     myCompiledOutput="test"
     echo "${myCompiler} ${myCompileFlags} $1"
-    ${myCompiler} ${myCompileFlags} $1
-    echo "${myCompiler} ${myCompiledOutput} ${myLinkFlags} $myInputFilename_o"
-    ${myCompiler} ${myInputFilename_o} ${myLinkFlags} ${myCompiledOutput}
+    eval ${myCompiler} ${myCompileFlags} $1
+    echo "${myCompiler} ${myLinkFlags} ${myCompiledOutput} ${myInputFilename_o}"
+    eval ${myCompiler} ${myLinkFlags} ${myCompiledOutput} ${myInputFilename_o}
   elif [ "$#" = 2 ]
   then
     myInputFilename="${1%\.*}"
     myInputFilename_o=${myInputFilename}${myObj_Ext}
     myCompiledOutput=$2
     echo "${myCompiler} ${myCompileFlags} $1"
-    ${myCompiler} ${myCompileFlags} $1
-    echo "${myCompiler} ${myCompiledOutput} ${myLinkFlags} $myInputFilename_o"
-    ${myCompiler} ${myInputFilename_o} ${myLinkFlags} ${myCompiledOutput}
+    eval ${myCompiler} ${myCompileFlags} $1
+    echo "${myCompiler} ${myLinkFlags} ${myCompiledOutput} ${myInputFilename_o}"
+    eval ${myCompiler} ${myLinkFlags} ${myCompiledOutput} ${myInputFilename_o}
   else 
     echo "Usage: G++0 code.cc <executable>"
     echo "where \"code.cc\" is a simple C++ code,"
@@ -320,18 +320,18 @@ function Clang++0 {
     myInputFilename_o=${myInputFilename}${myObj_Ext}
     myCompiledOutput="test"
     echo "${myCompiler} ${myCompileFlags} $1"
-    ${myCompiler} ${myCompileFlags} $1
-    echo "${myCompiler} ${myCompiledOutput} ${myLinkFlags} $myInputFilename_o"
-    ${myCompiler} ${myInputFilename_o} ${myLinkFlags} ${myCompiledOutput}
+    eval ${myCompiler} ${myCompileFlags} $1
+    echo "${myCompiler} ${myLinkFlags} ${myCompiledOutput} ${myInputFilename_o}"
+    eval ${myCompiler} ${myLinkFlags} ${myCompiledOutput} ${myInputFilename_o}
   elif [ "$#" = 2 ]
   then
     myInputFilename="${1%\.*}"
     myInputFilename_o=${myInputFilename}${myObj_Ext}
     myCompiledOutput=$2
     echo "${myCompiler} ${myCompileFlags} $1"
-    ${myCompiler} ${myCompileFlags} $1
-    echo "${myCompiler} ${myCompiledOutput} ${myLinkFlags} $myInputFilename_o"
-    ${myCompiler} ${myInputFilename_o} ${myLinkFlags} ${myCompiledOutput}
+    eval ${myCompiler} ${myCompileFlags} $1
+    echo "${myCompiler} ${myLinkFlags} ${myCompiledOutput} ${myInputFilename_o}"
+    eval ${myCompiler} ${myLinkFlags} ${myCompiledOutput} ${myInputFilename_o}
   else 
     echo "Usage: Clang++0 code.cc <executable>"
     echo "where \"code.cc\" is a simple C++ code,"
@@ -357,18 +357,18 @@ function GCC {
     myInputFilename_o=${myInputFilename}${myObj_Ext}
     myCompiledOutput="test"
     echo "${myCompiler} ${myCompileFlags} $1"
-    ${myCompiler} ${myCompileFlags} $1
-    echo "${myCompiler} ${myCompiledOutput} ${myLinkFlags} $myInputFilename_o"
-    ${myCompiler} ${myInputFilename_o} ${myLinkFlags} ${myCompiledOutput}
+    eval ${myCompiler} ${myCompileFlags} $1
+    echo "${myCompiler} ${myLinkFlags} ${myCompiledOutput} ${myInputFilename_o}"
+    eval ${myCompiler} ${myLinkFlags} ${myCompiledOutput} ${myInputFilename_o}
   elif [ "$#" = 2 ]
   then
     myInputFilename="${1%\.*}"
     myInputFilename_o=${myInputFilename}${myObj_Ext}
     myCompiledOutput=$2
     echo "${myCompiler} ${myCompileFlags} $1"
-    ${myCompiler} ${myCompileFlags} $1
-    echo "${myCompiler} ${myCompiledOutput} ${myLinkFlags} $myInputFilename_o"
-    ${myCompiler} ${myInputFilename_o} ${myLinkFlags} ${myCompiledOutput}
+    eval ${myCompiler} ${myCompileFlags} $1
+    echo "${myCompiler} ${myLinkFlags} ${myCompiledOutput} ${myInputFilename_o}"
+    eval ${myCompiler} ${myLinkFlags} ${myCompiledOutput} ${myInputFilename_o}
   else 
     echo "Usage: GCC code.cc <executable>"
     echo "where \"code.cc\" is a simple C++ code,"
@@ -393,18 +393,18 @@ function GCC0 {
     myInputFilename_o=${myInputFilename}${myObj_Ext}
     myCompiledOutput="test"
     echo "${myCompiler} ${myCompileFlags} $1"
-    ${myCompiler} ${myCompileFlags} $1
-    echo "${myCompiler} ${myCompiledOutput} ${myLinkFlags} $myInputFilename_o"
-    ${myCompiler} ${myInputFilename_o} ${myLinkFlags} ${myCompiledOutput}
+    eval ${myCompiler} ${myCompileFlags} $1
+    echo "${myCompiler} ${myLinkFlags} ${myCompiledOutput} ${myInputFilename_o}"
+    eval ${myCompiler} ${myLinkFlags} ${myCompiledOutput} ${myInputFilename_o}
   elif [ "$#" = 2 ]
   then
     myInputFilename="${1%\.*}"
     myInputFilename_o=${myInputFilename}${myObj_Ext}
     myCompiledOutput=$2
     echo "${myCompiler} ${myCompileFlags} $1"
-    ${myCompiler} ${myCompileFlags} $1
-    echo "${myCompiler} ${myCompiledOutput} ${myLinkFlags} $myInputFilename_o"
-    ${myCompiler} ${myInputFilename_o} ${myLinkFlags} ${myCompiledOutput}
+    eval ${myCompiler} ${myCompileFlags} $1
+    echo "${myCompiler} ${myLinkFlags} ${myCompiledOutput} ${myInputFilename_o}"
+    eval ${myCompiler} ${myLinkFlags} ${myCompiledOutput} ${myInputFilename_o}
   else 
     echo "Usage: GCC0 code.cc <executable>"
     echo "where \"code.cc\" is a simple C++ code,"
@@ -429,18 +429,18 @@ function CLANG {
     myInputFilename_o=${myInputFilename}${myObj_Ext}
     myCompiledOutput="test"
     echo "${myCompiler} ${myCompileFlags} $1"
-    ${myCompiler} ${myCompileFlags} $1
-    echo "${myCompiler} ${myCompiledOutput} ${myLinkFlags} $myInputFilename_o"
-    ${myCompiler} ${myInputFilename_o} ${myLinkFlags} ${myCompiledOutput}
+    eval ${myCompiler} ${myCompileFlags} $1
+    echo "${myCompiler} ${myLinkFlags} ${myCompiledOutput} ${myInputFilename_o}"
+    eval ${myCompiler} ${myLinkFlags} ${myCompiledOutput} ${myInputFilename_o}
   elif [ "$#" = 2 ]
   then
     myInputFilename="${1%\.*}"
     myInputFilename_o=${myInputFilename}${myObj_Ext}
     myCompiledOutput=$2
     echo "${myCompiler} ${myCompileFlags} $1"
-    ${myCompiler} ${myCompileFlags} $1
-    echo "${myCompiler} ${myCompiledOutput} ${myLinkFlags} $myInputFilename_o"
-    ${myCompiler} ${myInputFilename_o} ${myLinkFlags} ${myCompiledOutput}
+    eval ${myCompiler} ${myCompileFlags} $1
+    echo "${myCompiler} ${myLinkFlags} ${myCompiledOutput} ${myInputFilename_o}"
+    eval ${myCompiler} ${myLinkFlags} ${myCompiledOutput} ${myInputFilename_o}
   else 
     echo "Usage: CLANG code.cc <executable>"
     echo "where \"code.cc\" is a simple C++ code,"
@@ -465,18 +465,18 @@ function CLANG0 {
     myInputFilename_o=${myInputFilename}${myObj_Ext}
     myCompiledOutput="test"
     echo "${myCompiler} ${myCompileFlags} $1"
-    ${myCompiler} ${myCompileFlags} $1
-    echo "${myCompiler} ${myCompiledOutput} ${myLinkFlags} $myInputFilename_o"
-    ${myCompiler} ${myInputFilename_o} ${myLinkFlags} ${myCompiledOutput}
+    eval ${myCompiler} ${myCompileFlags} $1
+    echo "${myCompiler} ${myLinkFlags} ${myCompiledOutput} ${myInputFilename_o}"
+    eval ${myCompiler} ${myLinkFlags} ${myCompiledOutput} ${myInputFilename_o}
   elif [ "$#" = 2 ]
   then
     myInputFilename="${1%\.*}"
     myInputFilename_o=${myInputFilename}${myObj_Ext}
     myCompiledOutput=$2
     echo "${myCompiler} ${myCompileFlags} $1"
-    ${myCompiler} ${myCompileFlags} $1
-    echo "${myCompiler} ${myCompiledOutput} ${myLinkFlags} $myInputFilename_o"
-    ${myCompiler} ${myInputFilename_o} ${myLinkFlags} ${myCompiledOutput}
+    eval ${myCompiler} ${myCompileFlags} $1
+    echo "${myCompiler} ${myLinkFlags} ${myCompiledOutput} ${myInputFilename_o}"
+    eval ${myCompiler} ${myLinkFlags} ${myCompiledOutput} ${myInputFilename_o}
   else 
     echo "Usage: CLANG0 code.cc <executable>"
     echo "where \"code.cc\" is a simple C++ code,"
