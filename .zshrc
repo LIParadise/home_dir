@@ -15,35 +15,35 @@ source /usr/bin/virtualenvwrapper.sh
 #
 
 # If you come from bash you might have to change your $PATH.
-  # export PATH=$HOME/bin:/usr/local/bin:$PATH
+# export PATH=$HOME/bin:/usr/local/bin:$PATH
 
 # Path to your oh-my-zsh installation.
 export ZSH="/home/liparadise/.oh-my-zsh"
 export ZDOTDIR="/home/liparadise/.zsh"
 
 # Path for golang
-  export GOPATH=$HOME/go
+export GOPATH=$HOME/go
 
 DISABLE_AUTO_UPDATE="true"
 
 # Set name of the theme to load --- if set to "random", it will
-  # load a random theme each time oh-my-zsh is loaded, in which case,
-    # to know which specific one was loaded, run: echo $RANDOM_THEME
-    # See https://github.com/robbyrussell/oh-my-zsh/wiki/Themes
-    ZSH_THEME="gentoo"
+# load a random theme each time oh-my-zsh is loaded, in which case,
+# to know which specific one was loaded, run: echo $RANDOM_THEME
+# See https://github.com/robbyrussell/oh-my-zsh/wiki/Themes
+ZSH_THEME="gentoo"
 
 # Set list of themes to pick from when loading at random
 # Setting this variable when ZSH_THEME=random will cause zsh to load
 # a theme from this variable instead of looking in ~/.oh-my-zsh/themes/
 # If set to an empty array, this variable will have no effect.
-  # ZSH_THEME_RANDOM_CANDIDATES=( "robbyrussell" "agnoster" )
+# ZSH_THEME_RANDOM_CANDIDATES=( "robbyrussell" "agnoster" )
 
 # Uncomment the following line to use case-sensitive completion.
-  # CASE_SENSITIVE="true"
+# CASE_SENSITIVE="true"
 
 # Uncomment the following line to use hyphen-insensitive completion.
 # Case-sensitive completion must be off. _ and - will be interchangeable.
-  # HYPHEN_INSENSITIVE="true"
+# HYPHEN_INSENSITIVE="true"
 
 # Uncomment the following line to disable bi-weekly auto-update checks.
 # DISABLE_AUTO_UPDATE="true"
@@ -61,20 +61,20 @@ DISABLE_AUTO_UPDATE="true"
 # ENABLE_CORRECTION="true"
 
 # Uncomment the following line to display red dots whilst waiting for completion.
-  # COMPLETION_WAITING_DOTS="true"
+# COMPLETION_WAITING_DOTS="true"
 
 # Uncomment the following line if you want to disable marking untracked files
-  # under VCS as dirty. This makes repository status check for large repositories
-    # much, much faster.
-    # DISABLE_UNTRACKED_FILES_DIRTY="true"
+# under VCS as dirty. This makes repository status check for large repositories
+# much, much faster.
+# DISABLE_UNTRACKED_FILES_DIRTY="true"
 
 # Uncomment the following line if you want to change the command execution time
-  # stamp shown in the history command output.
-  # You can set one of the optional three formats:
-  # "mm/dd/yyyy"|"dd.mm.yyyy"|"yyyy-mm-dd"
-  # or set a custom format using the strftime function format specifications,
-  # see 'man strftime' for details.
-    # HIST_STAMPS="mm/dd/yyyy"
+# stamp shown in the history command output.
+# You can set one of the optional three formats:
+# "mm/dd/yyyy"|"dd.mm.yyyy"|"yyyy-mm-dd"
+# or set a custom format using the strftime function format specifications,
+# see 'man strftime' for details.
+# HIST_STAMPS="mm/dd/yyyy"
 
 # Would you like to use another custom folder than $ZSH/custom?
 # ZSH_CUSTOM=/path/to/new-custom-folder
@@ -85,7 +85,7 @@ DISABLE_AUTO_UPDATE="true"
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
 plugins=(
-git
+  git
 )
 
 source $ZSH/oh-my-zsh.sh
@@ -98,11 +98,11 @@ source $ZSH/oh-my-zsh.sh
 # export LANG=en_US.UTF-8
 
 # Preferred editor for local and remote sessions
-  # if [[ -n $SSH_CONNECTION ]]; then
-    #   export EDITOR='vim'
-    # else
-      #   export EDITOR='mvim'
-      # fi
+# if [[ -n $SSH_CONNECTION ]]; then
+#   export EDITOR='vim'
+# else
+#   export EDITOR='mvim'
+# fi
 
 # Compilation flags
 # export ARCHFLAGS="-arch x86_64"
@@ -114,10 +114,10 @@ source $ZSH/oh-my-zsh.sh
 # plugins, and themes. Aliases can be placed here, though oh-my-zsh
 # users are encouraged to define aliases within the ZSH_CUSTOM folder.
 # For a full list of active aliases, run `alias`.
-  #
-  # Example aliases
-  # alias zshconfig="mate ~/.zshrc"
-  # alias ohmyzsh="mate ~/.oh-my-zsh"
+#
+# Example aliases
+# alias zshconfig="mate ~/.zshrc"
+# alias ohmyzsh="mate ~/.oh-my-zsh"
 
 # LIParadise Modifications
 alias cp="cp -i"
@@ -194,226 +194,293 @@ function delsshgit {
 }
 
 function G++ {
+
+  myCompiler="g++"
+  myCompileFlags="--std=c++11 -Wall -O2 -march=native -mtune=native -c"
+  myLinkFlags="-lpthread -o"
+
+  myInputFilename=
+  myObj_Ext=".o"
+  myInputFilename_o=
+  myCompiledOutput=
+
   if [ "$#" = 1 ]
   then 
-    filename="${1%\.*}"
-    obj_ext=".o"
-    filename_o=${filename}${obj_ext}
-    output="test"
-    echo "g++ --std=c++11 -Wall -O2  -march=native -mtune=native -c $1"
-    g++ --std=c++11 -Wall -O2  -march=native -mtune=native -c $1
-    echo "g++ -o test $filename_o"
-    g++ -o ${output} $filename_o
+    myInputFilename="${1%\.*}"
+    myInputFilename_o=${myInputFilename}${myObj_Ext}
+    myCompiledOutput="test"
+    echo "${myCompiler} ${myCompileFlags} $1"
+    ${myCompiler} ${myCompileFlags} $1
+    echo "${myCompiler} ${myCompiledOutput} ${myLinkFlags} $myInputFilename_o"
+    ${myCompiler} ${myInputFilename_o} ${myLinkFlags} ${myCompiledOutput}
   elif [ "$#" = 2 ]
   then
-    filename="${1%\.*}"
-    obj_ext=".o"
-    filename_o=${filename}${obj_ext}
-    echo "g++ --std=c++11 -Wall -O2  -march=native -mtune=native -c $1"
-    g++ --std=c++11 -Wall -O2  -march=native -mtune=native -c $1
-    echo "g++ -o $2 $filename_o"
-    g++ -o $2 $filename_o
+    myInputFilename="${1%\.*}"
+    myInputFilename_o=${myInputFilename}${myObj_Ext}
+    myCompiledOutput=$2
+    echo "${myCompiler} ${myCompileFlags} $1"
+    ${myCompiler} ${myCompileFlags} $1
+    echo "${myCompiler} ${myCompiledOutput} ${myLinkFlags} $myInputFilename_o"
+    ${myCompiler} ${myInputFilename_o} ${myLinkFlags} ${myCompiledOutput}
   else 
     echo "Usage: G++ code.cc <executable>"
     echo "where \"code.cc\" is a simple C++ code,"
-    echo "\"executable\" being final output filename"
+    echo "\"executable\" being final executable name"
     return 0
   fi
 }
 
 function Clang++ {
+
+  myCompiler="clang++"
+  myCompileFlags="--std=c++11 -Wall -O2 -march=native -mtune=native -c"
+  myLinkFlags="-lpthread -o"
+
+  myInputFilename=
+  myObj_Ext=".o"
+  myInputFilename_o=
+  myCompiledOutput=
+
   if [ "$#" = 1 ]
   then 
-    filename="${1%\.*}"
-    obj_ext=".o"
-    filename_o=${filename}${obj_ext}
-    output="test"
-    echo "clang++ --std=c++11 -Wall -O2 -march=native -mtune=native  -c $1"
-    clang++ --std=c++11 -Wall -O2 -march=native -mtune=native  -c $1
-    echo "clang++ -o test $filename_o"
-    clang++ -o ${output} $filename_o
+    myInputFilename="${1%\.*}"
+    myInputFilename_o=${myInputFilename}${myObj_Ext}
+    myCompiledOutput="test"
+    echo "${myCompiler} ${myCompileFlags} $1"
+    ${myCompiler} ${myCompileFlags} $1
+    echo "${myCompiler} ${myCompiledOutput} ${myLinkFlags} $myInputFilename_o"
+    ${myCompiler} ${myInputFilename_o} ${myLinkFlags} ${myCompiledOutput}
   elif [ "$#" = 2 ]
   then
-    filename="${1%\.*}"
-    obj_ext=".o"
-    filename_o=${filename}${obj_ext}
-    echo "clang++ --std=c++11 -Wall -O2 -march=native -mtune=native  -c $1"
-    clang++ --std=c++11 -Wall -O2 -march=native -mtune=native  -c $1
-    echo "clang++ -o $2 $filename_o"
-    clang++ -o $2 $filename_o
+    myInputFilename="${1%\.*}"
+    myInputFilename_o=${myInputFilename}${myObj_Ext}
+    myCompiledOutput=$2
+    echo "${myCompiler} ${myCompileFlags} $1"
+    ${myCompiler} ${myCompileFlags} $1
+    echo "${myCompiler} ${myCompiledOutput} ${myLinkFlags} $myInputFilename_o"
+    ${myCompiler} ${myInputFilename_o} ${myLinkFlags} ${myCompiledOutput}
   else 
     echo "Usage: Clang++ code.cc <executable>"
     echo "where \"code.cc\" is a simple C++ code,"
-    echo "\"executable\" being final output filename"
+    echo "\"executable\" being final executable name"
     return 0
   fi
 }
 
 function G++0 {
+
+  myCompiler="g++"
+  myCompileFlags="--std=c++11 -Wall -O0 -g -c"
+  myLinkFlags="-lpthread -o"
+
+  myInputFilename=
+  myObj_Ext=".o"
+  myInputFilename_o=
+  myCompiledOutput=
+
   if [ "$#" = 1 ]
   then 
-    filename="${1%\.*}"
-    obj_ext=".o"
-    filename_o=${filename}${obj_ext}
-    output="test"
-    echo "g++ --std=c++11 -Wall -O0 -c $1"
-    g++ --std=c++11 -Wall -O0 -c $1
-    echo "g++ -o test $filename_o"
-    g++ -o ${output} $filename_o
+    myInputFilename="${1%\.*}"
+    myInputFilename_o=${myInputFilename}${myObj_Ext}
+    myCompiledOutput="test"
+    echo "${myCompiler} ${myCompileFlags} $1"
+    ${myCompiler} ${myCompileFlags} $1
+    echo "${myCompiler} ${myCompiledOutput} ${myLinkFlags} $myInputFilename_o"
+    ${myCompiler} ${myInputFilename_o} ${myLinkFlags} ${myCompiledOutput}
   elif [ "$#" = 2 ]
   then
-    filename="${1%\.*}"
-    obj_ext=".o"
-    filename_o=${filename}${obj_ext}
-    echo "g++ --std=c++11 -Wall -O0 -c $1"
-    g++ --std=c++11 -Wall -O0 -c $1
-    echo "g++ -o $2 $filename_o"
-    g++ -o $2 $filename_o
+    myInputFilename="${1%\.*}"
+    myInputFilename_o=${myInputFilename}${myObj_Ext}
+    myCompiledOutput=$2
+    echo "${myCompiler} ${myCompileFlags} $1"
+    ${myCompiler} ${myCompileFlags} $1
+    echo "${myCompiler} ${myCompiledOutput} ${myLinkFlags} $myInputFilename_o"
+    ${myCompiler} ${myInputFilename_o} ${myLinkFlags} ${myCompiledOutput}
   else 
     echo "Usage: G++0 code.cc <executable>"
     echo "where \"code.cc\" is a simple C++ code,"
-    echo "\"executable\" being final output filename"
+    echo "\"executable\" being final executable name"
     return 0
   fi
 }
 
 function Clang++0 {
+  myCompiler="clang++"
+  myCompileFlags="--std=c++11 -Wall -O0 -g -c"
+  myLinkFlags="-lpthread -o"
+
+  myInputFilename=
+  myObj_Ext=".o"
+  myInputFilename_o=
+  myCompiledOutput=
+
   if [ "$#" = 1 ]
   then 
-    filename="${1%\.*}"
-    obj_ext=".o"
-    filename_o=${filename}${obj_ext}
-    output="test"
-    echo "clang++ --std=c++11 -Wall -O0 -c $1"
-    clang++ --std=c++11 -Wall -O0 -c $1
-    echo "clang++ -o test $filename_o"
-    clang++ -o ${output} $filename_o
+    myInputFilename="${1%\.*}"
+    myInputFilename_o=${myInputFilename}${myObj_Ext}
+    myCompiledOutput="test"
+    echo "${myCompiler} ${myCompileFlags} $1"
+    ${myCompiler} ${myCompileFlags} $1
+    echo "${myCompiler} ${myCompiledOutput} ${myLinkFlags} $myInputFilename_o"
+    ${myCompiler} ${myInputFilename_o} ${myLinkFlags} ${myCompiledOutput}
   elif [ "$#" = 2 ]
   then
-    filename="${1%\.*}"
-    obj_ext=".o"
-    filename_o=${filename}${obj_ext}
-    echo "clang++ --std=c++11 -Wall -O0 -c $1"
-    clang++ --std=c++11 -Wall -O0 -c $1
-    echo "clang++ -o $2 $filename_o"
-    clang++ -o $2 $filename_o
+    myInputFilename="${1%\.*}"
+    myInputFilename_o=${myInputFilename}${myObj_Ext}
+    myCompiledOutput=$2
+    echo "${myCompiler} ${myCompileFlags} $1"
+    ${myCompiler} ${myCompileFlags} $1
+    echo "${myCompiler} ${myCompiledOutput} ${myLinkFlags} $myInputFilename_o"
+    ${myCompiler} ${myInputFilename_o} ${myLinkFlags} ${myCompiledOutput}
   else 
     echo "Usage: Clang++0 code.cc <executable>"
     echo "where \"code.cc\" is a simple C++ code,"
-    echo "\"executable\" being final output filename"
+    echo "\"executable\" being final executable name"
     return 0
   fi
 }
 
 
 function GCC {
+  myCompiler="gcc"
+  myCompileFlags="--std=c99 -Wall -O2 -march=native -mtune=native -c"
+  myLinkFlags="-lpthread -o"
+
+  myInputFilename=
+  myObj_Ext=".o"
+  myInputFilename_o=
+  myCompiledOutput=
+
   if [ "$#" = 1 ]
   then 
-    filename="${1%\.*}"
-    obj_ext=".o"
-    filename_o=${filename}${obj_ext}
-    output="test"
-    echo "gcc --std=c99 -Wall -O2  -march=native -mtune=native -c $1"
-    gcc --std=c99 -Wall -O2 -march=native -mtune=native  -c $1
-    echo "gcc -o test $filename_o"
-    gcc -o ${output} $filename_o
+    myInputFilename="${1%\.*}"
+    myInputFilename_o=${myInputFilename}${myObj_Ext}
+    myCompiledOutput="test"
+    echo "${myCompiler} ${myCompileFlags} $1"
+    ${myCompiler} ${myCompileFlags} $1
+    echo "${myCompiler} ${myCompiledOutput} ${myLinkFlags} $myInputFilename_o"
+    ${myCompiler} ${myInputFilename_o} ${myLinkFlags} ${myCompiledOutput}
   elif [ "$#" = 2 ]
   then
-    filename="${1%\.*}"
-    obj_ext=".o"
-    filename_o=${filename}${obj_ext}
-    echo "gcc --std=c99 -Wall -O2  -march=native -mtune=native -c $1"
-    gcc --std=c99 -Wall -O2 -march=native -mtune=native  -c $1
-    echo "gcc -o $2 $filename_o"
-    gcc -o $2 $filename_o
+    myInputFilename="${1%\.*}"
+    myInputFilename_o=${myInputFilename}${myObj_Ext}
+    myCompiledOutput=$2
+    echo "${myCompiler} ${myCompileFlags} $1"
+    ${myCompiler} ${myCompileFlags} $1
+    echo "${myCompiler} ${myCompiledOutput} ${myLinkFlags} $myInputFilename_o"
+    ${myCompiler} ${myInputFilename_o} ${myLinkFlags} ${myCompiledOutput}
   else 
     echo "Usage: GCC code.cc <executable>"
-    echo "where \"code.cc\" is a simple C code,"
-    echo "\"executable\" being final output filename"
+    echo "where \"code.cc\" is a simple C++ code,"
+    echo "\"executable\" being final executable name"
     return 0
   fi
 }
 
 function GCC0 {
+  myCompiler="gcc"
+  myCompileFlags="--std=c99 -Wall -O0 -g -c"
+  myLinkFlags="-lpthread -o"
+
+  myInputFilename=
+  myObj_Ext=".o"
+  myInputFilename_o=
+  myCompiledOutput=
+
   if [ "$#" = 1 ]
   then 
-    filename="${1%\.*}"
-    obj_ext=".o"
-    filename_o=${filename}${obj_ext}
-    output="test"
-    echo "gcc --std=c99 -Wall -O0 -c $1"
-    gcc --std=c99 -Wall -O0 -c $1
-    echo "gcc -o test $filename_o"
-    gcc -o ${output} $filename_o
+    myInputFilename="${1%\.*}"
+    myInputFilename_o=${myInputFilename}${myObj_Ext}
+    myCompiledOutput="test"
+    echo "${myCompiler} ${myCompileFlags} $1"
+    ${myCompiler} ${myCompileFlags} $1
+    echo "${myCompiler} ${myCompiledOutput} ${myLinkFlags} $myInputFilename_o"
+    ${myCompiler} ${myInputFilename_o} ${myLinkFlags} ${myCompiledOutput}
   elif [ "$#" = 2 ]
   then
-    filename="${1%\.*}"
-    obj_ext=".o"
-    filename_o=${filename}${obj_ext}
-    echo "gcc --std=c99 -Wall -O0 -c $1"
-    gcc --std=c99 -Wall -O0 -c $1
-    echo "gcc -o $2 $filename_o"
-    gcc -o $2 $filename_o
+    myInputFilename="${1%\.*}"
+    myInputFilename_o=${myInputFilename}${myObj_Ext}
+    myCompiledOutput=$2
+    echo "${myCompiler} ${myCompileFlags} $1"
+    ${myCompiler} ${myCompileFlags} $1
+    echo "${myCompiler} ${myCompiledOutput} ${myLinkFlags} $myInputFilename_o"
+    ${myCompiler} ${myInputFilename_o} ${myLinkFlags} ${myCompiledOutput}
   else 
     echo "Usage: GCC0 code.cc <executable>"
-    echo "where \"code.cc\" is a simple C code,"
-    echo "\"executable\" being final output filename"
+    echo "where \"code.cc\" is a simple C++ code,"
+    echo "\"executable\" being final executable name"
     return 0
   fi
 }
 
 function CLANG {
+  myCompiler="clang"
+  myCompileFlags="--std=c99 -Wall -O2 -march=native -mtune=native -c"
+  myLinkFlags="-lpthread -o"
+
+  myInputFilename=
+  myObj_Ext=".o"
+  myInputFilename_o=
+  myCompiledOutput=
+
   if [ "$#" = 1 ]
   then 
-    filename="${1%\.*}"
-    obj_ext=".o"
-    filename_o=${filename}${obj_ext}
-    output="test"
-    echo "clang --std=c99 -Wall -O2  -march=native -mtune=native -c $1"
-    clang --std=c99 -Wall -O2  -march=native -mtune=native -c $1
-    echo "clang -o test $filename_o"
-    clang -o ${output} $filename_o
+    myInputFilename="${1%\.*}"
+    myInputFilename_o=${myInputFilename}${myObj_Ext}
+    myCompiledOutput="test"
+    echo "${myCompiler} ${myCompileFlags} $1"
+    ${myCompiler} ${myCompileFlags} $1
+    echo "${myCompiler} ${myCompiledOutput} ${myLinkFlags} $myInputFilename_o"
+    ${myCompiler} ${myInputFilename_o} ${myLinkFlags} ${myCompiledOutput}
   elif [ "$#" = 2 ]
   then
-    filename="${1%\.*}"
-    obj_ext=".o"
-    filename_o=${filename}${obj_ext}
-    echo "clang --std=c99 -Wall -O2  -march=native -mtune=native -c $1"
-    clang --std=c99 -Wall -O2  -march=native -mtune=native -c $1
-    echo "clang -o $2 $filename_o"
-    clang -o $2 $filename_o
+    myInputFilename="${1%\.*}"
+    myInputFilename_o=${myInputFilename}${myObj_Ext}
+    myCompiledOutput=$2
+    echo "${myCompiler} ${myCompileFlags} $1"
+    ${myCompiler} ${myCompileFlags} $1
+    echo "${myCompiler} ${myCompiledOutput} ${myLinkFlags} $myInputFilename_o"
+    ${myCompiler} ${myInputFilename_o} ${myLinkFlags} ${myCompiledOutput}
   else 
     echo "Usage: CLANG code.cc <executable>"
     echo "where \"code.cc\" is a simple C++ code,"
-    echo "\"executable\" being final output filename"
+    echo "\"executable\" being final executable name"
     return 0
   fi
 }
 
 function CLANG0 {
+  myCompiler="clang"
+  myCompileFlags="--std=c99 -Wall -O0 -g -c"
+  myLinkFlags="-lpthread -o"
+
+  myInputFilename=
+  myObj_Ext=".o"
+  myInputFilename_o=
+  myCompiledOutput=
+
   if [ "$#" = 1 ]
   then 
-    filename="${1%\.*}"
-    obj_ext=".o"
-    filename_o=${filename}${obj_ext}
-    output="test"
-    echo "clang --std=c99 -Wall -O0 -c $1"
-    clang --std=c99 -Wall -O0 -c $1
-    echo "clang -o test $filename_o"
-    clang -o ${output} $filename_o
+    myInputFilename="${1%\.*}"
+    myInputFilename_o=${myInputFilename}${myObj_Ext}
+    myCompiledOutput="test"
+    echo "${myCompiler} ${myCompileFlags} $1"
+    ${myCompiler} ${myCompileFlags} $1
+    echo "${myCompiler} ${myCompiledOutput} ${myLinkFlags} $myInputFilename_o"
+    ${myCompiler} ${myInputFilename_o} ${myLinkFlags} ${myCompiledOutput}
   elif [ "$#" = 2 ]
   then
-    filename="${1%\.*}"
-    obj_ext=".o"
-    filename_o=${filename}${obj_ext}
-    echo "clang --std=c99 -Wall -O0 -c $1"
-    clang --std=c99 -Wall -O0 -c $1
-    echo "clang -o $2 $filename_o"
-    clang -o $2 $filename_o
+    myInputFilename="${1%\.*}"
+    myInputFilename_o=${myInputFilename}${myObj_Ext}
+    myCompiledOutput=$2
+    echo "${myCompiler} ${myCompileFlags} $1"
+    ${myCompiler} ${myCompileFlags} $1
+    echo "${myCompiler} ${myCompiledOutput} ${myLinkFlags} $myInputFilename_o"
+    ${myCompiler} ${myInputFilename_o} ${myLinkFlags} ${myCompiledOutput}
   else 
     echo "Usage: CLANG0 code.cc <executable>"
     echo "where \"code.cc\" is a simple C++ code,"
-    echo "\"executable\" being final output filename"
+    echo "\"executable\" being final executable name"
     return 0
   fi
 }
@@ -443,7 +510,7 @@ function myctags {
     Usage: mytags <your_path>\n\
     Where your_path is where you want to put the ctags file\n\
     ctags file would default have name \"tags\"\n\
-    When no arg., output would be \$HOME/.tags/tags\n"
+    When no arg., myCompiledOutput would be \$HOME/.tags/tags\n"
 
   if [ "$#" = 1 ]
   then
@@ -484,19 +551,19 @@ function myctags {
         if [[ -d ${1} ]]
         then
           echo "\nYou specified a directory"
-          echo "use default name \"tags\" as output"
+          echo "use default name \"tags\" as myCompiledOutput"
           tag_path=${1}${tag_filename}
 
         elif [[ -f ${1} ]]
         then
-          echo "\nYou specified a already-existent filename"
-          echo "ctags will use it as output"
+          echo "\nYou specified a already-existent myInputFilename"
+          echo "ctags will use it as myCompiledOutput"
           tag_path=${1}
 
         elif [[ -d ${relative_path} ]]
         then
           echo "\nYou specified a new file"
-          echo "ctags would use it as output"
+          echo "ctags would use it as myCompiledOutput"
           tag_path=${1}
         else
           echo "relative_path is:  $relative_path"
