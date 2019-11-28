@@ -1,0 +1,1 @@
+ssh liparadise@140.112.244.224 -p 22 -i .ssh\c_windows_on_t480_h_debian_3600

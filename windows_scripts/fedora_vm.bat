@@ -1,0 +1,1 @@
+ssh liparadise@140.112.244.224 -p 2222 -i .ssh\c_windows_T480_h_fedora_vm

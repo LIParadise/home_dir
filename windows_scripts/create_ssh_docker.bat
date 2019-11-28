@@ -1,0 +1,2 @@
+REM prerequisite: debian image with openssh-server installed
+docker run -it -d -p 2222:22 -v F:\docker_vol:/win --name justAContainer --user root 06a6723863aa /bin/bash -c "service ssh start; exec /bin/bash"
