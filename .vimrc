@@ -1,7 +1,7 @@
-set nu ai expandtab tabstop=2 shiftwidth=2 history=200 cursorline laststatus=2 statusline+=%m%F t_Co=256 ignorecase smartcase
-set undodir=/home/team08/Chu\ Han/.vim/.undo//
-set backupdir=/home/team08/Chu\ Han/.vim/.backup//
-set directory=/home/team08/Chu\ Han/.vim/.swp//
+set nu ai expandtab tabstop=2 shiftwidth=2 history=200 cursorline laststatus=2 statusline+=%m%F\ C=%c\ L=%l t_Co=256 ignorecase smartcase showcmd
+set undodir=~/.vim/.undo//
+set backupdir=~/.vim/.backup//
+set directory=~/.vim/.swp//
 
 filetype indent on
 syntax on
@@ -16,7 +16,7 @@ let @e = 'zD'
 " @e: expand, ie.e unfold, something;
 
 " ctags
-set tags=./tags,./TAGS,$HOME/.tags/tags,$HOME/.tags/TAGS,tags;$HOME,TAGS;$HOME,src/tags,src/TAGS,$HOME/tmp/tags,$HOME/tmp/TAGS
+set tags=./tags,./TAGS,$HOME/.tags/tags,$HOME/.tags/TAGS,tags;$HOME,TAGS;$HOME,src/tags,src/TAGS
 
 " handling lambda functions;
 function! Lambda_cpp()
@@ -27,7 +27,7 @@ endfunction
 function! My_light_theme ()
   hi cursorlinenr cterm=NONE     ctermfg=232  ctermbg=NONE 
   hi linenr       cterm=NONE     ctermfg=246  ctermbg=NONE 
-  if ( &filetype ==# 'c' || &filetype ==# 'cpp' || &filetype ==# 'md' || &filetype ==# 'sv' )
+  if ( &filetype ==# 'c' || &filetype ==# 'cpp' )
     hi type         term=underline ctermfg=32
     hi constant     term=underline ctermfg=202
     hi PreProc      term=underline ctermfg=198
@@ -39,7 +39,7 @@ endfunction
 function! My_dark_theme ()
   hi linenr       cterm=NONE     ctermfg=244  ctermbg=NONE
   hi cursorlinenr cterm=NONE     ctermfg=255  ctermbg=NONE 
-  if ( &filetype ==# 'c' || &filetype ==# 'cpp' || &filetype ==# 'md' || &filetype ==# 'sv' )
+  if ( &filetype ==# 'c' || &filetype ==# 'cpp' )
     hi statement    term=underline ctermfg=113
     hi type         term=underline ctermfg=80
     hi constant     term=underline ctermfg=215
