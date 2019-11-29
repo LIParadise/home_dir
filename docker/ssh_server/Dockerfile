@@ -22,7 +22,7 @@ RUN cd
 RUN git config --global user.email a58524andy@gmail.com
 RUN git config --global user.name LIParadise
 RUN mkdir -p .oh-my-zsh .zsh .vim/.backup .vim/.undo .vim/.swp .ssh
-RUN git clone https://github.com/robbyrussell/oh-my-zsh .oh-my-zsh
+RUN git clone --depth 1 https://github.com/robbyrussell/oh-my-zsh .oh-my-zsh
 RUN wget https://raw.githubusercontent.com/LIParadise/home_dir/master/.vimrc
 RUN wget https://raw.githubusercontent.com/LIParadise/home_dir/master/.zshrc
 RUN wget https://raw.githubusercontent.com/LIParadise/home_dir/master/.tmux.conf
