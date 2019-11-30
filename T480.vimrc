@@ -28,20 +28,20 @@ function! My_light_theme ()
   hi cursorlinenr cterm=NONE     ctermfg=232  ctermbg=NONE 
   hi linenr       cterm=NONE     ctermfg=246  ctermbg=NONE 
   hi constant     term=underline ctermfg=166
-  hi comment      term=underline ctermfg=244
+  hi comment      term=underline ctermfg=243
   hi PreProc      term=underline ctermfg=130
   hi Statement    term=underline ctermfg=91
   hi type         term=underline ctermfg=64
   hi special      term=underline ctermfg=168
   hi SpecialKey   term=underline ctermfg=134
-  hi Identifier   term=underline ctermfg=164
+  hi Identifier   term=underline ctermfg=163
   hi error        term=underline ctermbg=160 ctermfg=231
   hi Todo         term=underline ctermbg=220
   if ( &filetype ==# 'c' || &filetype ==# 'cpp' )
     hi PreProc      term=underline ctermfg=199
     hi Identifier   term=underline ctermfg=34
-    hi Special      term=underline ctermfg=20
-    hi type         term=underline ctermfg=32
+    hi Special      term=underline ctermfg=93
+    hi type         term=underline ctermfg=26
   endif
 endfunction
 
