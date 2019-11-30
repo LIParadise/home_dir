@@ -1,4 +1,4 @@
-set nu ai expandtab tabstop=2 shiftwidth=2 history=200 cursorline laststatus=2 statusline+=%m%F\ C=%c\ L=%l t_Co=256 ignorecase smartcase showcmd
+set nu ai expandtab tabstop=2 shiftwidth=2 history=200 cursorline laststatus=2 statusline+=%m%F\ \ (%c,%l) t_Co=256 ignorecase smartcase showcmd
 set undodir=~/.vim/.undo//
 set backupdir=~/.vim/.backup//
 set directory=~/.vim/.swp//
@@ -27,24 +27,40 @@ endfunction
 function! My_light_theme ()
   hi cursorlinenr cterm=NONE     ctermfg=232  ctermbg=NONE 
   hi linenr       cterm=NONE     ctermfg=246  ctermbg=NONE 
+  hi constant     term=underline ctermfg=202
+  hi comment      term=underline ctermfg=244
+  hi PreProc      term=underline ctermfg=205
+  hi Statement    term=underline ctermfg=92
+  hi type         term=underline ctermfg=4
+  hi special      term=underline ctermfg=171
+  hi SpecialKey   term=underline ctermfg=141
+  hi Identifier   term=underline ctermfg=33
+  hi error        term=underline ctermbg=166 ctermfg=255
+  hi Todo         term=underline ctermbg=220
   if ( &filetype ==# 'c' || &filetype ==# 'cpp' )
-    hi type         term=underline ctermfg=32
-    hi constant     term=underline ctermfg=202
-    hi PreProc      term=underline ctermfg=198
-    hi Statement    term=underline ctermfg=92
-    hi comment      term=underline ctermfg=244
+    hi PreProc      term=underline ctermfg=199
+    hi type         term=underline ctermfg=33
+    hi Identifier   term=underline ctermfg=34
   endif
 endfunction
 
 function! My_dark_theme ()
   hi linenr       cterm=NONE     ctermfg=244  ctermbg=NONE
   hi cursorlinenr cterm=NONE     ctermfg=255  ctermbg=NONE 
-  if ( &filetype ==# 'c' || &filetype ==# 'cpp' )
-    hi statement    term=underline ctermfg=113
-    hi type         term=underline ctermfg=80
-    hi constant     term=underline ctermfg=215
-    hi PreProc      term=underline ctermfg=105
-    hi comment      term=underline ctermfg=246
+  hi constant     term=underline ctermfg=215
+  hi comment      term=underline ctermfg=246
+  hi PreProc      term=underline ctermfg=105
+  hi type         term=underline ctermfg=80
+  hi statement    term=underline ctermfg=113
+  hi error        term=underline ctermbg=166 ctermfg=255
+  hi Todo         term=underline ctermbg=221
+  hi special      term=underline ctermfg=177
+  hi SpecialKey   term=underline ctermfg=213
+  if ( &filetype ==# 'zsh' || &filetype ==# 'sh' || &filetype ==# 'vim' )
+    hi type         term=underline ctermfg=144
+    hi Identifier   term=underline ctermfg=110
+    hi statement    term=underline ctermfg=114
+    hi PreProc      term=underline ctermfg=111
   endif
 endfunction
 
