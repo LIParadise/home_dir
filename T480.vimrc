@@ -10,11 +10,6 @@ hi linenr       cterm=NONE  ctermfg=244  ctermbg=NONE guibg=NONE guifg=NONE
 hi cursorlinenr cterm=NONE  ctermfg=255  ctermbg=NONE guibg=NONE guifg=NONE
 hi cursorline   cterm=NONE  ctermfg=NONE ctermbg=NONE guibg=NONE guifg=NONE
 
-let @f = '/{zfa}``zf``'
-let @e = 'zD'
-" @f: fold from this line to the end of the nearest {} quoted thing, like c-style functions;
-" @e: expand, ie.e unfold, something;
-
 " ctags
 set tags=./tags,./TAGS,$HOME/.tags/tags,$HOME/.tags/TAGS,tags;$HOME,TAGS;$HOME,src/tags,src/TAGS
 
