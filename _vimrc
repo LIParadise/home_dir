@@ -13,7 +13,6 @@ syntax on
 if has("gui_running")
   set encoding=utf-8
   set fileencodings=utf-8,chinese,latin-1
-  colorscheme evening
   if has("gui_gtk2")
     set guifont=Inconsolata\ 12
   elseif has("gui_macvim")

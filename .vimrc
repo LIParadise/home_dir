@@ -11,9 +11,17 @@ set directory=~/.vim/.swp//
 filetype indent on
 syntax on
 
-hi linenr       cterm=NONE  ctermfg=244  ctermbg=NONE guibg=NONE guifg=NONE
-hi cursorlinenr cterm=NONE  ctermfg=255  ctermbg=NONE guibg=NONE guifg=NONE
-hi cursorline   cterm=NONE  ctermfg=NONE ctermbg=NONE guibg=NONE guifg=NONE
+if has("gui_running")
+  set encoding=utf-8
+  set fileencodings=utf-8,chinese,latin-1
+  if has("gui_win32")
+    set guifont=Cascadia_Code:h13
+  endif
+else
+  hi linenr       cterm=NONE  ctermfg=244  ctermbg=NONE guibg=NONE guifg=NONE
+  hi cursorlinenr cterm=NONE  ctermfg=255  ctermbg=NONE guibg=NONE guifg=NONE
+  hi cursorline   cterm=NONE  ctermfg=NONE ctermbg=NONE guibg=NONE guifg=NONE
+endif
 
 " ctags
 set tags=./tags,./TAGS,$HOME/.tags/tags,$HOME/.tags/TAGS,tags;$HOME,TAGS;$HOME,src/tags,src/TAGS
