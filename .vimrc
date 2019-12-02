@@ -1,7 +1,12 @@
-set nu ai expandtab tabstop=2 shiftwidth=2 history=200 cursorline laststatus=2 statusline+=%m%F\ \ (%c,%l) t_Co=256 ignorecase smartcase showcmd
+set nu ai expandtab tabstop=2 shiftwidth=2 history=200 cursorline laststatus=2 statusline+=%<%F\ %h%m%r%=%-16.(%l,%c%V%)\ %P t_Co=256 ignorecase smartcase showcmd
 set undodir=~/.vim/.undo//
 set backupdir=~/.vim/.backup//
 set directory=~/.vim/.swp//
+
+" %m%F\ \ %1.4c,%1.6l
+" :set statusline=%<%f\ %h%m%r%=%-14.(%l,%c%V%)\ %P
+
+" set statusline=[%{expand('%:p')}][%{strlen(&fenc)?&fenc:&enc},\ %{&ff},\ %{strlen(&filetype)?&filetype:'plain'}]%{FileSize()}%{IsBinary()}%=%c,%l/%L\ [%3p%%]
 
 filetype indent on
 syntax on
