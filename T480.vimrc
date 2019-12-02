@@ -135,7 +135,7 @@ function! My_light_theme ()
 
   " let colors_name = "default"
 
-  hi Normal       ctermfg=16 ctermbg=231 guifg=#000000 guibg=#fffffc
+  hi Normal       ctermfg=16 ctermbg=231 guifg=#000000 guibg=#fcfcf0
   " hi CursorLine   term=underline cterm=underline guibg=#cfcfcc
   hi cursorline   term=underline cterm=NONE ctermfg=NONE ctermbg=254 guibg=#cfcfcc guifg=NONE
   hi cursorlinenr cterm=NONE     ctermfg=232 guifg=#000000   ctermbg=NONE 
