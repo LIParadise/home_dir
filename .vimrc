@@ -143,7 +143,7 @@ function! My_light_theme ()
 
   " let colors_name = "default"
 
-  hi Normal       ctermfg=16 ctermbg=231 guifg=#000000 guibg=#fcfcf0
+  hi Normal       ctermfg=16 ctermbg=231 guifg=#000000 guibg=#fbfbee
   " hi CursorLine   term=underline cterm=underline guibg=#cfcfcc
   hi cursorline   term=underline cterm=NONE ctermfg=NONE ctermbg=254 guibg=#cfcfcc guifg=NONE
   hi cursorlinenr cterm=NONE     ctermfg=232 guifg=#000000   ctermbg=NONE 
@@ -236,7 +236,8 @@ function! My_dark_theme ()
   hi type         term=underline ctermfg=80      guifg=#5FD7D7
   hi statement    term=underline ctermfg=113     guifg=#87D75F
   hi error        term=underline ctermbg=166     guifg=#f3f3f3  ctermfg=255 guibg=#d75f00
-  hi Todo         term=underline ctermbg=221 guibg=#FFD75F
+  hi Todo         term=underline ctermbg=221     guibg=#FFD75F
+  hi Identifier   term=underline ctermfg=14      guifg=#40ffff
   if ( &filetype ==# 'zsh' || &filetype ==# 'sh' || &filetype ==# 'vim' )
     hi type         term=underline ctermfg=144 guifg=#AFAF87
     hi Identifier   term=underline ctermfg=110 guifg=#87AFD7
