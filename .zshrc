@@ -211,6 +211,7 @@ function delsshgit {
                 break
                 ;;
               * ) 
+                echo "Abort"
                 break
                 ;;
             esac
