@@ -211,8 +211,6 @@ function! My_dark_theme ()
   hi NonText term=bold ctermfg=LightBlue gui=bold guifg=LightBlue guibg=grey30
   hi Question term=standout ctermfg=LightGreen gui=bold guifg=Green
   hi Search term=reverse ctermbg=Yellow ctermfg=Black guibg=Yellow guifg=Black
-  " hi Special term=bold ctermfg=LightRed guifg=Orange
-  hi special      term=underline ctermfg=177 guifg=#D787FF
   " hi SpecialKey term=bold ctermfg=LightBlue guifg=Cyan
   hi SpecialKey   term=underline ctermfg=213 guifg=#FF87FF
   hi Title term=bold ctermfg=LightMagenta gui=bold guifg=Magenta
@@ -231,6 +229,8 @@ function! My_dark_theme ()
   " Groups for syntax highlighting
   " hi Constant term=underline ctermfg=Magenta guifg=#ffa0a0
   hi constant     term=underline ctermfg=215     guifg=#FFAF5F
+  " hi Special term=bold ctermfg=LightRed guifg=Orange
+  hi special      term=underline ctermfg=177 guifg=#D787FF
   " if &t_Co > 8
   "   hi Statement term=bold cterm=bold ctermfg=Yellow guifg=#ffff60 gui=bold
   " endif

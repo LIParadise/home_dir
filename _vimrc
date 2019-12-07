@@ -162,11 +162,11 @@ function! My_light_theme ()
     syntax reset
   endif
 
-  let colors_name = "default"
+  " let colors_name = "default"
 
-  hi Normal       ctermfg=16 ctermbg=231   guifg=#000000 guibg=#fbfbee
+  hi Normal       ctermfg=16 ctermbg=231 guifg=#000000 guibg=#fbfbee
   " hi CursorLine   term=underline cterm=underline guibg=#cfcfcc
-  hi cursorline   term=underline cterm=NONE ctermfg=NONE ctermbg=253 guibg=#cfcfcc guifg=NONE
+  hi cursorline   term=underline cterm=NONE ctermfg=NONE ctermbg=254 guibg=#cfcfcc guifg=NONE
   hi cursorlinenr cterm=NONE     ctermfg=232 guifg=#000000   ctermbg=NONE 
   hi linenr       cterm=NONE     ctermfg=246 guifg=#949494   ctermbg=NONE 
   hi constant     term=underline ctermfg=202 guifg=#ff5f00 
@@ -201,10 +201,10 @@ function! My_dark_theme ()
     syntax reset
   endif
 
-  let colors_name = "evening"
+  " let colors_name = "evening"
 
   " hi Normal ctermbg=DarkGrey ctermfg=White guifg=White guibg=grey20
-  hi Normal       ctermfg=255 ctermbg=234 guifg=White guibg=#1a1a1a
+  hi Normal       ctermfg=255 ctermbg=234 guifg=White guibg=#0a0a09
 
   " Groups used in the 'highlight' and 'guicursor' options default value.
   hi ErrorMsg          term=standout       ctermbg=DarkRed      ctermfg=White    guibg=Red    guifg=White
@@ -251,13 +251,13 @@ function! My_dark_theme ()
   " endif
   hi Ignore ctermfg=DarkGrey guifg=grey20
 
-  hi cursorlinenr cterm=NONE     ctermfg=255     guifg=#ffffff  ctermbg=NONE
+  hi cursorlinenr cterm=NONE     ctermfg=255     guifg=#f3f3f3  ctermbg=NONE
   hi comment      term=underline ctermfg=246     guifg=#949494
   hi PreProc      term=underline ctermfg=105     guifg=#8787FF
   hi type         term=underline ctermfg=80      guifg=#5FD7D7
   hi statement    term=underline ctermfg=113     guifg=#87D75F
-  hi error        term=underline ctermbg=166     guifg=#ffffff  ctermfg=255 guibg=#d75f00
-  hi Todo         term=underline ctermbg=221 guibg=#FFD75F
+  hi error        term=underline ctermbg=166     guifg=#f3f3f3  ctermfg=255 guibg=#d75f00
+  hi Todo         term=underline ctermbg=221     guibg=#FFD75F
   hi Identifier   term=underline ctermfg=14      guifg=#40ffff
   if ( &filetype ==# 'zsh' || &filetype ==# 'sh' || &filetype ==# 'vim' )
     hi type         term=underline ctermfg=144 guifg=#AFAF87
