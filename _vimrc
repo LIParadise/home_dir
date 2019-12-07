@@ -2,10 +2,15 @@ set langmenu=en_US
 let $LANG = 'en_US'
 source $VIMRUNTIME/delmenu.vim
 source $VIMRUNTIME/menu.vim
-set nu ai expandtab tabstop=2 shiftwidth=2 history=200 cursorline laststatus=2 statusline+=%<%F\ %h%m%r%=%-16.(%l,%c%V%)\ %P t_Co=256 ignorecase smartcase showcmd guifont=Cascadia_Code:h13
+set nu ai expandtab tabstop=2 shiftwidth=2 history=200 cursorline laststatus=2 statusline+=%<%F\ %h%m%r%=%-16.(%l,%c%V%)\ %P t_Co=256 ignorecase smartcase showcmd guifont=Cascadia_Code:h13 backspace=indent
 set undodir=~/.vim/.undo//
 set backupdir=~/.vim/.backup//
 set directory=~/.vim/.swp//
+
+" %m%F\ \ %1.4c,%1.6l
+" :set statusline=%<%f\ %h%m%r%=%-14.(%l,%c%V%)\ %P
+
+" set statusline=[%{expand('%:p')}][%{strlen(&fenc)?&fenc:&enc},\ %{&ff},\ %{strlen(&filetype)?&filetype:'plain'}]%{FileSize()}%{IsBinary()}%=%c,%l/%L\ [%3p%%]
 
 filetype indent on
 syntax on
@@ -26,12 +31,25 @@ else
   hi cursorline   cterm=NONE  ctermfg=NONE ctermbg=NONE guibg=NONE guifg=NONE
 endif
 
+"enable 256 colors in ConEmu on Win CLI
+if has('win32') && !has('gui_running') && !empty($CONEMUBUILD)     
+  set term=xterm
+  set t_Co=256
+  let &t_AB="\e[48;5;%dm"
+  let &t_AF="\e[38;5;%dm"
+endif
+
 " ctags
 set tags=./tags,./TAGS,$HOME/.tags/tags,$HOME/.tags/TAGS,tags;$HOME,TAGS;$HOME,src/tags,src/TAGS
 
 " handling lambda functions;
 function! Lambda_cpp()
   setlocal cindent cino=j1,(0,ws,Ws,N-s
+endfunction
+
+" handling en spell check;
+function! Spell_On_Off()
+  setlocal spell! spelllang=en
 endfunction
 
 " tab index support

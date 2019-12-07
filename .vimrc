@@ -31,6 +31,11 @@ function! Lambda_cpp()
   setlocal cindent cino=j1,(0,ws,Ws,N-s
 endfunction
 
+" handling en spell check;
+function! Spell_On_Off()
+  setlocal spell! spelllang=en
+endfunction
+
 " tab index support
 if (exists("g:loaded_tabline_vim") && g:loaded_tabline_vim) || &cp
   finish
