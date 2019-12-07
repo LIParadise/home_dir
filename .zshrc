@@ -1,49 +1,49 @@
 # mbed-cli bash completion
-# check the following:
+
 # https://github.com/eddiezane/lunchy/issues/57
 # for more details
-autoload -U +X bashcompinit && bashcompinit
-autoload -U +X compinit && compinit
-# source /home/liparadise/.bash_completion.d/mbed
-# End of mbed-cli bash completion
+  autoload -U +X bashcompinit && bashcompinit
+  autoload -U +X compinit && compinit
+  # source /home/liparadise/.bash_completion.d/mbed
+  # End of mbed-cli bash completion
 
 # NTUOSC ml environmental variables
 export WORKON_HOME=$HOME/.virtualenvs
 export VIRTUALENVWRAPPER_PYTHON=/usr/bin/python3
-source /usr/bin/virtualenvwrapper.sh
+source /usr/local/bin/virtualenvwrapper.sh
 # end of NTUOSC ml environmental variables
 #
 
 # If you come from bash you might have to change your $PATH.
-# export PATH=$HOME/bin:/usr/local/bin:$PATH
+  # export PATH=$HOME/bin:/usr/local/bin:$PATH
 
 # Path to your oh-my-zsh installation.
 export ZSH="/home/liparadise/.oh-my-zsh"
 export ZDOTDIR="/home/liparadise/.zsh"
 
 # Path for golang
-export GOPATH=$HOME/go
+  export GOPATH=$HOME/go
 
-DISABLE_AUTO_UPDATE="true"
+  DISABLE_AUTO_UPDATE="true"
 
 # Set name of the theme to load --- if set to "random", it will
-# load a random theme each time oh-my-zsh is loaded, in which case,
-# to know which specific one was loaded, run: echo $RANDOM_THEME
-# See https://github.com/robbyrussell/oh-my-zsh/wiki/Themes
-ZSH_THEME="gentoo"
+  # load a random theme each time oh-my-zsh is loaded, in which case,
+    # to know which specific one was loaded, run: echo $RANDOM_THEME
+    # See https://github.com/robbyrussell/oh-my-zsh/wiki/Themes
+    ZSH_THEME="gentoo"
 
 # Set list of themes to pick from when loading at random
 # Setting this variable when ZSH_THEME=random will cause zsh to load
 # a theme from this variable instead of looking in ~/.oh-my-zsh/themes/
 # If set to an empty array, this variable will have no effect.
-# ZSH_THEME_RANDOM_CANDIDATES=( "robbyrussell" "agnoster" )
+  # ZSH_THEME_RANDOM_CANDIDATES=( "robbyrussell" "agnoster" )
 
 # Uncomment the following line to use case-sensitive completion.
-# CASE_SENSITIVE="true"
+  # CASE_SENSITIVE="true"
 
 # Uncomment the following line to use hyphen-insensitive completion.
 # Case-sensitive completion must be off. _ and - will be interchangeable.
-# HYPHEN_INSENSITIVE="true"
+  # HYPHEN_INSENSITIVE="true"
 
 # Uncomment the following line to disable bi-weekly auto-update checks.
 # DISABLE_AUTO_UPDATE="true"
@@ -61,20 +61,20 @@ ZSH_THEME="gentoo"
 # ENABLE_CORRECTION="true"
 
 # Uncomment the following line to display red dots whilst waiting for completion.
-# COMPLETION_WAITING_DOTS="true"
+  # COMPLETION_WAITING_DOTS="true"
 
 # Uncomment the following line if you want to disable marking untracked files
-# under VCS as dirty. This makes repository status check for large repositories
-# much, much faster.
-# DISABLE_UNTRACKED_FILES_DIRTY="true"
+  # under VCS as dirty. This makes repository status check for large repositories
+    # much, much faster.
+    # DISABLE_UNTRACKED_FILES_DIRTY="true"
 
 # Uncomment the following line if you want to change the command execution time
-# stamp shown in the history command output.
-# You can set one of the optional three formats:
-# "mm/dd/yyyy"|"dd.mm.yyyy"|"yyyy-mm-dd"
-# or set a custom format using the strftime function format specifications,
-# see 'man strftime' for details.
-# HIST_STAMPS="mm/dd/yyyy"
+  # stamp shown in the history command output.
+  # You can set one of the optional three formats:
+  # "mm/dd/yyyy"|"dd.mm.yyyy"|"yyyy-mm-dd"
+  # or set a custom format using the strftime function format specifications,
+  # see 'man strftime' for details.
+    # HIST_STAMPS="mm/dd/yyyy"
 
 # Would you like to use another custom folder than $ZSH/custom?
 # ZSH_CUSTOM=/path/to/new-custom-folder
@@ -85,7 +85,7 @@ ZSH_THEME="gentoo"
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
 plugins=(
-  git
+git
 )
 
 source $ZSH/oh-my-zsh.sh
@@ -98,11 +98,11 @@ source $ZSH/oh-my-zsh.sh
 # export LANG=en_US.UTF-8
 
 # Preferred editor for local and remote sessions
-# if [[ -n $SSH_CONNECTION ]]; then
-#   export EDITOR='vim'
-# else
-#   export EDITOR='mvim'
-# fi
+  # if [[ -n $SSH_CONNECTION ]]; then
+    #   export EDITOR='vim'
+    # else
+      #   export EDITOR='mvim'
+      # fi
 
 # Compilation flags
 # export ARCHFLAGS="-arch x86_64"
@@ -114,10 +114,10 @@ source $ZSH/oh-my-zsh.sh
 # plugins, and themes. Aliases can be placed here, though oh-my-zsh
 # users are encouraged to define aliases within the ZSH_CUSTOM folder.
 # For a full list of active aliases, run `alias`.
-#
-# Example aliases
-# alias zshconfig="mate ~/.zshrc"
-# alias ohmyzsh="mate ~/.oh-my-zsh"
+  #
+  # Example aliases
+  # alias zshconfig="mate ~/.zshrc"
+  # alias ohmyzsh="mate ~/.oh-my-zsh"
 
 # LIParadise Modifications
 alias cp="cp -i"
@@ -136,23 +136,25 @@ function sshgit {
 
   myKey= 
 
-  if [[ ! -z "${1}" ]] ; then
+  if [ ! -z "${1}" ]
+  then
     myKey="${1}"
   else
     myKey="$HOME/.ssh/id_rsa_a58524andy"
   fi
 
-  if [[ ! -z $SSH_AGENT_PID ]] ; then
-    if ps -p $SSH_AGENT_PID > /dev/null 
+  if [ ! -z $SSH_AGENT_PID ]
+  then
+    if ps -p $SSH_AGENT_PID > /dev/null
     then
       echo "ssh-agent shall be running"
     else
       echo "weird, \$SSH_AGENT_PID is set but no ssh-agent process found"
       echo "trying directly add the key"
-    fi
-  else
-    echo "eval \$(ssh-agent -s)"
-    eval $(ssh-agent -s)
+  fi
+else
+  echo "eval \$(ssh-agent -s)"
+  eval $(ssh-agent -s)
   fi
 
   ssh-add $myKey
@@ -162,34 +164,60 @@ function delsshgit {
 
   # set variables
   myKey=
-  if [[ ! -z "${1}" ]] ; then
+  if [ ! -z "${1}" ]
+  then
     myKey="${1}"
   else
     myKey="$HOME/.ssh/id_rsa_a58524andy.pub"
   fi
 
   # check if ssh-agent is present; if so, delete the identity.
-  if [[ ! -z $SSH_AGENT_PID ]] ; then
-    if ps -p $SSH_AGENT_PID > /dev/null 
-    then 
-      # "SSH_AGENT_PID" environmental variable is set
-      # and the process is present
-      # directly delete the key from it
-      echo ""
-      echo "found ssh-agent process, of which PID is $SSH_AGENT_PID"
-      echo ""
-      echo "ssh-add -d $myKey"
-      echo ""
-      echo "====================================="
-      ssh-add -d $myKey
-      echo "====================================="
-      echo ""
-      echo ""
-    else
-      echo "weird, \$SSH_AGENT_PID is set but no ssh-agent process found"
-    fi
-  else
-    echo "\$SSH_AGENT_PID not set, abort"
+    if [ ! -z $SSH_AGENT_PID ]
+    then
+      if ps -p $SSH_AGENT_PID > /dev/null
+      then 
+        # "SSH_AGENT_PID" environmental variable is set
+        # and the process is present
+        # directly delete the key from it
+        echo ""
+        echo "found ssh-agent process, of which PID is $SSH_AGENT_PID"
+        echo ""
+        echo "ssh-add -d $myKey"
+        echo ""
+        echo "====================================="
+        ssh-add -d $myKey
+        echo "====================================="
+        echo ""
+        echo ""
+      else
+        echo ""
+        echo "weird, \$SSH_AGENT_PID is set but no ssh-agent process found"
+        echo ""
+        echo "Do you want to unset them?"
+          myYes=y
+          myNo=n
+          myYn=
+          select myYn in "Yes" "No"; do
+            case $myYn in
+              Yes ) 
+                ssh-add -D >/dev/null 2>/dev/null
+                ssh-agent -k >/dev/null 2>/dev/null
+                unset SSH_AGENT_PID
+                unset SSH_AUTH_SOCK
+                break
+                ;;
+              No ) 
+                echo "Abort"
+                break
+                ;;
+              * ) 
+                break
+                ;;
+            esac
+          done
+  fi
+else
+  echo "\$SSH_AGENT_PID not set, abort"
   fi
 }
 
@@ -514,7 +542,7 @@ function myctags {
 
   if [ "$#" = 1 ]
   then
-    if [[ ${1} =~ '--help' || ${1} =~ '-h' ]]
+    if [ ${1} =~ '--help' || ${1} =~ '-h' ]
     then
       # somehow this would match "--h", etc. ...
       echo ${msg}
@@ -526,10 +554,10 @@ function myctags {
       relative_path="hello, world"
       tag_path="/tmp/tags"
 
-      if [[ ${1} =~ '\/$' ]]
+      if [ ${1} =~ '\/$' ]
       then
 
-        if [[ -d ${1} ]]
+        if [ -d ${1} ]
         then
           echo "\nYou specified a diretory"
           relative_path=`sed -r -E 's/\/+$//g' <<< ${1}`
@@ -539,67 +567,67 @@ function myctags {
           echo "Maybe check existence of parent directory"
           echo ${msg}
           return 0
-        fi
+  fi
 
-      elif [[ ${1} =~ '\w$' || ${1} =~ '\.{1,3}$' ]]
-      then
-        # in zsh, "..." expands to "../.."
+elif [ ${1} =~ '\w$' || ${1} =~ '\.{1,3}$' ]
+then
+  # in zsh, "..." expands to "../.."
 
-        echo "input: ${1}"
-        relative_path=`sed -r -E 's/\/[^/]+$//g' <<< ${1}`
+  echo "input: ${1}"
+  relative_path=`sed -r -E 's/\/[^/]+$//g' <<< ${1}`
 
-        if [[ -d ${1} ]]
-        then
-          echo "\nYou specified a directory"
-          echo "use default name \"tags\" as myCompiledOutput"
-          tag_path=${1}${tag_filename}
-
-        elif [[ -f ${1} ]]
-        then
-          echo "\nYou specified a already-existent myInputFilename"
-          echo "ctags will use it as myCompiledOutput"
-          tag_path=${1}
-
-        elif [[ -d ${relative_path} ]]
-        then
-          echo "\nYou specified a new file"
-          echo "ctags would use it as myCompiledOutput"
-          tag_path=${1}
-        else
-          echo "relative_path is:  $relative_path"
-          echo "\nThe directory or file \"${1}\" specified DNE."
-          echo "Maybe check existence of parent directory"
-          echo ${msg} 
-          return 0
-        fi
-
-      else
-        echo "\nThe directory or file \"${1}\" specified is wierd."
-        echo "Maybe check existence of parent directory"
-        echo ${msg} 
-        return 0
-      fi
-
-      echo ""
-      echo "relative_path is:  $relative_path"
-      echo "tag_path is:       $tag_path"
-      echo "ctags --language-force=c++ --tag-relative=yes -f ${tag_path} -R src/* lib/* include/*"
-      echo ""
-      ctags --language-force=c++ --tag-relative=yes -f ${tag_path} -R src/* lib/* include/*
-      echo ""
-      return 0
-
-    fi
-
-  elif [ "$#" = 0 ]
+  if [ -d ${1} ]
   then
-    echo "ctags --language-force=c++ --tag-relative=yes -f $HOME/.tags/tags -R src/* lib/* include/*"
-    ctags --language-force=c++ --tag-relative=yes -f $HOME/.tags/tags -R src/* lib/* include/*
-    echo ""
-    return 0
+    echo "\nYou specified a directory"
+    echo "use default name \"tags\" as myCompiledOutput"
+    tag_path=${1}${tag_filename}
+
+  elif [ -f ${1} ]
+  then
+    echo "\nYou specified a already-existent myInputFilename"
+    echo "ctags will use it as myCompiledOutput"
+    tag_path=${1}
+
+  elif [ -d ${relative_path} ]
+  then
+    echo "\nYou specified a new file"
+    echo "ctags would use it as myCompiledOutput"
+    tag_path=${1}
   else
-    echo ${msg}
+    echo "relative_path is:  $relative_path"
+    echo "\nThe directory or file \"${1}\" specified DNE."
+    echo "Maybe check existence of parent directory"
+    echo ${msg} 
     return 0
+  fi
+
+else
+  echo "\nThe directory or file \"${1}\" specified is wierd."
+  echo "Maybe check existence of parent directory"
+  echo ${msg} 
+  return 0
+  fi
+
+  echo ""
+  echo "relative_path is:  $relative_path"
+  echo "tag_path is:       $tag_path"
+  echo "ctags --language-force=c++ --tag-relative=yes -f ${tag_path} -R src/* lib/* include/*"
+  echo ""
+  ctags --language-force=c++ --tag-relative=yes -f ${tag_path} -R src/* lib/* include/*
+  echo ""
+  return 0
+
+  fi
+
+elif [ "$#" = 0 ]
+then
+  echo "ctags --language-force=c++ --tag-relative=yes -f $HOME/.tags/tags -R src/* lib/* include/*"
+  ctags --language-force=c++ --tag-relative=yes -f $HOME/.tags/tags -R src/* lib/* include/*
+  echo ""
+  return 0
+else
+  echo ${msg}
+  return 0
   fi
 }
 # End of LIParadise Modifications
