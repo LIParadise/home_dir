@@ -6,7 +6,7 @@ RUN apt-get -y upgrade
 RUN apt-get -y install dialog apt-utils aptitude
 RUN aptitude update
 RUN aptitude -y safe-upgrade
-RUN aptitude -y install gcc g++ gdb clang valgrind vim tmux zsh htop pigz make cmake openssh-client openssh-server openssh-sftp-server ntfs-3g libboost-all-dev git wget
+RUN aptitude -y install gcc g++ gdb clang valgrind vim tmux zsh htop pigz make cmake openssh-client openssh-server openssh-sftp-server ntfs-3g libboost-all-dev git wget curl
 RUN mkdir /var/run/sshd
 # SSH login fix. Otherwise user is kicked off after login
 RUN sed 's@session\s*required\s*pam_loginuid.so@session optional pam_loginuid.so@g' -i /etc/pam.d/sshd
