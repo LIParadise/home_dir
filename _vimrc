@@ -9,7 +9,9 @@ set directory=~/.vim/.swp//
 
 " enable truecolor when feasible
 if exists('+termguicolors')
-  set termguicolors
+  " if $TERM isnot# 'linux'
+    set termguicolors
+  " endif
 endif
 
 " vim-plug
@@ -98,34 +100,20 @@ endfunction
 set tabline=%!Tabline()
 " end of tab index support
 
-function! My_light_theme ()
-  let g:ayucolor="light"
-  colorscheme ayu
-  hi LineNr      ctermfg=130 guifg=#C8C7C6
-  hi Comment     ctermfg=4   guifg=#A6AAB1
-  hi PreProc     ctermfg=81  guifg=#E8B268
-  hi Operator    guifg=#A58D2E
-  hi StatusLine  guibg=#5C6773 guifg=#FFFFFF
-  hi VertSplit   guifg=#CCC2C2
+" if there's no true color, fallback
+function! s:My_dark_theme_fallback ()
+  set notermguicolors
+  syntax reset
+  colorscheme industry
+  syntax on
 endfunction
 
-function! My_dark_theme ()
-  let g:ayucolor="dark"
-  colorscheme ayu
-  hi LineNr      ctermfg=130 guifg=#38414A
-  hi SpecialKey  ctermfg=4   guifg=#6990B5
-  hi StatusLine  guifg=#14191F guibg=#E6E1CF 
-  hi VertSplit   guifg=#354659
-endfunction
-
-function! My_mirage_theme ()
-  let g:ayucolor="mirage"
-  colorscheme ayu
-  hi LineNr      ctermfg=130 guifg=#3e4a5c
-  hi Comment     ctermfg=14  guifg=#606A77
-  hi SpecialKey  ctermfg=4   guifg=#6990B5
-  hi StatusLine  guifg=#272D38 guibg=#D9D7CE 
-  hi VertSplit   guifg=#2B3B5B
+" if there's no true color, fallback
+function! s:My_light_theme_fallback ()
+  set notermguicolors
+  syntax reset
+  colorscheme default
+  syntax on
 endfunction
 
 " tab index support
@@ -177,4 +165,46 @@ endfunction
 "   set tabline=%!MyTabLine()
 " endif
 " end of tab index support
+
+function! My_light_theme ()
+  if &termguicolors
+    let g:ayucolor="light"
+    colorscheme ayu
+    hi LineNr      ctermfg=130 guifg=#C8C7C6
+    hi Comment     ctermfg=4   guifg=#A6AAB1
+    hi PreProc     ctermfg=81  guifg=#E8B268
+    hi Operator    guifg=#A58D2E
+    hi StatusLine  guibg=#5C6773 guifg=#FFFFFF
+    hi VertSplit   guifg=#CCC2C2
+  else
+    call s:My_light_theme_fallback()
+  endif
+endfunction
+
+function! My_dark_theme ()
+  if &termguicolors
+    let g:ayucolor="dark"
+    colorscheme ayu
+    hi LineNr      ctermfg=130 guifg=#38414A
+    hi SpecialKey  ctermfg=4   guifg=#6990B5
+    hi StatusLine  guifg=#14191F guibg=#E6E1CF 
+    hi VertSplit   guifg=#354659
+  else
+    call s:My_dark_theme_fallback()
+  endif
+endfunction
+
+function! My_mirage_theme ()
+  if &termguicolors
+    let g:ayucolor="mirage"
+    colorscheme ayu
+    hi LineNr      ctermfg=130 guifg=#3e4a5c
+    hi Comment     ctermfg=14  guifg=#606A77
+    hi SpecialKey  ctermfg=4   guifg=#6990B5
+    hi StatusLine  guifg=#272D38 guibg=#D9D7CE 
+    hi VertSplit   guifg=#2B3B5B
+  else
+    call s:My_dark_theme_fallback()
+  endif
+endfunction
 
