@@ -170,7 +170,7 @@ endfunction
 " end of tab index support
 
 function! My_light_theme ()
-  if &termguicolors
+  if &termguicolors || has ("gui_win32" )
     let g:ayucolor="light"
     colorscheme ayu
     hi LineNr      ctermfg=130    guifg=#C8C7C6
@@ -185,7 +185,7 @@ function! My_light_theme ()
 endfunction
 
 function! My_dark_theme ()
-  if &termguicolors
+  if &termguicolors || has ("gui_win32" )
     let g:ayucolor="dark"
     colorscheme ayu
     hi LineNr      ctermfg=130    guifg=#38414A
@@ -199,7 +199,7 @@ function! My_dark_theme ()
 endfunction
 
 function! My_mirage_theme ()
-  if &termguicolors
+  if &termguicolors || has ("gui_win32" )
     let g:ayucolor="mirage"
     colorscheme ayu
     hi LineNr      ctermfg=130    guifg=#3e4a5c
