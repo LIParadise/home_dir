@@ -1,6 +1,6 @@
 [submodule ".vim/pack/vendor/start/indentLint"]
 	path = .vim/pack/vendor/start/indentLint
 	url = https://github.com/Yggdroot/indentLine
-[submodule ".vim/plugged/ayu-vim"]
-	path = .vim/plugged/ayu-vim
+[submodule ".vim/pack/vendor/start/ayu-vim"]
+	path = .vim/pack/vendor/start/ayu-vim
 	url = https://github.com/ayu-theme/ayu-vim.git
