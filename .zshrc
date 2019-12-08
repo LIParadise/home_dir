@@ -125,6 +125,7 @@ alias mv="mv -i"
 alias rm="rm -i"
 alias ll="ls -alF"
 alias so="source $HOME/.zshrc"
+alias vim="vimx"
 alias ressh="sudo service ssh --full-restart"
 alias vm="ssh -p 2222 liparadise@127.0.0.1"
 
