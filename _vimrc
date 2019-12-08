@@ -16,12 +16,12 @@ endif
 
 " vim-plug
 " https://github.com/junegunn/vim-plug
-call plug#begin('$HOME/.vim/plugged')
+" call plug#begin('$HOME/.vim/plugged')
 
-Plug 'ayu-theme/ayu-vim'
+" Plug 'ayu-theme/ayu-vim'
 " https://github.com/ayu-theme/ayu-vim
 
-call plug#end()
+" call plug#end()
 
 " %m%F\ \ %1.4c,%1.6l
 " :set statusline=%<%f\ %h%m%r%=%-14.(%l,%c%V%)\ %P
