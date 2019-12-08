@@ -112,7 +112,11 @@ endfunction
 function! s:My_light_theme_fallback ()
   set notermguicolors
   syntax reset
-  colorscheme default
+  colorscheme evening
+  hi Normal         ctermfg=0 ctermbg=7 guifg=White guibg=grey20
+  hi linenr         ctermfg=3 ctermbg=7
+  hi CursorLineNr   term=underline cterm=underline ctermfg=5 ctermbg=7
+  hi Constant       term=underline ctermfg=3
   syntax on
 endfunction
 
