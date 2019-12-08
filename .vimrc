@@ -3,9 +3,12 @@ set undodir=~/.vim/.undo//
 set backupdir=~/.vim/.backup//
 set directory=~/.vim/.swp//
 
+" isnot#
 " enable truecolor when feasible
 if exists('+termguicolors')
-  if $TERM isnot# 'linux' && $TERM isnot# 'screen' && $TERM isnot# 'xterm'
+  if (($TERM !~? '^linux$') && ($TERM !~? '^screen$'))
+    let &t_8f = "\<Esc>[38;2;%lu;%lu;%lum"
+    let &t_8b = "\<Esc>[48;2;%lu;%lu;%lum"
     set termguicolors
   endif
 endif
@@ -97,12 +100,13 @@ endfunction
 function! s:My_light_theme_fallback ()
   set notermguicolors
   syntax reset
-  colorscheme evening
-  hi Normal         ctermfg=0 ctermbg=7 guifg=White guibg=grey20
-  hi linenr         ctermfg=3 ctermbg=7
-  hi CursorLineNr   term=underline cterm=underline ctermfg=5 ctermbg=7
-  hi Constant       term=underline ctermfg=3
+  colorscheme default
   syntax on
+  hi Normal         ctermfg=0 ctermbg=255
+  hi linenr         ctermfg=3 ctermbg=7
+  hi CursorLineNr   term=none cterm=none ctermfg=5 ctermbg=7
+  hi cursorline     term=none cterm=none ctermbg=250
+  hi Constant       term=underline ctermfg=3
 endfunction
 
 " tab index support
