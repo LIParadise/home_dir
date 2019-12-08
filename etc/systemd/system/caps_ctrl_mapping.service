@@ -1,0 +1,9 @@
+[Unit]
+Description=caps_ctrl_mapping.service
+
+[Service]
+Type=oneshot
+ExecStart=/usr/local/bin/caps_ctrl.sh
+
+[Install]
+WantedBy=multi-user.target
