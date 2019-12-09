@@ -100,13 +100,8 @@ endfunction
 function! s:My_light_theme_fallback ()
   set notermguicolors
   syntax reset
-  colorscheme default
+  colorscheme zellner
   syntax on
-  hi Normal         ctermfg=0 ctermbg=255
-  hi linenr         ctermfg=3 ctermbg=7
-  hi CursorLineNr   term=none cterm=none ctermfg=5 ctermbg=7
-  hi cursorline     term=none cterm=none ctermbg=250
-  hi Constant       term=underline ctermfg=3
 endfunction
 
 " tab index support
@@ -163,12 +158,13 @@ function! My_light_theme ()
   if &termguicolors
     let g:ayucolor="light"
     colorscheme ayu
-    hi LineNr      ctermfg=130 guifg=#C8C7C6
-    hi Comment     ctermfg=4   guifg=#A6AAB1
-    hi PreProc     ctermfg=81  guifg=#E8B268
+    hi LineNr      ctermfg=130    guifg=#C8C7C6
+    hi Comment     ctermfg=4      guifg=#A6AAB1
+    hi PreProc     ctermfg=81     guifg=#E8B268
     hi Operator    guifg=#A58D2E
-    hi StatusLine  guibg=#5C6773 guifg=#FFFFFF
+    hi StatusLine  guibg=#5C6773  guifg=#FFFFFF
     hi VertSplit   guifg=#CCC2C2
+    hi normal      guifg=#515B65  guibg=#FAFAFA
   else
     call s:My_light_theme_fallback()
   endif
@@ -178,9 +174,9 @@ function! My_dark_theme ()
   if &termguicolors
     let g:ayucolor="dark"
     colorscheme ayu
-    hi LineNr      ctermfg=130 guifg=#38414A
-    hi SpecialKey  ctermfg=4   guifg=#6990B5
-    hi StatusLine  guifg=#14191F guibg=#E6E1CF 
+    hi LineNr      ctermfg=130    guifg=#38414A
+    hi SpecialKey  ctermfg=4      guifg=#6990B5
+    hi StatusLine  guifg=#14191F  guibg=#E6E1CF 
     hi VertSplit   guifg=#354659
   else
     call s:My_dark_theme_fallback()
@@ -191,10 +187,10 @@ function! My_mirage_theme ()
   if &termguicolors
     let g:ayucolor="mirage"
     colorscheme ayu
-    hi LineNr      ctermfg=130 guifg=#3e4a5c
-    hi Comment     ctermfg=14  guifg=#606A77
-    hi SpecialKey  ctermfg=4   guifg=#6990B5
-    hi StatusLine  guifg=#272D38 guibg=#D9D7CE 
+    hi LineNr      ctermfg=130    guifg=#3e4a5c
+    hi Comment     ctermfg=14     guifg=#606A77
+    hi SpecialKey  ctermfg=4      guifg=#6990B5
+    hi StatusLine  guifg=#272D38  guibg=#D9D7CE 
     hi VertSplit   guifg=#2B3B5B
   else
     call s:My_dark_theme_fallback()
