@@ -59,7 +59,7 @@ if has('win32') && !has('gui_running') && !empty($CONEMUBUILD)
 endif
 
 " ConEmu backspace is buggy
-inoremap <Char-0x07F> <BS> 
+inoremap <Char-0x07F> <BS>
 nnoremap <Char-0x07F> <BS>
 
 " handling lambda functions;
@@ -183,6 +183,8 @@ function! My_light_theme ()
     hi Operator    guifg=#A58D2E
     hi StatusLine  guibg=#5C6773  guifg=#FFFFFF
     hi VertSplit   guifg=NONE     guifg=#CCC2C2
+    hi normal      guifg=#515B65  guibg=#FAFAFA
+    hi CursorLine  guifg=NONE
   else
     call s:My_light_theme_fallback()
   endif
