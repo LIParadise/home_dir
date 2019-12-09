@@ -58,6 +58,10 @@ if has('win32') && !has('gui_running') && !empty($CONEMUBUILD)
   let &t_AF="\e[38;5;%dm"
 endif
 
+" ConEmu backspace is buggy
+inoremap <Char-0x07F> <BS> 
+nnoremap <Char-0x07F> <BS>
+
 " handling lambda functions;
 function! Lambda_cpp()
   setlocal cindent cino=j1,(0,ws,Ws,N-s
