@@ -119,7 +119,7 @@ endfunction
 function! s:My_light_theme_fallback ()
   set notermguicolors
   syntax reset
-  colorscheme evening
+  colorscheme zellner
   syntax on
 endfunction
 
