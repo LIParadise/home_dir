@@ -11,8 +11,8 @@ myHiWhite='\033[1m'
 myNoColour='\033[0m'
 
 # xrandr HDMI
-echo "xrandr --output HDMI-2 --set \"Broadcast RGB\" \"Full\""
-xrandr --output HDMI-2 --set "Broadcast RGB" "Full"
+# echo "xrandr --output HDMI-2 --set \"Broadcast RGB\" \"Full\""
+# xrandr --output HDMI-2 --set "Broadcast RGB" "Full"
 
 # tuned-adm
 myAcAdapter=$(acpi -a | cut -d' ' -f3 | cut -d- -f1)
@@ -38,3 +38,20 @@ case "${myTunedAdmProfile}" in
     echo -e "Power-Efficient Mode: ${myHiWhite}${myTunedAdmProfile}${myNoColour}"
     ;;
 esac
+
+# Display red shift
+myCurrentHourIn24H=$(date | sed -r "s/[a-zA-Z]*\ [0-9]*\ [a-zA-Z]*\ [0-9]*\ ([0-9]*)\:.*/\1/")
+
+if [ ${myCurrentHourIn24H} -ge 20 ] || [ ${myCurrentHourIn24H} -le 4 ]
+then
+  echo ""
+  echo "Have a good night, ${USER}"
+  gsettings set org.gnome.settings-daemon.plugins.color night-light-schedule-from 20.0
+  gsettings set org.gnome.settings-daemon.plugins.color night-light-schedule-to   7.0
+else
+  echo ""
+  echo "Have a nice day, ${USER}"
+  gsettings set org.gnome.settings-daemon.plugins.color night-light-schedule-from 0.0
+  gsettings set org.gnome.settings-daemon.plugins.color night-light-schedule-to   23.983333333333331
+fi
+
