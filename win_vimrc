@@ -111,15 +111,14 @@ set tabline=%!Tabline()
 function! s:My_dark_theme_fallback ()
   set notermguicolors
   syntax reset
-  colorscheme industry
+  colorscheme MyDarkThemeFallback
   syntax on
 endfunction
 
-" if there's no true color, fallback
 function! s:My_light_theme_fallback ()
   set notermguicolors
   syntax reset
-  colorscheme zellner
+  colorscheme MyLightThemeFallback
   syntax on
 endfunction
 

@@ -13,21 +13,6 @@ if exists('+termguicolors')
   endif
 endif
 
-" vim-plug
-" https://github.com/junegunn/vim-plug
-" call plug#begin('$HOME/.vim/plugged')
-
-" Plug 'ayu-theme/ayu-vim'
-" https://github.com/ayu-theme/ayu-vim
-
-" call plug#end()
-
-" %m%F\ \ %1.4c,%1.6l
-" :set statusline=%<%f\ %h%m%r%=%-14.(%l,%c%V%)\ %P
-
-" set statusline=[%{expand('%:p')}][%{strlen(&fenc)?&fenc:&enc},\ %{&ff},\ %{strlen(&filetype)?&filetype:'plain'}]%{FileSize()}%{IsBinary()}%=%c,%l/%L\ [%3p%%]
-"
-
 filetype indent on
 syntax on
 
@@ -92,67 +77,16 @@ set tabline=%!Tabline()
 function! s:My_dark_theme_fallback ()
   set notermguicolors
   syntax reset
-  colorscheme industry
+  colorscheme MyDarkThemeFallback
   syntax on
 endfunction
 
-" if there's no true color, fallback
 function! s:My_light_theme_fallback ()
   set notermguicolors
   syntax reset
-  colorscheme zellner
+  colorscheme MyLightThemeFallback
   syntax on
 endfunction
-
-" tab index support
-" if exists("+showtabline")
-"   function! MyTabLine()
-"     let s = ''
-"     let wn = ''
-"     let t = tabpagenr()
-"     let i = 1
-"     while i <= tabpagenr('$')
-"       let buflist = tabpagebuflist(i)
-"       let winnr = tabpagewinnr(i)
-"       let s .= '%' . i . 'T'
-"       let s .= (i == t ? '%1*' : '%2*')
-"       let s .= ' '
-"       let wn = tabpagewinnr(i,'$')
-"
-"       let s .= (i== t ? '%#TabNumSel#' : '%#TabNum#')
-"       let s .= i
-"       if tabpagewinnr(i,'$') > 1
-"         let s .= '.'
-"         let s .= (i== t ? '%#TabWinNumSel#' : '%#TabWinNum#')
-"         let s .= (tabpagewinnr(i,'$') > 1 ? wn : '')
-"       end
-"
-"       let s .= ' %*'
-"       let s .= (i == t ? '%#TabLineSel#' : '%#TabLine#')
-"       let bufnr = buflist[winnr - 1]
-"       let file = bufname(bufnr)
-"       let buftype = getbufvar(bufnr, 'buftype')
-"       if buftype == 'nofile'
-"         if file =~ '\/.'
-"           let file = substitute(file, '.*\/\ze.', '', '')
-"         endif
-"       else
-"         let file = fnamemodify(file, ':p:t')
-"       endif
-"       if file == ''
-"         let file = '[No Name]'
-"       endif
-"       let s .= file
-"       let s .= (i == t ? '%m' : '')
-"       let i = i + 1
-"     endwhile
-"     let s .= '%T%#TabLineFill#%='
-"     return s
-"   endfunction
-"   set stal=2
-"   set tabline=%!MyTabLine()
-" endif
-" end of tab index support
 
 function! My_light_theme ()
   if &termguicolors
