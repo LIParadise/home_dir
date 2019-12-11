@@ -18,7 +18,7 @@ if exists("syntax_on")
   syntax reset
 endif
 
-let g:colors_name = "light_theme_fallback"
+let g:colors_name = "MyLightThemeFallback"
 
 hi Normal       ctermfg=16 ctermbg=231 guifg=#000000 guibg=#fcfcf0
 " hi CursorLine   term=underline cterm=underline guibg=#cfcfcc

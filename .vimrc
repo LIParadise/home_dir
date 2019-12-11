@@ -36,6 +36,28 @@ endfunction
 " handling en spell check;
 function! Spell_On_Off()
   setlocal spell! spelllang=en
+  echohl None
+  echo "Spell Check is now "
+  echohl Boolean
+  if &spell
+    echo "ON"
+  else
+    echo "OFF"
+  endif
+  echohl None
+endfunction
+
+function! MySetAndReturnTermguicolors ()
+  " enable truecolor when feasible
+  if exists('+termguicolors')
+    if (($TERM !~? '^linux$') && ($TERM !~? '^screen$'))
+      let &t_8f = "\<Esc>[38;2;%lu;%lu;%lum"
+      let &t_8b = "\<Esc>[48;2;%lu;%lu;%lum"
+      set termguicolors
+      return 1
+    endif
+  endif
+  return 0
 endfunction
 
 " tab index support
@@ -89,7 +111,7 @@ function! s:My_light_theme_fallback ()
 endfunction
 
 function! My_light_theme ()
-  if &termguicolors
+  if MySetAndReturnTermguicolors () == 1
     let g:ayucolor="light"
     colorscheme ayu
     hi LineNr      ctermfg=130    guifg=#C8C7C6
@@ -105,7 +127,7 @@ function! My_light_theme ()
 endfunction
 
 function! My_dark_theme ()
-  if &termguicolors
+  if MySetAndReturnTermguicolors () == 1
     let g:ayucolor="dark"
     colorscheme ayu
     hi LineNr      ctermfg=130    guifg=#38414A
@@ -118,7 +140,7 @@ function! My_dark_theme ()
 endfunction
 
 function! My_mirage_theme ()
-  if &termguicolors
+  if MySetAndReturnTermguicolors () == 1
     let g:ayucolor="mirage"
     colorscheme ayu
     hi LineNr      ctermfg=130    guifg=#3e4a5c
