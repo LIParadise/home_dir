@@ -40,7 +40,7 @@ case "${myTunedAdmProfile}" in
 esac
 
 # Display red shift
-myCurrentHourIn24H=$(date | sed -r "s/[a-zA-Z]*\ [0-9]*\ [a-zA-Z]*\ [0-9]*\ ([0-9]*)\:.*/\1/")
+myCurrentHourIn24H=$(date +%H)
 
 if [ ${myCurrentHourIn24H} -ge 20 ] || [ ${myCurrentHourIn24H} -le 4 ]
 then
