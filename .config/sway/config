@@ -14,7 +14,7 @@ set $down j
 set $up k
 set $right l
 # Your preferred terminal emulator
-set $term urxvt
+set $term xfce4-terminal
 # Your preferred application launcher
 # Note: it's recommended that you pass the final command to sway
 set $menu dmenu_path | dmenu | xargs swaymsg exec --
@@ -34,11 +34,15 @@ output * bg /usr/share/backgrounds/sway/Sway_Wallpaper_Blue_1920x1080.png fill
 #
 # Example configuration:
 #
-# exec swayidle -w \
-#          timeout 300 'swaylock -f -c 000000' \
-#          timeout 600 'swaymsg "output * dpms off"' \
-#               resume 'swaymsg "output * dpms on"' \
-#          before-sleep 'swaylock -f -c 000000'
+set $lock_bg ~/Pictures/dio_padoru.jpg
+
+bindsym $mod+End exec swaylock -i $lock_bg
+
+exec swayidle -w \
+       timeout 300 'swaylock -f -c 000000 -i $lock_bg' \
+       timeout 600 'swaymsg "output * dpms off"' \
+       resume 'swaymsg "output * dpms on"' \
+       before-sleep 'swaylock -f -c 000000 -i $lock_bg'
 #
 # This will lock your screen after 300 seconds of inactivity, then turn off
 # your displays after another 300 seconds, and turn your screens back on when
@@ -48,9 +52,9 @@ output * bg /usr/share/backgrounds/sway/Sway_Wallpaper_Blue_1920x1080.png fill
 #
 # Example configuration:
 #
-input "1:1:AT_Translated_Set_2_keyboard" {
-  xkb_options ctrl:nocaps
-}
+       input "1:1:AT_Translated_Set_2_keyboard" {
+         xkb_options ctrl:nocaps
+       }
 #
 # You can get the names of your inputs by running: swaymsg -t get_inputs
 # Read `man 5 sway-input` for more information about this section.
@@ -66,7 +70,14 @@ bindsym $mod+Return exec $term
 bindsym $mod+Shift+q kill
 
 # Start your launcher
-bindsym $mod+d exec $menu
+bindsym $mod+d exec wofi
+
+# Screenshot
+bindsym $mod+p exec grim -t png "${HOME}/Pictures/Screenshots/$(date +%+4Y%m%d-%H%M%S).png"
+bindsym $mod+Shift+p exec grim -g "$(slurp -d)" - | wl-copy -t image/png
+
+# File manager
+bindsym $mod+e exec nautilus
 
 # Drag floating windows by holding down $mod and left mouse button.
 # Resize them with right mouse button + $mod.
@@ -143,7 +154,7 @@ bindsym $mod+v splitv
 # Switch the current container between different layout styles
 bindsym $mod+s layout stacking
 bindsym $mod+w layout tabbed
-bindsym $mod+e layout toggle split
+bindsym $mod+x layout toggle split
 
 # Make the current focus fullscreen
 bindsym $mod+f fullscreen
@@ -198,17 +209,22 @@ bindsym $mod+r mode "resize"
 #
 # Read `man 5 sway-bar` for more information about this section.
 bar {
-  position top
 
 # When the status_command prints a new line to stdout, swaybar updates.
 # The default just shows the current date and time.
-    status_command while date +'%Y-%m-%d %l:%M:%S %p'; do sleep 1; done
-
-    colors {
-      statusline #ffffff
-        background #323232
-        inactive_workspace #32323200 #32323200 #5c5c5c
-    }
+  font pango:source han san, snoto color emoji 15
+    status_command i3blocks
+    position top
+    mode dock
 }
 
 include /etc/sway/config.d/*
+
+# IBus
+# exec --no-startup-id export GTK_IM_MODULE=ibus
+# exec --no-startup-id export XMODIFIERS="@im=ibus"
+# exec --no-startup-id export QT_IM_MODULE=ibus
+exec --no-startup-id ibus-daemon -drx --panel /usr/lib/ibus/ibus-ui-gtk3
+
+# remove xwayland support
+# xwayland disable
