@@ -1,0 +1,26 @@
+#!/bin/sh
+exec tail -n +3 $0
+# This file provides an easy way to add custom menu entries.  Simply type the
+# menu entries you want to add after this comment.  Be careful not to change
+# the 'exec tail' line above.
+
+
+menuentry 'Arch Linux, with Linux linux-clear' --class arch --class gnu-linux --class gnu --class os $menuentry_id_option 'gnulinux-linux-clear-advanced-b55463c4-9ba2-4a6e-b29b-e7e1299d87bb' {
+	load_video
+	set gfxpayload=keep
+	insmod gzio
+	insmod part_gpt
+	insmod lvm
+	insmod ext2
+	set root='lvmid/KG02NM-kEzi-RvMz-wxtI-uCw1-WKYn-56JxUf/r1gx9L-2eqq-wt3B-1aze-PRma-y7sj-NOFanl'
+	if [ x$feature_platform_search_hint = xy ]; then
+	  search --no-floppy --fs-uuid --set=root --hint='lvmid/KG02NM-kEzi-RvMz-wxtI-uCw1-WKYn-56JxUf/r1gx9L-2eqq-wt3B-1aze-PRma-y7sj-NOFanl'  b55463c4-9ba2-4a6e-b29b-e7e1299d87bb
+	else
+	  search --no-floppy --fs-uuid --set=root b55463c4-9ba2-4a6e-b29b-e7e1299d87bb
+	fi
+	echo	'Loading Linux linux-clear ...'
+	# linux	/boot/vmlinuz-linux-clear root=/dev/mapper/debian_vg-root rw  loglevel=3 quiet
+	linux	/boot/vmlinuz-linux-clear root=/dev/mapper/debian_vg-root cryptomgr.notests initcall_debug intel_iommu=igfx_off kvm-intel.nested=1 no_timer_check noreplace-smp page_alloc.shuffle=1 rcu_nocbs=0-64 rcupdate.rcu_expedited=1 rootfstype=ext4,btrfs,xfs tsc=reliable rw loglevel=3 quiet
+	echo	'Loading initial ramdisk ...'
+	initrd	/boot/intel-ucode.img /boot/initramfs-linux-clear.img
+}
