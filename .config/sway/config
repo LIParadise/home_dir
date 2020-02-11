@@ -70,9 +70,9 @@ exec swayidle -w \
 #
 bindsym XF86MonBrightnessUp   exec --no-startup-id "brightnessctl -d intel_backlight s 2%+ && pkill -RTMIN+10 i3blocks"
 bindsym XF86MonBrightnessDown exec --no-startup-id "brightnessctl -d intel_backlight s 2%- && pkill -RTMIN+10 i3blocks"
-bindsym XF86AudioMute         exec --no-startup-id "pamixer -t"
+bindsym XF86AudioMute         exec --no-startup-id "pamixer -t      && pkill -RTMIN+10 i3blocks"
 bindsym XF86AudioRaiseVolume  exec --no-startup-id "pamixer -u -i 5 && pkill -RTMIN+10 i3blocks"
-bindsym XF86AudioLowerVolume  exec --no-startup-id "pamixer -d 5 && pkill -RTMIN+10 i3blocks"
+bindsym XF86AudioLowerVolume  exec --no-startup-id "pamixer -d 5    && pkill -RTMIN+10 i3blocks"
 
 ### Key bindings
 #

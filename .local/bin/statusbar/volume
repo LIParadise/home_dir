@@ -10,9 +10,10 @@
 # - Scroll to change."
 # esac
 
+mutestat="$(pamixer --get-mute)"
 volstat="$(pamixer --get-volume)"
 
-echo "$volstat" | grep "false" >/dev/null && printf "🔇\\n" && exit
+echo "${mutestat}" | grep "true" >/dev/null && printf "🔇\\n" && exit
 
 vol=$(pamixer --get-volume)
 
