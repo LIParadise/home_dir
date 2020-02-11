@@ -22,7 +22,11 @@ set $menu dmenu_path | dmenu | xargs swaymsg exec --
 ### Output configuration
 #
 # Default wallpaper (more resolutions are available in /usr/share/backgrounds/sway/)
-output * bg /usr/share/backgrounds/sway/Sway_Wallpaper_Blue_1920x1080.png fill
+# output * bg /usr/share/backgrounds/sway/Sway_Wallpaper_Blue_1920x1080.png fill
+output * bg /usr/share/backgrounds/sway/d3h7ofnt73621.png fill
+font pango:source han san, snoto color emoji 15
+# output LVDS-1 pos 0 768 res 1280x720
+# output VGA-1 pos 0 0 res 1366x768
 #
 # Example configuration:
 #
@@ -34,13 +38,14 @@ output * bg /usr/share/backgrounds/sway/Sway_Wallpaper_Blue_1920x1080.png fill
 #
 # Example configuration:
 #
-set $lock_bg ~/Pictures/dio_padoru.jpg
+set $lock_bg /usr/share/backgrounds/sway/hnIeBcK.png
 
 bindsym $mod+End exec swaylock -i $lock_bg
 
 exec swayidle -w \
-       timeout 300 'swaylock -f -c 000000 -i $lock_bg' \
-       timeout 600 'swaymsg "output * dpms off"' \
+       timeout 1200 'swaylock -f -c 000000 -i $lock_bg' \
+       timeout 1800 'swaymsg "output * dpms off"' \
+       timeout 25 'if pgrep -x swaylock; then swaymsg "output * dpms off"; fi' \
        resume 'swaymsg "output * dpms on"' \
        before-sleep 'swaylock -f -c 000000 -i $lock_bg'
 #
@@ -59,18 +64,32 @@ exec swayidle -w \
 # You can get the names of your inputs by running: swaymsg -t get_inputs
 # Read `man 5 sway-input` for more information about this section.
 
+### Brightness and Volume Control
+#
+# Need package "brightnessctl" and "pamixer"
+#
+bindsym XF86MonBrightnessUp   exec --no-startup-id "brightnessctl -d intel_backlight s 2%+ && pkill -RTMIN+10 i3blocks"
+bindsym XF86MonBrightnessDown exec --no-startup-id "brightnessctl -d intel_backlight s 2%- && pkill -RTMIN+10 i3blocks"
+bindsym XF86AudioMute         exec --no-startup-id "pamixer -t"
+bindsym XF86AudioRaiseVolume  exec --no-startup-id "pamixer -u -i 5 && pkill -RTMIN+10 i3blocks"
+bindsym XF86AudioLowerVolume  exec --no-startup-id "pamixer -d 5 && pkill -RTMIN+10 i3blocks"
+
 ### Key bindings
 #
 # Basics:
 #
 # Start a terminal
-bindsym $mod+Return exec $term
+# bindsym $mod+Return exec $term
+bindsym Control+Alt+t exec xfce4-terminal
 
 # Kill focused window
 bindsym $mod+Shift+q kill
 
 # Start your launcher
 bindsym $mod+d exec wofi
+
+# Sometimes ibus engine got screwed; reset to en input
+bindsym $mod+Shift+i exec ibus engine xkb:us::eng
 
 # Screenshot
 bindsym $mod+p exec grim -t png "${HOME}/Pictures/Screenshots/$(date +%+4Y%m%d-%H%M%S).png"
@@ -212,7 +231,7 @@ bar {
 
 # When the status_command prints a new line to stdout, swaybar updates.
 # The default just shows the current date and time.
-  font pango:source han san, snoto color emoji 15
+  font pango:source han san, snoto color emoji 14
     status_command i3blocks
     position top
     mode dock
@@ -224,7 +243,8 @@ include /etc/sway/config.d/*
 # exec --no-startup-id export GTK_IM_MODULE=ibus
 # exec --no-startup-id export XMODIFIERS="@im=ibus"
 # exec --no-startup-id export QT_IM_MODULE=ibus
-exec --no-startup-id ibus-daemon -drx --panel /usr/lib/ibus/ibus-ui-gtk3
+exec --no-startup-id redshift
+exec --no-startup-id "fcitx -r -d"
 
 # remove xwayland support
 # xwayland disable

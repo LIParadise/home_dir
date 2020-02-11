@@ -23,10 +23,7 @@ set $menu dmenu_path | dmenu | xargs swaymsg exec --
 #
 # Default wallpaper (more resolutions are available in /usr/share/backgrounds/sway/)
 # output * bg /usr/share/backgrounds/sway/Sway_Wallpaper_Blue_1920x1080.png fill
-output * bg /usr/share/backgrounds/sway/d3h7ofnt73621.png fill
-font pango:source han san, snoto color emoji 15
-# output LVDS-1 pos 0 768 res 1280x720
-# output VGA-1 pos 0 0 res 1366x768
+output * bg /usr/share/backgrounds/sway/77235380_p0.jpg fill
 #
 # Example configuration:
 #
@@ -38,7 +35,7 @@ font pango:source han san, snoto color emoji 15
 #
 # Example configuration:
 #
-set $lock_bg /usr/share/backgrounds/sway/hnIeBcK.png
+set $lock_bg ~/Pictures/dio_padoru.jpg
 
 bindsym $mod+End exec swaylock -i $lock_bg
 
@@ -64,16 +61,6 @@ exec swayidle -w \
 # You can get the names of your inputs by running: swaymsg -t get_inputs
 # Read `man 5 sway-input` for more information about this section.
 
-### Brightness and Volume Control
-#
-# Need package "brightnessctl" and "pamixer"
-#
-bindsym XF86MonBrightnessUp   exec --no-startup-id "brightnessctl -d intel_backlight s 2%+ && pkill -RTMIN+10 i3blocks"
-bindsym XF86MonBrightnessDown exec --no-startup-id "brightnessctl -d intel_backlight s 2%- && pkill -RTMIN+10 i3blocks"
-bindsym XF86AudioMute         exec --no-startup-id "pamixer -t"
-bindsym XF86AudioRaiseVolume  exec --no-startup-id "pamixer -u -i 5 && pkill -RTMIN+10 i3blocks"
-bindsym XF86AudioLowerVolume  exec --no-startup-id "pamixer -d 5 && pkill -RTMIN+10 i3blocks"
-
 ### Key bindings
 #
 # Basics:
@@ -81,6 +68,7 @@ bindsym XF86AudioLowerVolume  exec --no-startup-id "pamixer -d 5 && pkill -RTMIN
 # Start a terminal
 # bindsym $mod+Return exec $term
 bindsym Control+Alt+t exec xfce4-terminal
+bindsym Control+Alt+g exec gnome-terminal
 
 # Kill focused window
 bindsym $mod+Shift+q kill
@@ -231,7 +219,7 @@ bar {
 
 # When the status_command prints a new line to stdout, swaybar updates.
 # The default just shows the current date and time.
-  font pango:source han san, snoto color emoji 14
+  font pango:source han san, snoto color emoji 15
     status_command i3blocks
     position top
     mode dock
@@ -243,8 +231,7 @@ include /etc/sway/config.d/*
 # exec --no-startup-id export GTK_IM_MODULE=ibus
 # exec --no-startup-id export XMODIFIERS="@im=ibus"
 # exec --no-startup-id export QT_IM_MODULE=ibus
-exec --no-startup-id redshift
-exec --no-startup-id "fcitx -r -d"
+exec --no-startup-id ibus-daemon --xim -d -r
 
 # remove xwayland support
 # xwayland disable

@@ -1,0 +1,4 @@
+#!/usr/bin/env sh
+
+br=$(brightnessctl -d intel_backlight g)
+printf "%d\n" "${br}"

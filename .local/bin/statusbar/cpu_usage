@@ -1,0 +1,6 @@
+#!/usr/bin/env bash
+# myIdle=$(mpstat 5 1| grep -m 1 all | perl -pe 's|.*?([0-9]*\.[0-9]*)$|\1|')
+# myUsage=$(echo "100-${myIdle}" | bc)
+myUsage=$[100-$(vmstat 1 2|tail -1|awk '{print $15}')]
+myFreq=$(grep -m 1 "cpu MHz" /proc/cpuinfo | sed -r 's/[:	\ a-zA-Z]*//')
+printf "%d%%@%.2fMHz\n" "${myUsage}" "${myFreq}"
