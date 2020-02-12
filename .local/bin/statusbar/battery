@@ -11,11 +11,26 @@ L: battery very low!
 - Text color reflects charge left" ;;
 esac
 
-capacity1=$(cat /sys/class/power_supply/"$1"/capacity) || exit
-capacity2=$(cat /sys/class/power_supply/"$2"/capacity) || exit
-status1=$(cat /sys/class/power_supply/"$1"/status)
-status2=$(cat /sys/class/power_supply/"$2"/status)
-capacity=$(expr $(expr ${capacity1} + ${capacity2}) / 2)
+batLs="$(ls /sys/class/power_supply | grep -i bat | tr '\n' ' ')"
+batArr=(${batLs})
+batArrLen=${#batArr[@]}
+capacity=0
+str=""
+stat=""
+acpower=0
+color=""
+
+for idx in "${!batArr[@]}"; do
+  c=$(cat /sys/class/power_supply/"${batArr[${idx}]}"/capacity) || exit
+  stat=$(cat /sys/class/power_supply/"${batArr[${idx}]}"/status)
+  [ "${stat}" = "Charging" ] && acpower=1
+
+  str="${str}${idx}:{$(cat /sys/class/power_supply/"${batArr[${idx}]}"/status)= $(echo "${c}" | sed -e 's/$/%/')} "
+  capacity=$(expr ${capacity} + ${c})
+done
+
+capacity=$(expr ${capacity} / ${batArrLen})
+str=$(echo ${str} | sed -e "s/,//;s/Discharging/🔋/;s/Not charging/🛑/;s/Charging/🔌/;s/Unknown/♻️/;s/Full/⚡/;s/ 0*/ /g;s/ :/ /g")
 
 if [ "$capacity" -ge 70 ]; then
 	color="#00ff00"
@@ -30,6 +45,6 @@ fi
 
 [ -z $warn ] && warn=" "
 
-[ "$status" = "Charging" ] && color="#ffffff"
+[ "${acpower}" = 1 ] && color="#ffffcc"
 
-printf "<span color='%s'>%s%s%s</span>\n" "$color" "$(echo "$status" | sed -e "s/,//;s/Discharging/🔋/;s/Not charging/🛑/;s/Charging/🔌/;s/Unknown/♻️/;s/Full/⚡/;s/ 0*/ /g;s/ :/ /g")" "$warn" "0: $(echo "$capacity1" | sed -e 's/$/%/') 1: $(echo "$capacity2" | sed -e 's/$/%/') || $(echo "$capacity" | sed -e 's/$/%/')"
+printf "<span color='%s'>%s%s%s</span>\n" "$color" "${status}" "$warn" "${str} || $(echo "$capacity" | sed -e 's/$/%/')"
