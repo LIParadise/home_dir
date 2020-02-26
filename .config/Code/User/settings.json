@@ -1,0 +1,8 @@
+{
+    "workbench.iconTheme": "vs-minimal",
+    "window.zoomLevel": 3,
+
+    // vim relevant settings
+    "vim.useSystemClipboard": true,
+    "editor.acceptSuggestionOnEnter": "off",
+}

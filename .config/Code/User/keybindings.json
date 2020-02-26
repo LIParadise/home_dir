@@ -1,26 +1,26 @@
 // Place your key bindings in this file to override the defaults
 [
-
-// LIParadise navigation
-// ============================================================================
-
-// seems that this is not an "override"; it's instead a extension.
-{ "key": "alt+left" , "command": "workbench.action.navigateBack"    , "when": "editorTextFocus" },
-{ "key": "alt+right", "command": "workbench.action.navigateForward" , "when": "editorTextFocus" },
-
-// Toggle between terminal and editor focus
-{ "key": "ctrl+`", "command": "workbench.action.terminal.focus"},
-{ "key": "ctrl+`", "command": "workbench.action.focusActiveEditorGroup", "when": "terminalFocus"},
-
-// switch terminals
-// { "key": "cmd+shift+j", "command": "workbench.action.terminal.focusNext", "when": "terminalFocus" },
-// { "key": "cmd+shift+k", "command": "workbench.action.terminal.focusPrevious", "when": "terminalFocus" }
-
-
-// close all but currently working tab
-{ "key": "ctrl+shift+w", "command": "workbench.action.closeOtherEditors" }
-
-// ============================================================================
-// LIParadise navigation end
-
+    // vim extension shortcuts override
+    {
+        "key": "ctrl+f1",
+        "command": "toggleVim"
+    },
+    /* When in insert mode, trigger suggestions */
+    {
+        "key": "ctrl+n",
+        "command": "editor.action.triggerSuggest",
+        "when": "vim.mode == 'Insert'"
+    },
+    /* While suggestions is visible, navigate down with ctrl+n */
+    {
+        "key": "ctrl+n",
+        "command": "selectNextSuggestion",
+        "when": "suggestWidgetVisible"
+    },
+    /* While suggestions is visible, navigate up with ctrl+p (this already works, but adding it for note sake) */
+    {
+        "key": "ctrl+p",
+        "command": "selectPrevSuggestion",
+        "when": "suggestWidgetVisible"
+    }
 ]
