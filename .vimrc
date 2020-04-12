@@ -134,6 +134,8 @@ function! My_dark_theme ()
     hi SpecialKey  ctermfg=4      guifg=#6990B5
     hi StatusLine  guifg=#14191F  guibg=#E6E1CF 
     hi VertSplit   guifg=#354659
+    hi normal                     guibg=#13120F
+    hi CursorLine                 guibg=#1B1A16
   else
     call s:My_dark_theme_fallback()
   endif
@@ -148,6 +150,8 @@ function! My_mirage_theme ()
     hi SpecialKey  ctermfg=4      guifg=#6990B5
     hi StatusLine  guifg=#272D38  guibg=#D9D7CE 
     hi VertSplit   guifg=#2B3B5B
+    hi Normal                     guibg=#222529
+    hi CursorLine                 guibg=#2C2F36
   else
     call s:My_dark_theme_fallback()
   endif
