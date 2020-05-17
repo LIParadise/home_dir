@@ -24,7 +24,7 @@ set $menu dmenu_path | dmenu | xargs swaymsg exec --
 # Default wallpaper (more resolutions are available in /usr/share/backgrounds/sway/)
 # output * bg /usr/share/backgrounds/sway/Sway_Wallpaper_Blue_1920x1080.png fill
 output * bg /usr/share/backgrounds/sway/d3h7ofnt73621.png fill
-font pango:source han san, snoto color emoji 15
+font pango:cascadia code 15
 # output LVDS-1 pos 0 768 res 1280x720
 # output VGA-1 pos 0 0 res 1366x768
 #
@@ -38,7 +38,7 @@ font pango:source han san, snoto color emoji 15
 #
 # Example configuration:
 #
-set $lock_bg /usr/share/backgrounds/sway/hnIeBcK.png
+set $lock_bg /usr/share/backgrounds/sway/d3h7ofnt73621\ black.png
 
 bindsym $mod+End exec swaylock -i $lock_bg
 
@@ -71,8 +71,12 @@ exec swayidle -w \
 bindsym XF86MonBrightnessUp   exec --no-startup-id "brightnessctl -d intel_backlight s 2%+ && pkill -RTMIN+10 i3blocks"
 bindsym XF86MonBrightnessDown exec --no-startup-id "brightnessctl -d intel_backlight s 2%- && pkill -RTMIN+10 i3blocks"
 bindsym XF86AudioMute         exec --no-startup-id "pamixer -t      && pkill -RTMIN+10 i3blocks"
-bindsym XF86AudioRaiseVolume  exec --no-startup-id "pamixer -u -i 5 && pkill -RTMIN+10 i3blocks"
-bindsym XF86AudioLowerVolume  exec --no-startup-id "pamixer -d 5    && pkill -RTMIN+10 i3blocks"
+bindsym $mod+m                exec --no-startup-id "pamixer -t      && pkill -RTMIN+10 i3blocks"
+bindsym XF86AudioRaiseVolume  exec --no-startup-id "pamixer -u -i 1 && pkill -RTMIN+10 i3blocks"
+bindsym $mod+prior            exec --no-startup-id "pamixer -u -i 5 && pkill -RTMIN+10 i3blocks"
+bindsym XF86AudioLowerVolume  exec --no-startup-id "pamixer -d    1 && pkill -RTMIN+10 i3blocks"
+bindsym $mod+next             exec --no-startup-id "pamixer -d    5 && pkill -RTMIN+10 i3blocks"
+bindsym $mod+t border toggle
 
 ### Key bindings
 #
@@ -81,6 +85,7 @@ bindsym XF86AudioLowerVolume  exec --no-startup-id "pamixer -d 5    && pkill -RT
 # Start a terminal
 # bindsym $mod+Return exec $term
 bindsym Control+Alt+t exec xfce4-terminal
+bindsym Control+Alt+g exec gnome-terminal
 
 # Kill focused window
 bindsym $mod+Shift+q kill
@@ -125,15 +130,22 @@ bindsym $mod+Up focus up
 bindsym $mod+Right focus right
 
 # Move the focused window with the same, but add Shift
-bindsym $mod+Shift+$left move left
-bindsym $mod+Shift+$down move down
-bindsym $mod+Shift+$up move up
-bindsym $mod+Shift+$right move right
+bindsym $mod+Shift+$left    move left
+bindsym $mod+Shift+$down    move down
+bindsym $mod+Shift+$up      move up
+bindsym $mod+Shift+$right   move right
 # Ditto, with arrow keys
-bindsym $mod+Shift+Left move left
-bindsym $mod+Shift+Down move down
-bindsym $mod+Shift+Up move up
-bindsym $mod+Shift+Right move right
+bindsym $mod+Shift+Left     move left
+bindsym $mod+Shift+Down     move down
+bindsym $mod+Shift+Up       move up
+bindsym $mod+Shift+Right    move right
+# Resizing windows in i3 using keyboard only
+# https://unix.stackexchange.com/q/255344/150597
+# Resizing by 1
+bindsym $mod+alt+Right          resize grow   width  20 px or 20 ppt
+bindsym $mod+alt+Up             resize grow   height 20 px or 20 ppt
+bindsym $mod+alt+Down           resize shrink height 20 px or 20 ppt
+bindsym $mod+alt+Left           resize shrink width  20 px or 20 ppt
 #
 # Workspaces:
 #
@@ -206,20 +218,20 @@ mode "resize" {
 # right will grow the containers width
 # up will shrink the containers height
 # down will grow the containers height
-  bindsym $left resize shrink width 10px
-    bindsym $down resize grow height 10px
-    bindsym $up resize shrink height 10px
-    bindsym $right resize grow width 10px
+    bindsym   $left    resize shrink   width  20px
+    bindsym   $down    resize shrink   height 20px
+    bindsym   $up      resize grow     height 20px
+    bindsym   $right   resize grow     width  20px
 
 # Ditto, with arrow keys
-    bindsym Left resize shrink width 10px
-    bindsym Down resize grow height 10px
-    bindsym Up resize shrink height 10px
-    bindsym Right resize grow width 10px
+    bindsym   Left     resize shrink   width  20px
+    bindsym   Down     resize shrink   height 20px
+    bindsym   Up       resize grow     height 20px
+    bindsym   Right    resize grow     width  20px
 
 # Return to default mode
-    bindsym Return mode "default"
-    bindsym Escape mode "default"
+    bindsym   Return   mode "default"
+    bindsym   Escape   mode "default"
 }
 bindsym $mod+r mode "resize"
 
@@ -231,7 +243,7 @@ bar {
 
 # When the status_command prints a new line to stdout, swaybar updates.
 # The default just shows the current date and time.
-  font pango:source han san, snoto color emoji 14
+  font pango:source code pro 15
     status_command i3blocks
     position top
     mode dock
@@ -245,6 +257,7 @@ include /etc/sway/config.d/*
 # exec --no-startup-id export QT_IM_MODULE=ibus
 exec --no-startup-id redshift
 exec --no-startup-id "fcitx -r -d"
+exec --no-startup-id "/usr/bin/blueman-applet"
 
 # remove xwayland support
 # xwayland disable
