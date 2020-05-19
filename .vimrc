@@ -3,6 +3,16 @@ set undodir=~/.vim/.undo//
 set backupdir=~/.vim/.backup//
 set directory=~/.vim/.swp//
 
+filetype indent on
+syntax on
+
+
+" key mappings
+
+" ### ycm mappings
+nmap <C-@> <Plug>(YCMHover)
+
+
 " isnot#
 " enable truecolor when feasible
 if exists('+termguicolors')
@@ -13,9 +23,8 @@ if exists('+termguicolors')
   endif
 endif
 
-filetype indent on
-syntax on
 
+" language
 if has("gui_running")
   set encoding=utf-8
   set fileencodings=utf-8,chinese,latin-1

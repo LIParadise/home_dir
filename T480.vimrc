@@ -3,6 +3,16 @@ set undodir=~/.vim/.undo//
 set backupdir=~/.vim/.backup//
 set directory=~/.vim/.swp//
 
+filetype indent on
+syntax on
+
+
+" key mappings
+
+" ### ycm mappings
+nmap <C-@> <Plug>(YCMHover)
+
+
 " isnot#
 " enable truecolor when feasible
 if exists('+termguicolors')
@@ -13,9 +23,8 @@ if exists('+termguicolors')
   endif
 endif
 
-filetype indent on
-syntax on
 
+" language
 if has("gui_running")
   set encoding=utf-8
   set fileencodings=utf-8,chinese,latin-1
@@ -134,6 +143,7 @@ function! My_dark_theme ()
     hi SpecialKey  ctermfg=4      guifg=#6990B5
     hi StatusLine  guifg=#14191F  guibg=#E6E1CF 
     hi VertSplit   guifg=#354659
+    hi Normal      ctermfg=255 ctermbg=234 guifg=#E7E7E6 guibg=#0a0a09
   else
     call s:My_dark_theme_fallback()
   endif
