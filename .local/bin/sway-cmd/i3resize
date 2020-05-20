@@ -1,0 +1,243 @@
+#!/bin/sh
+
+# This script was made by `LIParadise` on Github.
+# But it doesn't work quite well...
+
+# Exit if current window is not floating or no direction provided
+[ -z "$1" ] && echo "No direction provided" && exit 1
+focusedWindowInfo=$(python3 ${HOME}/.local/bin/sway-cmd/swaymsg_get_focused_window_size.py)
+# | id | type | x  | y |  width | height | fullscreen_mode | rootNodeWidth | rootNodeHeight |
+# | 1  | 2    | 3  | 4 |  5     | 6      | 7               | 8             | 9              |
+#
+# We'll add the 10th element: ${windowMode}
+# when writing to conf.
+#
+[ "$(echo "${focusedWindowInfo}" | cut -d' ' -f2)" = "floating_con" ] || exit 1
+dirPath=${HOME}/.config/.tmp
+filePath=${dirPath}/SWAYWM_WINDOW_MOVEMENT.conf
+currentSwayId=$(echo "${focusedWindowInfo}"      | cut -d' ' -f1)
+currentSwayX=$(echo "${focusedWindowInfo}"       | cut -d' ' -f3)
+currentSwayY=$(echo "${focusedWindowInfo}"       | cut -d' ' -f4)
+currentSwayWidth=$(echo "${focusedWindowInfo}"   | cut -d' ' -f5)
+currentSwayHeight=$(echo "${focusedWindowInfo}"  | cut -d' ' -f6)
+atFull=$(echo "${focusedWindowInfo}"             | cut -d' ' -f7)
+monitorWidth=$(echo "${focusedWindowInfo}"       | cut -d' ' -f8)
+monitorHeight=$(echo "${focusedWindowInfo}"      | cut -d' ' -f9)
+halfWindowWidth=$(expr ${monitorWidth} / 2)
+halfWindowHeight=$(expr ${monitorHeight} / 2)
+windowMode=1
+# Check if config exists
+[ -d ${dirPath} ] || mkdir -p ${dirPath}
+[ -f ${filePath} ] || touch ${filePath}
+oldData=$(grep -iR ^${currentSwayId} "${filePath}")
+
+#
+# ==== Moving windows ====
+#
+# 1. Press left continuously would loop between three mode,
+#    pressing right would cause similar effect.
+#    If not any mode previously, it'll start from Mode 3.
+#    This is recorded via environmental variable ${windowMode}.
+#
+#    Mode 1             Mode 2           Mode 3
+# ---------------   --------------   ---------------
+# ||-------|    |   |             |   ||-------|    |
+# || focus |    |   |             |   ||       |    |
+# ||-------|    |   |             |   ||       |    |
+# |             |   |             |   || focus |    |
+# |             |   ||-------|    |   ||       |    |
+# |             |   || focus |    |   ||       |    |
+# |             |   ||-------|    |   ||-------|    |
+# ---------------   ---------------   ---------------
+#
+#
+# 2. Press right in Mode 1 (see figure above) would retrieve
+#    old dimensions that stored somewhere.
+#    If the old dimensions are not seen (which is weird),
+#    the window shall be moved to the center.
+#
+#
+# 3. Press down would cause window to be Mode 2,
+#    if and only if it's already one of the modes in 1.
+#
+#
+# 4. If not any modes in 1, toggle between full screen.
+#    If one of the modes in 1, let the window be Mode 1.
+#
+
+if [ -n "${oldData}" ]; then
+
+  oldSwayX=$(echo "${oldData}"       | cut -d' ' -f3)
+  oldSwayY=$(echo "${oldData}"       | cut -d' ' -f4)
+  oldSwayWidth=$(echo "${oldData}"   | cut -d' ' -f5)
+  oldSwayHeight=$(echo "${oldData}"  | cut -d' ' -f6)
+  oldWindowMode=$(echo "${oldData}"  | cut -d' ' -f10)
+  # window would go down bit by bit, since the existence of swaybar
+  [ "${oldSwayHeight}" -le "${monitorHeight}" ] || oldSwayHeight=$(expr $(expr ${monitorHeight} \* 9) / 10)
+  [ "${oldSwayWidth}"  -le "${oldSwayWidth}"  ] || oldSwayWidth=$(expr  $(expr ${monitorWidth}  \* 9) / 10)
+  if [ "$(expr ${oldSwayY} + ${oldSwayHeight})" -ge "${monitorHeight}" ]; then
+    oldSwayY=$(expr ${monitorHeight} - ${oldSwayHeight})
+  fi
+  if [ "$(expr ${oldSwayX} + ${oldSwayWidth})" -ge "${monitorWidth}" ]; then
+    oldSwayX=$(expr ${monitorWidth} - ${oldSwayWidth})
+  fi
+
+  replaceConfig() {
+    sed "s/^${currentSwayId}\ .*/${focusedWindowInfo} ${windowMode}/" -i "${filePath}"
+  }
+
+updateWindowMode() {
+  sed "s/\(^${currentSwayId}.*\)\ .*$/\1 ${windowMode}/" -i "${filePath}"
+}
+
+renAiCirculation() {
+  case ${oldWindowMode} in
+    1)
+      swaymsg resize set width ${halfWindowWidth} height ${halfWindowHeight}
+      swaymsg move position "${currentSwayX}" "${halfWindowHeight}"
+      ;;
+    2)
+      swaymsg resize set width ${halfWindowWidth} height ${monitorHeight}
+      swaymsg move position "${currentSwayX}" "0"
+      ;;
+    3)
+      swaymsg resize set width ${halfWindowWidth} height ${halfWindowHeight}
+      swaymsg move position "${currentSwayX}" "0"
+      ;;
+  esac
+  windowMode=$(expr $(expr ${oldWindowMode} % 3) + 1)
+  replaceConfig
+  exit 0
+}
+
+case $1 in
+  up)
+    # at lower         --> at upper
+    # at upper         --> half the monitor
+    # half the monitor --> full screen
+    if [ \( "${atFull}" -eq 1 \) -o \( "${oldWindowMode}" -eq 0 \) ]; then
+      swaymsg fullscreen
+      windowMode=0
+      if [ "${atFull}" -eq 1 ]; then
+        swaymsg resize set width ${oldSwayWidth} height ${oldSwayHeight}
+        swaymsg move position ${oldSwayX} ${oldSwayY}
+        updateWindowMode
+      else
+        replaceConfig
+      fi
+      exit 0
+    fi
+
+    case $oldWindowMode in
+      2)
+        windowMode=1
+        # at lower         --> at upper
+        swaymsg resize set height ${halfWindowHeight}
+        swaymsg move position ${currentSwayX} "0"
+        ;;
+      3)
+        windowMode=0
+        # half the monitor --> full screen
+        swaymsg fullscreen
+        ;;
+      1)
+        windowMode=3
+        # at upper         --> half the monitor
+        swaymsg move position ${currentSwayX} "0"
+        swaymsg resize set height ${monitorHeight}
+        ;;
+    esac
+    updateWindowMode
+    exit 0
+
+      # not at right neither at left when triggered;
+      # toggle fullscreen
+      ;;
+
+    down)
+      # at lower         --> half the monitor
+      # at upper         --> at lower
+      # half the monitor --> at higher
+      if [ \( "${atFull}" -eq 1 \) -o \( "${oldWindowMode}" -eq 0 \) ]; then
+        windowMode=0
+        if [ "${atFull}" -eq 1 ]; then
+          swaymsg fullscreen
+          swaymsg resize set width ${oldSwayWidth} height ${oldSwayHeight}
+          swaymsg move position ${oldSwayX} ${oldSwayY}
+          updateWindowMode
+        fi
+        exit 0
+      fi
+      renAiCirculation
+      ;;
+
+    left)
+      if [ "${atFull}" -eq 1 ]; then
+        windowMode=0
+        updateWindowMode
+        exit 0
+      fi
+      if [ "${windowMode}" -eq 0 ]; then
+        windowMode=3
+        swaymsg set height ${monitorHeight}
+        swaymsg move position 0 0
+        replaceConfig
+        exit 0
+      fi
+      currentSwayX=0
+      renAiCirculation
+      ;;
+
+    right)
+      if [ "${atFull}" -eq 1 ]; then
+        windowMode=0
+        updateWindowMode
+        exit 0
+      fi
+      if [ "${windowMode}" -eq 0 ]; then
+        windowMode=3
+        swaymsg set height ${monitorHeight}
+        swaymsg move position ${halfWindowWidth} 0
+        replaceConfig
+        exit 0
+      fi
+      currentSwayX=${halfWindowWidth}
+      renAiCirculation
+      ;;
+
+    esac
+
+  else # no old config file
+    # so we create one
+    createConfig(){
+      echo "${focusedWindowInfo} ${windowMode}" >> "${filePath}"
+    }
+  case $1 in
+    up)
+      swaymsg fullscreen
+      windowMode=0
+      createConfig
+      exit 0
+      ;;
+    down)
+      windowMode=0
+      createConfig
+      exit 0
+      ;;
+    left)
+      swaymsg resize set width ${halfWindowWidth} height ${monitorHeight}
+      swaymsg move position 0 0
+      windowMode=3
+      createConfig
+      exit 0
+      ;;
+    right)
+      swaymsg resize set width ${halfWindowWidth} height ${monitorHeight}
+      swaymsg move position ${halfWindowWidth} 0
+      windowMode=3
+      createConfig
+      exit 0
+      ;;
+  esac
+fi
+

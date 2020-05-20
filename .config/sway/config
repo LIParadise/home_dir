@@ -190,10 +190,7 @@ bindsym $mod+alt+Right      resize grow   width  20 px or 20 ppt
 bindsym $mod+alt+Up         resize grow   height 20 px or 20 ppt
 bindsym $mod+alt+Down       resize shrink height 20 px or 20 ppt
 bindsym $mod+alt+Left       resize shrink width  20 px or 20 ppt
-bindsym $mod+ctrl+y         exec --no-startup-id "${HOME}/.local/bin/i3cmds/i3resize left"
-bindsym $mod+ctrl+u         exec --no-startup-id "${HOME}/.local/bin/i3cmds/i3resize down"
-bindsym $mod+ctrl+i         exec --no-startup-id "${HOME}/.local/bin/i3cmds/i3resize up"
-bindsym $mod+ctrl+o         exec --no-startup-id "${HOME}/.local/bin/i3cmds/i3resize right"
+bindsym $mod+c              move position center; resize set width 1400 height 900
 #
 # Workspaces:
 #
