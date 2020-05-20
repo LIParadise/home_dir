@@ -1,8 +1,7 @@
-# Default config for sway
-#
-# Copy this to ~/.config/sway/config and edit it to your liking.
-#
-# Read `man 5 sway` for a complete reference.
+### default float windows
+for_window [app_id="xfce4-terminal"] floating enable
+for_window [app_id="gnome-terminal-server"] floating enable
+
 
 ### Variables
 #
@@ -130,7 +129,7 @@ bindsym $mod+t border toggle
 # bindsym $mod+Return exec $term
 bindsym Control+Alt+t exec xfce4-terminal
 # bindsym Control+Alt+g exec gnome-terminal
-bindsym Control+Alt+g exec "XDG_CONFIG_DIRS=${HOME}/.tmp/; xfce4-terminal" 
+bindsym Control+Alt+g exec gnome-terminal
 
 # Kill focused window
 bindsym $mod+Shift+q kill
@@ -187,14 +186,14 @@ bindsym $mod+Shift+Right    move right
 # Resizing windows in i3 using keyboard only
 # https://unix.stackexchange.com/q/255344/150597
 # Resizing by 1
-bindsym $mod+alt+Right          resize grow   width  20 px or 20 ppt
-bindsym $mod+alt+Up             resize grow   height 20 px or 20 ppt
-bindsym $mod+alt+Down           resize shrink height 20 px or 20 ppt
-bindsym $mod+alt+Left           resize shrink width  20 px or 20 ppt
-bindsym $mod+ctrl+y             exec --no-startup-id ${HOME}/.local/bin/i3cmds/i3resize left
-bindsym $mod+ctrl+u             exec --no-startup-id ${HOME}/.local/bin/i3cmds/i3resize down
-bindsym $mod+ctrl+i             exec --no-startup-id ${HOME}/.local/bin/i3cmds/i3resize up
-bindsym $mod+ctrl+o             exec --no-startup-id ${HOME}/.local/bin/i3cmds/i3resize right
+bindsym $mod+alt+Right      resize grow   width  20 px or 20 ppt
+bindsym $mod+alt+Up         resize grow   height 20 px or 20 ppt
+bindsym $mod+alt+Down       resize shrink height 20 px or 20 ppt
+bindsym $mod+alt+Left       resize shrink width  20 px or 20 ppt
+bindsym $mod+ctrl+y         exec --no-startup-id "${HOME}/.local/bin/i3cmds/i3resize left"
+bindsym $mod+ctrl+u         exec --no-startup-id "${HOME}/.local/bin/i3cmds/i3resize down"
+bindsym $mod+ctrl+i         exec --no-startup-id "${HOME}/.local/bin/i3cmds/i3resize up"
+bindsym $mod+ctrl+o         exec --no-startup-id "${HOME}/.local/bin/i3cmds/i3resize right"
 #
 # Workspaces:
 #
@@ -295,7 +294,7 @@ bar {
   font pango:source code pro 15
     status_command i3blocks
     position top
-    mode dock
+    mode hide
 }
 
 include /etc/sway/config.d/*
