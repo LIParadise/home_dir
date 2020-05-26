@@ -1,6 +1,12 @@
 ### default float windows
 for_window [app_id="xfce4-terminal"] floating enable
+for_window [app_id="xfce4-terminal"] border none
+for_window [app_id="xfce4-terminal"] move scratchpad
+for_window [app_id="xfce4-terminal"] scratchpad show
 for_window [app_id="gnome-terminal-server"] floating enable
+for_window [app_id="gnome-terminal-server"] border none
+for_window [app_id="gnome-terminal-server"] move scratchpad
+for_window [app_id="gnome-terminal-server"] scratchpad show
 
 
 ### Variables
@@ -89,7 +95,7 @@ input "1739:0:Synaptics_TM3276-022" {
 }
 
 input "2:10:TPPS/2_IBM_TrackPoint" {
-  pointer_accel      0.35
+  pointer_accel      0.1
   scroll_factor      0.30
 #    "libinput": {
 #      "send_events": "enabled",
@@ -127,7 +133,7 @@ bindsym $mod+t border toggle
 #
 # Start a terminal
 # bindsym $mod+Return exec $term
-bindsym Control+Alt+t exec xfce4-terminal
+bindsym Control+Alt+t exec "xfce4-terminal || sway scratchpad show"
 # bindsym Control+Alt+g exec gnome-terminal
 bindsym Control+Alt+g exec gnome-terminal
 
