@@ -23,6 +23,13 @@ if exists('+termguicolors')
   endif
 endif
 
+" vim highlight is broken in many ways....
+" this fixes ayu colorscheme with markdown
+" basically, stop it from hiding '_'
+function! My_stop_hide_underscore()
+  set concealcursor="nc"
+endfunction
+
 
 " language
 if has("gui_running")
@@ -55,6 +62,14 @@ function! Spell_On_Off()
   endif
   echohl None
 endfunction
+
+" check highlight group of the word where cursor is
+function! MyColorCheck ()
+  if !exists("*synstack")
+    return
+  endif
+  echo map(synstack(line('.'), col('.')), 'synIDattr(v:val, "name")')
+endfunc
 
 function! MySetAndReturnTermguicolors ()
   " enable truecolor when feasible
@@ -124,12 +139,12 @@ function! My_light_theme ()
     let g:ayucolor="light"
     colorscheme ayu
     hi LineNr      ctermfg=130    guifg=#C8C7C6
-    hi Comment     ctermfg=4      guifg=#A6AAB1
+    hi Comment     ctermfg=4      guifg=#A5A9AE
     hi PreProc     ctermfg=81     guifg=#E8B268
     hi Operator    guifg=#A58D2E
     hi StatusLine  guibg=#5C6773  guifg=#FFFFFF
     hi VertSplit   guifg=#CCC2C2
-    hi normal      guifg=#515B65  guibg=#FAFAFA
+    hi normal      guifg=#505860  guibg=#FBFBF7
   else
     call s:My_light_theme_fallback()
   endif
@@ -144,6 +159,20 @@ function! My_dark_theme ()
     hi StatusLine  guifg=#14191F  guibg=#E6E1CF 
     hi VertSplit   guifg=#354659
     hi Normal      ctermfg=255 ctermbg=234 guifg=#E7E7E6 guibg=#0a0a09
+  else
+    call s:My_dark_theme_fallback()
+  endif
+endfunction
+
+function! My_obsidian_theme ()
+  if MySetAndReturnTermguicolors () == 1
+    let g:ayucolor="dark"
+    colorscheme ayu
+    hi LineNr      ctermfg=130    guifg=#38414A
+    hi SpecialKey  ctermfg=4      guifg=#6990B5
+    hi StatusLine  guifg=#14191F  guibg=#E6E1CF 
+    hi VertSplit   guifg=#354659
+    hi Normal      ctermfg=255 ctermbg=234 guifg=NONE guibg=NONE
   else
     call s:My_dark_theme_fallback()
   endif
