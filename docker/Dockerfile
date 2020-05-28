@@ -1,12 +1,14 @@
 FROM debian:latest
 LABEL maintainer="a58524andy@gmail.com"
 
+RUN sed -i -r 's/deb\.debian\.org/free.nchc.org.tw/' /etc/apt/sources.list
+RUN sed -i -r 's/ftp\.debian\.org/ftp.tw.debian.org/' /etc/apt/sources.list
 RUN apt-get update
 RUN apt-get -y upgrade
 RUN apt-get -y install dialog apt-utils aptitude
 RUN aptitude update
 RUN aptitude -y safe-upgrade
-RUN aptitude -y install gcc g++ gdb clang valgrind vim tmux zsh htop pigz make cmake openssh-client openssh-server openssh-sftp-server ntfs-3g libboost-all-dev git wget curl ctags awk autoconf automake autotools-dev libmpc-dev libmpfr-dev libgmp-dev gawk build-essential bison flex texinfo gperf libtool patchutils bc zlib1g-dev
+RUN aptitude -y install gcc g++ gdb clang valgrind vim tmux zsh htop pigz make cmake openssh-client openssh-server openssh-sftp-server ntfs-3g libboost-all-dev git wget curl ctags awk autoconf automake autotools-dev libmpc-dev libmpfr-dev libgmp-dev gawk build-essential bison flex texlive-base texinfo gperf libtool patchutils bc zlib1g-dev
 RUN mkdir /var/run/sshd
 # SSH login fix. Otherwise user is kicked off after login
 RUN sed 's@session\s*required\s*pam_loginuid.so@session optional pam_loginuid.so@g' -i /etc/pam.d/sshd
@@ -23,7 +25,8 @@ RUN git config --global user.email a58524andy@gmail.com
 RUN git config --global user.name LIParadise
 RUN git clone --depth=1 https://github.com/ohmyzsh/ohmyzsh .oh-my-zsh
 RUN git clone --depth=1 --recurse-submodule https://github.com/LIParadise/home_dir.git .home
-RUN cp .home/.vimrc .home/.zshrc .home/.tmux.conf .
+RUN cp .home/debian.vimrc .vimrc
+RUN cp .home/.zshrc .home/.tmux.conf .
 RUN cp -r .home/.vim .
 RUN mkdir -p .vim/.swp .vim/.undo .vim/.backup .ssh .zsh
 RUN sed -i -r 's/(.*)virtualenvwrapper.*/\#\ \1virtualenvwrapper\.sh/' .zshrc
