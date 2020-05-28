@@ -126,6 +126,13 @@ function! s:My_light_theme_fallback ()
   syntax on
 endfunction
 
+function! s:My_obsidian_theme_fallback ()
+  set notermguicolors
+  syntax reset
+  colorscheme MyObsidianThemeFallback
+  syntax on
+endfunction
+
 function! My_light_theme ()
   if MySetAndReturnTermguicolors () == 1
     let g:ayucolor="light"
@@ -166,7 +173,7 @@ function! My_obsidian_theme ()
     hi VertSplit   guifg=#354659
     hi Normal      ctermfg=255 ctermbg=234 guifg=NONE guibg=NONE
   else
-    call s:My_dark_theme_fallback()
+    call s:My_obsidian_theme_fallback()
   endif
 endfunction
 

@@ -5,16 +5,15 @@
 " This color scheme uses a dark grey background.
 
 " First remove all existing highlighting.
-set background=dark
 hi clear
 if exists("syntax_on")
   syntax reset
 endif
 
-let g:colors_name = "MyDarkThemeFallback"
+let g:colors_name = "MyObsidianThemeFallback"
 
 " hi Normal ctermbg=DarkGrey ctermfg=White guifg=White guibg=grey20
-hi Normal      ctermfg=255 ctermbg=234 guifg=NONE guibg=NONE
+hi Normal            gui=none            cterm=none
 
 " Groups used in the 'highlight' and 'guicursor' options default value.
 hi ErrorMsg          term=standout       ctermbg=DarkRed      ctermfg=White    guibg=Red    guifg=White
@@ -49,9 +48,7 @@ hi DiffAdd term=bold ctermbg=DarkBlue guibg=DarkBlue
 hi DiffChange term=bold ctermbg=DarkMagenta guibg=DarkMagenta
 hi DiffDelete term=bold ctermfg=Blue ctermbg=DarkCyan gui=bold guifg=Blue guibg=DarkCyan
 hi CursorColumn term=reverse ctermbg=Black guibg=grey40
-" hi CursorLine term=underline cterm=underline guibg=grey40
-" hi CursorLine   term=underline cterm=underline guibg=#444444
-hi cursorline   term=underline cterm=NONE ctermfg=NONE ctermbg=237 guibg=#444444 guifg=NONE
+hi cursorline   cterm=NONE gui=NONE
 
 " Groups for syntax highlighting
 " hi Constant term=underline ctermfg=Magenta guifg=#ffa0a0
