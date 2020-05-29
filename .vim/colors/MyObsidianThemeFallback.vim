@@ -65,6 +65,10 @@ hi type         term=underline ctermfg=80      guifg=#5FD7D7
 hi statement    term=underline ctermfg=113     guifg=#87D75F
 hi error        term=underline ctermbg=166     guifg=#f3f3f3  ctermfg=255 guibg=#d75f00
 hi Todo         term=underline ctermbg=221 guibg=#FFD75F
+
+hi pmenu        guibg=DarkMagenta
+hi PmenuSel     guibg=Grey20
+
 if ( &filetype ==# 'zsh' || &filetype ==# 'sh' || &filetype ==# 'vim' )
   hi type         term=underline ctermfg=144 guifg=#AFAF87
   hi Identifier   term=underline ctermfg=110 guifg=#87AFD7
