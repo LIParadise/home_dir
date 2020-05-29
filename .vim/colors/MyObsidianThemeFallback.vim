@@ -13,7 +13,7 @@ endif
 let g:colors_name = "MyObsidianThemeFallback"
 
 " hi Normal ctermbg=DarkGrey ctermfg=White guifg=White guibg=grey20
-hi Normal            gui=none            cterm=none
+hi Normal            gui=NONE            cterm=NONE
 
 " Groups used in the 'highlight' and 'guicursor' options default value.
 hi ErrorMsg          term=standout       ctermbg=DarkRed      ctermfg=White    guibg=Red    guifg=White
@@ -48,7 +48,7 @@ hi DiffAdd term=bold ctermbg=DarkBlue guibg=DarkBlue
 hi DiffChange term=bold ctermbg=DarkMagenta guibg=DarkMagenta
 hi DiffDelete term=bold ctermfg=Blue ctermbg=DarkCyan gui=bold guifg=Blue guibg=DarkCyan
 hi CursorColumn term=reverse ctermbg=Black guibg=grey40
-hi cursorline   cterm=NONE gui=NONE
+hi cursorline   ctermbg=NONE guibg=NONE cterm=NONE gui=NONE
 
 " Groups for syntax highlighting
 " hi Constant term=underline ctermfg=Magenta guifg=#ffa0a0
