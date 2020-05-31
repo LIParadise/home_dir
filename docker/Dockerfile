@@ -24,6 +24,8 @@ RUN cd
 RUN git config --global user.email a58524andy@gmail.com
 RUN git config --global user.name LIParadise
 RUN git clone --depth=1 https://github.com/ohmyzsh/ohmyzsh .oh-my-zsh
+RUN git clone --depth=1 https://github.com/zsh-users/zsh-autosuggestions .oh-my-zsh/custom/plugins/zsh-autosuggestions
+RUN git clone --depth=1 https://github.com/zsh-users/zsh-syntax-highlighting.git .oh-my-zsh/custom/plugins/zsh-syntax-highlighting
 RUN git clone --depth=1 --recurse-submodule https://github.com/LIParadise/home_dir.git .home
 RUN cp .home/debian.vimrc .vimrc
 RUN cp .home/.zshrc .home/.tmux.conf .
