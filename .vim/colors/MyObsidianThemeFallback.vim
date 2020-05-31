@@ -68,6 +68,7 @@ hi Todo         term=underline ctermbg=221 guibg=#FFD75F
 
 hi pmenu        guibg=DarkMagenta
 hi PmenuSel     guibg=Grey20
+hi tabline      guibg=Grey42
 
 if ( &filetype ==# 'zsh' || &filetype ==# 'sh' || &filetype ==# 'vim' )
   hi type         term=underline ctermfg=144 guifg=#AFAF87
