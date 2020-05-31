@@ -10,7 +10,7 @@
 # NTUOSC ml environmental variables
 export WORKON_HOME=$HOME/.virtualenvs
 export VIRTUALENVWRAPPER_PYTHON=/usr/bin/python3
-source /usr/local/bin/virtualenvwrapper.sh
+source /etc/bash_completion.d/virtualenvwrapper
 # end of NTUOSC ml environmental variables
 #
 
@@ -84,8 +84,16 @@ export ZDOTDIR="/home/liparadise/.zsh"
 # Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
+#
+# Decided that syntax highlighting is cool
+### need to clone
+### https://github.com/zsh-users/zsh-autosuggestions
+### https://github.com/zsh-users/zsh-syntax-highlighting.git
+### into ${ZSH}
 plugins=(
 git
+zsh-autosuggestions
+zsh-syntax-highlighting
 )
 
 source $ZSH/oh-my-zsh.sh
