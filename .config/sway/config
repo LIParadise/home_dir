@@ -133,7 +133,7 @@ bindsym $mod+t border toggle
 #
 # Start a terminal
 # bindsym $mod+Return exec $term
-bindsym Control+Alt+t exec "xfce4-terminal || sway scratchpad show"
+bindsym Control+Alt+t exec xfce4-terminal
 # bindsym Control+Alt+g exec gnome-terminal
 bindsym Control+Alt+g exec gnome-terminal
 
