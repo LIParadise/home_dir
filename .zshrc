@@ -451,7 +451,7 @@ function GCC0 {
   fi
 }
 
-function CLANG {
+function Clang {
   myCompiler="clang"
   myCompileFlags="--std=c99 -Wall -O2 -march=native -mtune=native -c"
   myLinkFlags="-lpthread -o"
@@ -480,14 +480,14 @@ function CLANG {
     echo "${myCompiler} ${myLinkFlags} ${myCompiledOutput} ${myInputFilename_o}"
     eval ${myCompiler} ${myLinkFlags} ${myCompiledOutput} ${myInputFilename_o}
   else 
-    echo "Usage: CLANG code.cc <executable>"
+    echo "Usage: Clang code.cc <executable>"
     echo "where \"code.cc\" is a simple C++ code,"
     echo "\"executable\" being final executable name"
     return 0
   fi
 }
 
-function CLANG0 {
+function Clang0 {
   myCompiler="clang"
   myCompileFlags="--std=c99 -Wall -O0 -g -c"
   myLinkFlags="-lpthread -o"
@@ -516,7 +516,7 @@ function CLANG0 {
     echo "${myCompiler} ${myLinkFlags} ${myCompiledOutput} ${myInputFilename_o}"
     eval ${myCompiler} ${myLinkFlags} ${myCompiledOutput} ${myInputFilename_o}
   else 
-    echo "Usage: CLANG0 code.cc <executable>"
+    echo "Usage: Clang0 code.cc <executable>"
     echo "where \"code.cc\" is a simple C++ code,"
     echo "\"executable\" being final executable name"
     return 0
