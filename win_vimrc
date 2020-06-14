@@ -1,3 +1,7 @@
+set langmenu=en_US
+let $LANG = 'en_US'
+source $VIMRUNTIME/delmenu.vim
+source $VIMRUNTIME/menu.vim
 set nu ai expandtab tabstop=3 shiftwidth=3 history=500 cursorline laststatus=2 statusline+=%<%F\ %h%m%r%=%-16.(%l,%c%V%)\ %P ignorecase smartcase showcmd t_Co=256
 set undodir=~/.vim/.undo//
 set backupdir=~/.vim/.backup//
@@ -8,7 +12,7 @@ syntax on
 " isnot#
 " enable truecolor when feasible
 if exists('+termguicolors')
-  if (($TERM !~? '^linux$') && ($TERM !~? '^screen$'))
+  if (   (($TERM !~? '^linux$') && ($TERM !~? '^screen$'))  || has("win32")   )
     let &t_8f = "\<Esc>[38;2;%lu;%lu;%lum"
     let &t_8b = "\<Esc>[48;2;%lu;%lu;%lum"
     set termguicolors
@@ -22,12 +26,14 @@ function! My_stop_hide_underscore()
   set concealcursor="nc"
 endfunction
 
-
-" language
 if has("gui_running")
   set encoding=utf-8
   set fileencodings=utf-8,chinese,latin-1
-  if has("gui_win32")
+  if has("gui_gtk2")
+    set guifont=Inconsolata\ 12
+  elseif has("gui_macvim")
+    set guifont=Menlo\ Regular:h14
+  elseif has("gui_win32")
     set guifont=Cascadia_Code:h13
   endif
 else
@@ -35,6 +41,18 @@ else
   hi cursorlinenr cterm=NONE  ctermfg=255  ctermbg=NONE guibg=NONE guifg=NONE
   hi cursorline   cterm=NONE  ctermfg=NONE ctermbg=NONE guibg=NONE guifg=NONE
 endif
+
+"enable 256 colors in ConEmu on Win CLI
+if has('win32') && !has('gui_running') && !empty($CONEMUBUILD)
+  set term=xterm
+  set t_Co=256
+  let &t_AB="\e[48;5;%dm"
+  let &t_AF="\e[38;5;%dm"
+endif
+
+" ConEmu backspace is buggy
+inoremap <Char-0x07F> <BS>
+nnoremap <Char-0x07F> <BS>
 
 " handling lambda functions;
 function! Lambda_cpp()
@@ -134,7 +152,7 @@ function! s:My_obsidian_theme_fallback ()
 endfunction
 
 function! My_light_theme ()
-  if MySetAndReturnTermguicolors () == 1
+  if &termguicolors || has ("gui_win32" )
     let g:ayucolor="light"
     colorscheme ayu
     hi LineNr      ctermfg=130    guifg=#C8C7C6
@@ -142,22 +160,23 @@ function! My_light_theme ()
     hi PreProc     ctermfg=81     guifg=#E8B268
     hi Operator    guifg=#A58D2E
     hi StatusLine  guibg=#5C6773  guifg=#FFFFFF
-    hi VertSplit   guifg=#CCC2C2
+    hi VertSplit   guifg=NONE     guifg=#CCC2C2
     hi normal      guifg=#515B65  guibg=#FAFAFA
+    hi CursorLine  guifg=NONE
   else
     call s:My_light_theme_fallback()
   endif
 endfunction
 
 function! My_dark_theme ()
-  if MySetAndReturnTermguicolors () == 1
+  if &termguicolors || has ("gui_win32" )
     let g:ayucolor="dark"
     colorscheme ayu
     hi LineNr      ctermfg=130    guifg=#38414A
     hi SpecialKey  ctermfg=4      guifg=#6990B5
     hi StatusLine  guifg=#14191F  guibg=#E6E1CF 
     hi VertSplit   guifg=#354659
-    hi Normal      ctermfg=255 ctermbg=234 guifg=#E7E7E6 guibg=#0a0a09
+    hi CursorLine  guifg=NONE     guibg=#342F35
   else
     call s:My_dark_theme_fallback()
   endif
@@ -178,7 +197,7 @@ function! My_obsidian_theme ()
 endfunction
 
 function! My_mirage_theme ()
-  if MySetAndReturnTermguicolors () == 1
+  if &termguicolors || has ("gui_win32" )
     let g:ayucolor="mirage"
     colorscheme ayu
     hi LineNr      ctermfg=130    guifg=#3e4a5c
