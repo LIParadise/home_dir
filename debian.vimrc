@@ -2,6 +2,7 @@ set nu ai expandtab tabstop=3 shiftwidth=3 history=500 cursorline laststatus=2 s
 set undodir=~/.vim/.undo//
 set backupdir=~/.vim/.backup//
 set directory=~/.vim/.swp//
+autocmd VimEnter * call My_stop_hide_underscore()
 
 filetype indent on
 syntax on
@@ -172,6 +173,8 @@ function! My_obsidian_theme ()
     hi StatusLine  guifg=#14191F  guibg=#E6E1CF 
     hi VertSplit   guifg=#354659
     hi Normal      ctermfg=255 ctermbg=234 guifg=NONE guibg=NONE
+    hi cursorline  guibg=NONE  gui=underline term=underline
+    hi cursorlinenr 
   else
     call s:My_obsidian_theme_fallback()
   endif
