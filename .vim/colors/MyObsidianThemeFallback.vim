@@ -58,7 +58,7 @@ hi constant     term=underline ctermfg=215     guifg=#FFAF5F
 " endif
 hi Ignore ctermfg=DarkGrey guifg=grey20
 
-hi cursorlinenr cterm=NONE     ctermfg=255     guifg=#f3f3f3  ctermbg=NONE
+hi cursorlinenr cterm=NONE     ctermfg=215     guifg=#f3f3f3  ctermbg=NONE
 hi comment      term=underline ctermfg=246     guifg=#949494
 hi PreProc      term=underline ctermfg=105     guifg=#8787FF
 hi type         term=underline ctermfg=80      guifg=#5FD7D7
