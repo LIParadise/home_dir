@@ -7,6 +7,9 @@ set undodir=~/.vim/.undo//
 set backupdir=~/.vim/.backup//
 set directory=~/.vim/.swp//
 autocmd VimEnter * call My_stop_hide_underscore()
+if !&diff
+   autocmd VimEnter * call My_obsidian_theme()
+endif
 
 filetype indent on
 syntax on
