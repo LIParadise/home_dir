@@ -76,7 +76,7 @@ function! GetVerilogIndent()
       let lnum2 = prevnonblank(lnum2 - 1)
    endwhile
 
-   let curr_line  = getline(v:lnum)
+   let _LEX_LEONARD__curr_line  = getline(v:lnum)
    let last_line  = getline(lnum)
    let last_line2 = getline(lnum2)
    let ind  = indent(lnum)
@@ -86,12 +86,12 @@ function! GetVerilogIndent()
    "remove strings and comments (keywords get caught in those)
    "also remove inner braces and bracket sets
    "must replace with non-blank to show that something was there
-   let curr_line = substitute(curr_line   , "\/\/.*"       , ""      , "") "comment
-   let curr_line = substitute(curr_line   , "\/[*].*[*]\/" , ""      , "") "comment
-   let curr_line = substitute(curr_line   , "\/[*].*"      , ""      , "") "comment
-   let curr_line = substitute(curr_line   , "\".*.\""      , " sdf " , " sdf ") "string
-   let curr_line = substitute(curr_line   , "{[^{}]*}"     , " sdf " , " sdf ") "brackets
-   let curr_line = substitute(curr_line   , "([^()]*)"     , " sdf " , " sdf ") "braces
+   let _LEX_LEONARD__curr_line = substitute(_LEX_LEONARD__curr_line   , "\/\/.*"       , ""      , "") "comment
+   let _LEX_LEONARD__curr_line = substitute(_LEX_LEONARD__curr_line   , "\/[*].*[*]\/" , ""      , "") "comment
+   let _LEX_LEONARD__curr_line = substitute(_LEX_LEONARD__curr_line   , "\/[*].*"      , ""      , "") "comment
+   let _LEX_LEONARD__curr_line = substitute(_LEX_LEONARD__curr_line   , "\".*.\""      , " sdf " , " sdf ") "string
+   let _LEX_LEONARD__curr_line = substitute(_LEX_LEONARD__curr_line   , "{[^{}]*}"     , " sdf " , " sdf ") "brackets
+   let _LEX_LEONARD__curr_line = substitute(_LEX_LEONARD__curr_line   , "([^()]*)"     , " sdf " , " sdf ") "braces
 
    let last_line = substitute(last_line   , "\/\/.*"       , ""      , "") "comment
    let last_line = substitute(last_line   , "\/[*].*[*]\/" , ""      , "") "comment
@@ -129,7 +129,7 @@ function! GetVerilogIndent()
       if last_line !~ prefix . 'begin' . anything . 'end' . postfix &&
                \ last_line !~ prefix . 'output\s*' . block_open . '\s.*' &&
                \ last_line !~ prefix .  'input\s*' . block_open . '\s.*' &&
-               \ last_line !~ '.*;' && curr_line !~ line_start . 'begin\s*$'
+               \ last_line !~ '.*;' && _LEX_LEONARD__curr_line !~ line_start . 'begin\s*$'
          let ind = ind + offset
          if _LEX_LEONARD__vverb | echo _LEX_LEONARD__vverb_str "Indent after a block statement." | endif
       else
@@ -151,7 +151,7 @@ function! GetVerilogIndent()
    elseif last_line =~ prefix . 'for' . postfix
 
       " Do nothing if the for is immediately closed: for() ... ;
-      if last_line !~ ').*;' && curr_line !~ line_start . 'begin\s*$'
+      if last_line !~ ').*;' && _LEX_LEONARD__curr_line !~ line_start . 'begin\s*$'
          let ind = ind + offset
          if _LEX_LEONARD__vverb | echo _LEX_LEONARD__vverb_str "Indent after a for statement." | endif
       else
@@ -213,14 +213,14 @@ function! GetVerilogIndent()
    endif
 
    " -----------------------------------------------------------------------
-   " De-indentation rules based on curr_line
+   " De-indentation rules based on _LEX_LEONARD__curr_line
    " -----------------------------------------------------------------------
 
    " De-indent on the end of a begin block
-   if curr_line =~ prefix . 'end' . postfix
+   if _LEX_LEONARD__curr_line =~ prefix . 'end' . postfix
 
       " Don't de-indent for one line blocks
-      if curr_line !~ prefix . 'begin' . anything . 'end' . postfix
+      if _LEX_LEONARD__curr_line !~ prefix . 'begin' . anything . 'end' . postfix
          let ind = ind - offset
          "if _LEX_LEONARD__vverb | echo _LEX_LEONARD__vverb_str "De-indent the end of a block." | endif
       else
@@ -228,10 +228,10 @@ function! GetVerilogIndent()
       endif
 
       " De-indent on the end of a section
-   elseif curr_line =~ prefix . section_close . postfix
+   elseif _LEX_LEONARD__curr_line =~ prefix . section_close . postfix
 
       " Don't de-indent for one line sections
-      if curr_line !~ prefix . section_open . anything . section_close . postfix
+      if _LEX_LEONARD__curr_line !~ prefix . section_open . anything . section_close . postfix
          let ind = ind - offset
          if _LEX_LEONARD__vverb | echo _LEX_LEONARD__vverb_str "De-indent the end of a section." | endif
       else
@@ -239,7 +239,7 @@ function! GetVerilogIndent()
       endif
 
       " De-indent after a list close
-   elseif curr_line =~ line_start . list_close
+   elseif _LEX_LEONARD__curr_line =~ line_start . list_close
 
       let ind = ind - offset
       if _LEX_LEONARD__vverb | echo _LEX_LEONARD__vverb_str "De-indent the end of a list." | endif
