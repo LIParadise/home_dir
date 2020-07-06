@@ -137,6 +137,12 @@ alias tmux="tmux -u" # utf-8 support
 alias ressh="sudo service ssh --full-restart"
 alias vm="ssh -p 2222 liparadise@127.0.0.1"
 
+function reboot_to_windows ()
+{
+   grub_windows_entry=$(grep -i windows /boot/grub/grub.cfg | cut -d "'" -f 2)
+   sudo grub-reboot "$grub_windows_entry" && sudo reboot
+}
+
 function dclab() {
   ssh team08@140.112.33.165 -i .ssh/dclab_2019 -p 12345 -t "source /home/team08/Chu\ Han/.zshrc; exec /usr/bin/zsh"
 }
