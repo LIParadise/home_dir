@@ -16,8 +16,8 @@ endif
 " Some mapleader Settings
 let mapleader=" "
 " For quick markdown highlight
-map <Leader>H c__*<C-r>"*__
-map <Leader>h c__<C-r>"__
+vnoremap <Leader>H c__*<C-r>"*__
+vnoremap <Leader>h c__<C-r>"__
 
 " isnot#
 " enable truecolor when feasible
