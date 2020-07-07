@@ -14,7 +14,7 @@ if !&diff
 endif
 
 " Some mapleader Settings
-let Mapleader=" "
+let mapleader=" "
 " For quick markdown highlight
 map <Leader>H c__*<C-o>P*__
 map <Leader>h c__<C-o>P__
