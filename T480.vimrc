@@ -2,20 +2,23 @@ set nu ai expandtab tabstop=3 shiftwidth=3 history=3000 cursorline laststatus=2 
 set undodir=~/.vim/.undo//
 set backupdir=~/.vim/.backup//
 set directory=~/.vim/.swp//
-autocmd VimEnter * call My_stop_hide_underscore()
-if !&diff
-   autocmd VimEnter * call My_obsidian_theme()
-endif
-
 filetype indent on
 syntax on
+autocmd VimEnter * call My_stop_hide_underscore()
+if !&diff
+   autocmd VimEnter * call My_dark_theme()
+endif
 
+" Some mapleader Settings
+let Mapleader=" "
+" For quick markdown highlight
+map <Leader>H c__*<C-o>P*__
+map <Leader>h c__<C-o>P__
 
 " key mappings
 
 " ### ycm mappings
 nmap <C-@> <Plug>(YCMHover)
-
 
 " isnot#
 " enable truecolor when feasible
