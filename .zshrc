@@ -128,6 +128,12 @@ source $ZSH/oh-my-zsh.sh
   # alias ohmyzsh="mate ~/.oh-my-zsh"
 
 # LIParadise Modifications
+
+## edit line in vim
+export VISUAL="vim"
+autoload edit-command-line
+zle -N edit-command-line
+
 alias cp="cp -i"
 alias mv="mv -i"
 alias rm="rm -i"
@@ -145,6 +151,10 @@ function reboot_to_windows ()
 
 function dclab() {
   ssh team08@140.112.33.165 -i .ssh/dclab_2019 -p 12345 -t "source /home/team08/Chu\ Han/.zshrc; exec /usr/bin/zsh"
+}
+
+function copy() {
+  cat ${1} | xclip -selection c
 }
 
 function sshgit {
