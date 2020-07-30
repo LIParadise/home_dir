@@ -14,6 +14,7 @@ let mapleader=" "
 " For quick markdown highlight
 vnoremap <Leader>H c__*<C-r>"*__
 vnoremap <Leader>h c__<C-r>"__
+vnoremap <Leader>a c*<C-r>"*
 
 " key mappings
 
