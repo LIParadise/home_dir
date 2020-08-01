@@ -112,7 +112,7 @@ fix_environment() {
 # ------------------function remove_duplicate_paths----------------------------
 remove_duplicate_paths() {
   local arg=$1
-  eval "aurPatchWrongPath=\"\${arg}\""
+  eval "aurPatchWrongPath=\"\${$arg}\""
   local arr=(`echo ${aurPatchWrongPath} | sed 's/:/\n/g'`)
   local fixarr=()
   local found=
