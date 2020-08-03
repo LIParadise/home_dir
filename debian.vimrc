@@ -5,8 +5,8 @@ set directory=~/.vim/.swp//
 filetype indent on
 syntax on
 
-runtime liparadise_color.vim
-runtime liparadise_color.vim
+runtime liparadise_color_debian.vim
+runtime liparadise_tabline.vim
 
 autocmd VimEnter * call My_stop_hide_underscore()
 if !&diff
@@ -19,6 +19,12 @@ let mapleader=" "
 vnoremap <Leader>H c__*<C-r>"*__
 vnoremap <Leader>h c__<C-r>"__
 vnoremap <Leader>a c*<C-r>"*
+
+" key mappings
+
+" # ycm settings and mappings
+nmap <C-@> <Plug>(YCMHover)
+let g:ycm_autoclose_preview_window_after_completion = 1
 
 " isnot#
 " enable truecolor when feasible

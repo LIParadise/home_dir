@@ -6,7 +6,7 @@ filetype indent on
 syntax on
 
 runtime liparadise_color.vim
-runtime liparadise_color.vim
+runtime liparadise_tabline.vim
 
 autocmd VimEnter * call My_stop_hide_underscore()
 if !&diff
