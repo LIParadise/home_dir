@@ -1,4 +1,4 @@
-set nu ai expandtab tabstop=3 shiftwidth=3 history=3000 cursorline laststatus=2 statusline+=%<%F\ %h%m%r%=%-16.(%l,%c%V%)\ %P ignorecase smartcase showcmd t_Co=256 backspace=indent,eol,start
+set nu ai expandtab tabstop=3 shiftwidth=3 history=3000 cursorline laststatus=2 statusline+=%<%F\ %h%m%r%=%-16.(%l,%c%V%)\ %P ignorecase smartcase showcmd t_Co=256 backspace=indent,eol,start encoding=utf-8 nocompatible ttimeoutlen=5
 set undodir=~/.vim/.undo//
 set backupdir=~/.vim/.backup//
 set directory=~/.vim/.swp//
@@ -24,7 +24,12 @@ vnoremap <Leader>a c*<C-r>"*
 
 " # ycm settings and mappings
 nmap <C-@> <Plug>(YCMHover)
+inoremap <C-Space> :YcmCompleter GetDoc
+inoremap <C-@> <C-Space>
+nnoremap <Leader>h :pc<Enter>
+let g:ycm_add_preview_to_completeopt = 1
 let g:ycm_autoclose_preview_window_after_completion = 1
+let g:ycm_semantic_triggers={'c,cpp,python,rust,java,go,erlang,perl,cs,lua,javascript':['re!\w{2}']}
 
 " isnot#
 " enable truecolor when feasible
