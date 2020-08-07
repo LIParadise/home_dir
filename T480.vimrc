@@ -50,7 +50,8 @@ vnoremap <Leader>a c*<C-r>"*
 " key mappings
 
 " # ycm settings and mappings
-nnoremap <C-@> <Plug>(YCMHover)
+nmap <C-@> <Plug>(YCMHover)
+nmap <C-Space> <Plug>(YCMHover)
 nnoremap <expr> <Leader>d
          \ ( LIParadise_check_if_preview_window_exists() ==? 1 )?
          \ ":pclose" : 
