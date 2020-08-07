@@ -2,11 +2,38 @@ set nu ai expandtab tabstop=3 shiftwidth=3 history=3000 cursorline laststatus=2 
 set undodir=~/.vim/.undo//
 set backupdir=~/.vim/.backup//
 set directory=~/.vim/.swp//
-filetype indent on
+
+filetype off
+"
+" set the runtime path to include Vundle and initialize
+set rtp+=~/.vim/bundle/Vundle.vim
+call vundle#begin()
+" alternatively, pass a path where Vundle should install plugins
+"call vundle#begin('~/some/path/here')
+
+" let Vundle manage Vundle, required
+Plugin 'VundleVim/Vundle.vim'
+Plugin 'ycm-core/YouCompleteMe'
+" All of your Plugins must be added before the following line
+call vundle#end()            " required
+filetype plugin indent on    " required
+" To ignore plugin indent changes, instead use:
+"filetype plugin on
+"
+" Brief help
+" :PluginList       - lists configured plugins
+" :PluginInstall    - installs plugins; append `!` to update or just :PluginUpdate
+" :PluginSearch foo - searches for foo; append `!` to refresh local cache
+" :PluginClean      - confirms removal of unused plugins; append `!` to auto-approve removal
+"
+" see :h vundle for more details or wiki for FAQ
+" Put your non-Plugin stuff after this line
+
 syntax on
 
 runtime liparadise_color.vim
 runtime liparadise_tabline.vim
+runtime liparadise_pclose.vim
 
 autocmd VimEnter * call My_stop_hide_underscore()
 if !&diff
@@ -23,13 +50,15 @@ vnoremap <Leader>a c*<C-r>"*
 " key mappings
 
 " # ycm settings and mappings
-nmap <C-@> <Plug>(YCMHover)
-inoremap <C-Space> :YcmCompleter GetDoc
-inoremap <C-@> <C-Space>
-nnoremap <Leader>h :pc<Enter>
+nnoremap <C-@> <Plug>(YCMHover)
+nnoremap <expr> <Leader>d
+         \ ( LIParadise_check_if_preview_window_exists() ==? 1 )?
+         \ ":pclose" : 
+         \ ":YcmCompleter GetDoc"
+nnoremap <Leader>t :YcmCompleter GetType"
 let g:ycm_add_preview_to_completeopt = 1
 let g:ycm_autoclose_preview_window_after_completion = 1
-let g:ycm_semantic_triggers={'c,cpp,python,rust,java,go,erlang,perl,cs,lua,javascript':['re!\w{2}']}
+let g:ycm_semantic_triggers={'c,cpp,python,rust,java,go,erlang,perl,cs,lua,javascript':['re!\w+']}
 
 " isnot#
 " enable truecolor when feasible
