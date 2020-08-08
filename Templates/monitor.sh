@@ -6,4 +6,4 @@ watch -n 1 "\
    grep \"processor\|cpu MHz\" /proc/cpuinfo | rev | cut -d' ' -f 1 | rev | paste -d ' '  - - &&\
    printf \"\n\" &&\
    \
-   acpi -V | grep Battery"
+   acpi -b -i"
