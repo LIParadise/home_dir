@@ -1,8 +1,8 @@
 #!/usr/bin/env bash
-watch -n 5 "\
-  sensors -j |\
-    grep -iEe \"package id 0\" -A 1 |\
-    sed -E -e \"s/[[:blank:],{}]|//g\" &&\
+watch -n 1 "\
+  sensors -j 2>&1 |\
+    grep -i -E -e \"package id 0\" -A 1 |\
+    sed -r \"s/[[:blank:],{}]|//g\" &&\
   echo \"\" &&\
   lscpu | grep -iEe \"cpu mhz\" &&\
   echo \"\" &&\
