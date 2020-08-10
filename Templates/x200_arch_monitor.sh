@@ -1,4 +1,4 @@
-#!/usr/bin/env bash
+#!/usr/bin/env sh
 watch -n 1 "\
    sensors acpitz-acpi-0 2>&1 | grep temp | awk '{print \$1\" \"\$2}' &&\
    printf \"\n\" &&\

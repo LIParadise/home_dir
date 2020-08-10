@@ -1,4 +1,4 @@
-#!/usr/bin/env bash
+#!/usr/bin/env sh
 watch -n 1 "\
    acpi -t | sed -r 's/ok, //' &&\
    printf \"\n\" &&\
