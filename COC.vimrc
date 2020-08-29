@@ -1,8 +1,13 @@
+let mapleader=" "
+
 " Plugin: `plugged`
 "
 filetype off
 call plug#begin('~/.vim/plugged')
+" Language Server
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
+" Beautify Indentation
+Plug 'Yggdroot/indentLine'
 call plug#end()
 " All of your Plugins must be added before the following line
 filetype plugin indent on    " required
@@ -30,9 +35,11 @@ autocmd VimEnter * call My_stop_hide_underscore()
 if !&diff
    autocmd VimEnter * call My_dark_theme()
 endif
+if &filetype ==# 'c' || &filetype ==# 'cpp'
+   setlocal cindent cino=j1,(s,ws,Ws,N-s,m1
+endif
 
 " Some mapleader Settings
-let mapleader=" "
 " For quick markdown highlight
 vnoremap <Leader>H c__*<C-r>"*__
 vnoremap <Leader>h c__<C-r>"__
@@ -69,11 +76,6 @@ else
    hi cursorlinenr cterm=NONE  ctermfg=255  ctermbg=NONE guibg=NONE guifg=NONE
    hi cursorline   cterm=NONE  ctermfg=NONE ctermbg=NONE guibg=NONE guifg=NONE
 endif
-
-" handling lambda functions;
-function! Lambda_cpp()
-   setlocal cindent cino=j1,(0,ws,Ws,N-s
-endfunction
 
 " handling en spell check;
 function! Spell_On_Off()
