@@ -35,9 +35,8 @@ autocmd VimEnter * call My_stop_hide_underscore()
 if !&diff
    autocmd VimEnter * call My_dark_theme()
 endif
-if &filetype ==# 'c' || &filetype ==# 'cpp'
-   setlocal cindent cino=j1,(s,ws,Ws,N-s,m1
-endif
+autocmd filetype c setlocal cindent cino=j1,(s,ws,Ws,N-s,m1
+autocmd filetype cpp setlocal cindent cino=j1,(s,ws,Ws,N-s,m1
 
 " Some mapleader Settings
 " For quick markdown highlight
