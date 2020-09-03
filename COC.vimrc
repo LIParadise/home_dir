@@ -43,6 +43,7 @@ autocmd filetype cpp setlocal cindent cino=j1,(s,ws,Ws,N-s,m1
 vnoremap <Leader>H c__*<C-r>"*__
 vnoremap <Leader>h c__<C-r>"__
 vnoremap <Leader>a c*<C-r>"*
+nnoremap <Leader>n :set nu!
 
 " key mappings
 
