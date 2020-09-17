@@ -63,7 +63,12 @@ nmap <silent> gi <Plug>(coc-implementation)
 nmap <silent> gr <Plug>(coc-references)
 
 " Use K to show documentation in preview window.
-nnoremap <silent> <c-space> :call <SID>show_documentation()<CR>
+" Use <c-space> to trigger completion.
+if has('nvim')
+  nnoremap <silent> <c-space> :call <SID>show_documentation()<CR>
+else
+  nnoremap <silent> <c-@> :call <SID>show_documentation()<CR>
+endif
 
 function! s:show_documentation()
   if (index(['vim','help'], &filetype) >= 0)
