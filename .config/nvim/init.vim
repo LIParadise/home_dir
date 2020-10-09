@@ -1,4 +1,5 @@
 let mapleader=" "
+let g:python3_host_prog = '/home/liparadise/.virtualenvs/neovim/bin/python3'
 
 " Plugin: `plugged`
 "

@@ -1,0 +1,6 @@
+{
+   // jedi for coc-python
+   "python.jediEnabled": true,
+   "python.jediPath": "/usr/lib/python3.8/site-packages",
+   "python.linting.pylintPath": "/usr/bin/pylint"
+}
