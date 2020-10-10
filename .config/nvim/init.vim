@@ -1,5 +1,4 @@
 let mapleader=" "
-let g:python3_host_prog = '/home/liparadise/.virtualenvs/neovim/bin/python3'
 
 " Plugin: `plugged`
 "
@@ -39,6 +38,8 @@ if !&diff
 endif
 autocmd filetype c setlocal cindent cino=j1,(s,ws,Ws,N-s,m1
 autocmd filetype cpp setlocal cindent cino=j1,(s,ws,Ws,N-s,m1
+autocmd filetype markdown setlocal ts=2 sw=2
+autocmd filetype rust setlocal ts=4 sw=4
 
 " Some mapleader Settings
 " For quick markdown highlight

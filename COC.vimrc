@@ -8,6 +8,7 @@ call plug#begin('~/.vim/plugged')
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
 " Beautify Indentation
 Plug 'Yggdroot/indentLine'
+Plug 'ayu-theme/ayu-vim'
 call plug#end()
 " All of your Plugins must be added before the following line
 filetype plugin indent on    " required
@@ -37,6 +38,8 @@ if !&diff
 endif
 autocmd filetype c setlocal cindent cino=j1,(s,ws,Ws,N-s,m1
 autocmd filetype cpp setlocal cindent cino=j1,(s,ws,Ws,N-s,m1
+autocmd filetype markdown setlocal ts=2 sw=2
+autocmd filetype rust setlocal ts=4 sw=4
 
 " Some mapleader Settings
 " For quick markdown highlight
