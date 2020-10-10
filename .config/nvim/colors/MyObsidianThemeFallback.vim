@@ -1,0 +1,1 @@
+/home/liparadise//.vim/colors/MyObsidianThemeFallback.vim
