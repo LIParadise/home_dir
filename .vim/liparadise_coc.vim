@@ -62,9 +62,9 @@ nmap <silent> gy <Plug>(coc-type-definition)
 nmap <silent> gi <Plug>(coc-implementation)
 nmap <silent> gr <Plug>(coc-references)
 " shamelessly stolen from https://github.com/neoclide/coc.nvim/issues/1249
-nmap <silent> gD :call CocAction('jumpDefinition', 'split')
-nmap <silent> gV :call CocAction('jumpDefinition', 'vsplit')
-nmap <silent> gT :call CocAction('jumpDefinition', 'tabe')
+nmap <silent> gs :call CocAction('jumpDefinition', 'split')
+nmap <silent> gv :call CocAction('jumpDefinition', 'vsplit')
+nmap <silent> gn :call CocAction('jumpDefinition', 'tabe')
 
 " Use K to show documentation in preview window.
 " Use <c-space> to trigger completion.
