@@ -21,7 +21,7 @@ filetype plugin indent on    " required
 "
 runtime liparadise_coc.vim
 
-set nu ai expandtab tabstop=4 shiftwidth=4 history=3000 cursorline laststatus=2 statusline+=%<%F\ %h%m%r%=%-16.(%l,%c%V%)\ %P ignorecase smartcase showcmd t_Co=256 backspace=indent,eol,start encoding=utf-8 nocompatible ttimeoutlen=5
+set nu ai expandtab tabstop=4 shiftwidth=4 history=4000 cursorline laststatus=2 statusline+=%<%F\ %h%m%r%=%-16.(%l,%c%V%)\ %P ignorecase smartcase showcmd t_Co=256 backspace=indent,eol,start encoding=utf-8 nocompatible ttimeoutlen=5
 set undodir=~/.vim/.undo//
 set backupdir=~/.vim/.backup//
 set directory=~/.vim/.swp//
