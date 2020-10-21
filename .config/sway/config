@@ -3,10 +3,10 @@
 # for_window [app_id=".*konsole.*"] border none
 # for_window [app_id=".*konsole.*"] move scratchpad
 # for_window [app_id=".*konsole.*"] scratchpad show
-for_window [app_id="gnome-terminal-server"] floating enable
-for_window [app_id="gnome-terminal-server"] border none
-for_window [app_id="gnome-terminal-server"] move scratchpad
-for_window [app_id="gnome-terminal-server"] scratchpad show
+for_window [app_id="xfce4-terminal"] floating enable
+for_window [app_id="xfce4-terminal"] border none
+for_window [app_id="xfce4-terminal"] move scratchpad
+for_window [app_id="xfce4-terminal"] scratchpad show
 
 
 ### Variables
@@ -68,6 +68,7 @@ input "1:1:AT_Translated_Set_2_keyboard" {
 }
 input "1133:16500:Logitech_G304" {
     accel_profile flat
+    pointer_accel 0.53
     # "identifier": "1133:16500:Logitech_G304",
     #     "name": "Logitech G304",
     #     "vendor": 1133,
@@ -114,9 +115,9 @@ input "1739:0:Synaptics_TM3276-022" {
 }
 
 input "2:10:TPPS/2_IBM_TrackPoint" {
-    pointer_accel      0.30
-        scroll_factor      0.30
-        accel_profile      "adaptive"
+    pointer_accel      0.6
+    scroll_factor      0.30
+    accel_profile      "adaptive"
 #    "libinput": {
 #      "send_events": "enabled",
 #      "accel_speed": 0.0,
@@ -131,7 +132,7 @@ input "2:10:TPPS/2_IBM_TrackPoint" {
 
 input "1133:16491:Logitech_M585/M590" {
     pointer_accel 0.8
-        accel_profile "flat"
+    accel_profile "flat"
 #  "identifier": "1133:16491:Logitech_M585\/M590",
 #     "name": "Logitech M585\/M590",
 #     "vendor": 1133,
@@ -175,7 +176,7 @@ bindsym $mod+t border toggle
 # bindsym $mod+Return exec $term
 bindsym Control+Alt+t exec konsole
 # bindsym Control+Alt+g exec gnome-terminal
-bindsym Control+Alt+g exec gnome-terminal
+bindsym Control+Alt+g exec xfce4-terminal
 
 # Kill focused window
 bindsym $mod+Shift+q kill
@@ -184,7 +185,7 @@ bindsym $mod+Shift+q kill
 bindsym $mod+d exec wofi
 
 # Sometimes ibus engine got screwed; reset to en input
-bindsym $mod+Shift+i exec ibus engine xkb:us::eng
+# bindsym $mod+Shift+i exec ibus engine xkb:us::eng
 
 # Screenshot
 bindsym $mod+p exec grim -t png "${HOME}/Pictures/Screenshots/$(date +%+4Y%m%d-%H%M%S).png"
@@ -204,20 +205,20 @@ floating_modifier $mod normal
 bindsym $mod+Shift+c reload
 
 # Exit sway (logs you out of your Wayland session)
-bindsym $mod+Shift+e exec swaynag -t warning -m 'You pressed the exit shortcut. Do you really want to exit sway? This will end your Wayland session.' -b 'Yes, exit sway' 'swaymsg exit'
+bindsym $mod+Shift+e exec swaynag -t warning -m 'Exit Sway?' -b 'Yes, exit sway' 'swaymsg exit'
 #
 # Moving around:
 #
 # Move your focus around
-bindsym $mod+$left focus left
-bindsym $mod+$down focus down
-bindsym $mod+$up focus up
+bindsym $mod+$left  focus left
+bindsym $mod+$down  focus down
+bindsym $mod+$up    focus up
 bindsym $mod+$right focus right
 # Or use $mod+[up|down|left|right]
-bindsym $mod+Left focus left
-bindsym $mod+Down focus down
-bindsym $mod+Up focus up
-bindsym $mod+Right focus right
+bindsym $mod+Left   focus left
+bindsym $mod+Down   focus down
+bindsym $mod+Up     focus up
+bindsym $mod+Right  focus right
 
 # Move the focused window with the same, but add Shift
 bindsym $mod+Shift+$left    move left
@@ -336,7 +337,7 @@ bar {
 # The default just shows the current date and time.
     font pango:source code pro 15
         status_command i3blocks
-        position top
+        position bottom
         mode hide
 }
 
