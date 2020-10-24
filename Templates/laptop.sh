@@ -14,9 +14,12 @@ myNoColour='\033[0m'
 # echo "xrandr --output HDMI-2 --set \"Broadcast RGB\" \"Full\""
 # xrandr --output HDMI-2 --set "Broadcast RGB" "Full"
 
+# sometimes font settings in /etc/vconsole.conf is ignored
+# need package `terminus-font`
+setfont ter-228n
+
 # tuned-adm
 myAcAdapter=$(acpi -a | cut -d' ' -f3 | cut -d- -f1)
-sleep 0.08 # to ensure it's off or on.
 echo "myAcAdapter is ${myAcAdapter}"
 echo ""
 if [ "${myAcAdapter}" = "on" ]; then
@@ -26,7 +29,6 @@ else
 fi
 
 myTunedAdmProfile=$(tuned-adm active | awk 'NF{ print $NF }')
-sleep 0.15
 case "${myTunedAdmProfile}" in
   laptop)
     echo -e "Power-Efficient Mode: ${myGreen}ON${myNoColour}"
@@ -39,19 +41,25 @@ case "${myTunedAdmProfile}" in
     ;;
 esac
 
-# Display red shift
-myCurrentHourIn24H=$(date +%H)
-
-if [ ${myCurrentHourIn24H} -ge 20 ] || [ ${myCurrentHourIn24H} -le 4 ]
-then
-  echo ""
-  echo "Have a good night, ${USER}"
-  gsettings set org.gnome.settings-daemon.plugins.color night-light-schedule-from 20.0
-  gsettings set org.gnome.settings-daemon.plugins.color night-light-schedule-to   7.0
+echo ""
+if [ "$(command -v intel-undervolt)" ]; then
+   sudo intel-undervolt apply
 else
-  echo ""
-  echo "Have a nice day, ${USER}"
-  gsettings set org.gnome.settings-daemon.plugins.color night-light-schedule-from 0.0
-  gsettings set org.gnome.settings-daemon.plugins.color night-light-schedule-to   23.983333333333331
+   echo "\`intel-undervolt\` not found"
 fi
 
+# Display red shift
+#
+## myCurrentHourIn24H=$(date +%H)
+## if [ ${myCurrentHourIn24H} -ge 20 ] || [ ${myCurrentHourIn24H} -le 4 ]
+## then
+##   echo ""
+##   echo "Have a good night, ${USER}"
+##   gsettings set org.gnome.settings-daemon.plugins.color night-light-schedule-from 20.0
+##   gsettings set org.gnome.settings-daemon.plugins.color night-light-schedule-to   7.0
+## else
+##   echo ""
+##   echo "Have a nice day, ${USER}"
+##   gsettings set org.gnome.settings-daemon.plugins.color night-light-schedule-from 0.0
+##   gsettings set org.gnome.settings-daemon.plugins.color night-light-schedule-to   23.983333333333331
+## fi
