@@ -238,7 +238,7 @@ bindsym $mod+alt+Right      resize grow   width  20 px or 20 ppt
 bindsym $mod+alt+Up         resize grow   height 20 px or 20 ppt
 bindsym $mod+alt+Down       resize shrink height 20 px or 20 ppt
 bindsym $mod+alt+Left       resize shrink width  20 px or 20 ppt
-bindsym $mod+shift+c        move position center; resize set width 1400 height 900
+bindsym $mod+alt+c          move position center; resize set width 1400 height 900
 bindsym $mod+c              move position center
 #
 # Workspaces:
