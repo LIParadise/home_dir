@@ -49,11 +49,11 @@ set $lock_bg ~/Pictures/hololive/OeTVH1L.png
 bindsym $mod+End exec swaylock -i $lock_bg
 
 exec swayidle -w \
-        timeout 1200 'swaylock -f -c 000000 -i $lock_bg' \
-        timeout 1800 'swaymsg "output * dpms off"' \
-        timeout 5 'if pgrep -x swaylock; then swaymsg "output * dpms off"; fi' \
-        resume 'swaymsg "output * dpms on"' \
-        before-sleep 'swaylock -f -c 000000 -i $lock_bg'
+         timeout 1200 'swaylock -f -c 000000 -i $lock_bg' \
+         timeout 1800 'swaymsg "output * dpms off"' \
+         timeout 5 'if pgrep -x swaylock; then swaymsg "output * dpms off"; fi' \
+         resume 'swaymsg "output * dpms on"' \
+         before-sleep 'swaylock -f -c 000000 -i $lock_bg'
 #
 # This will lock your screen after 300 seconds of inactivity, then turn off
 # your displays after another 300 seconds, and turn your screens back on when
@@ -63,27 +63,27 @@ exec swayidle -w \
 #
 # Example configuration:
 #
-input "1:1:AT_Translated_Set_2_keyboard" {
-   xkb_options ctrl:nocaps
-}
+         input "1:1:AT_Translated_Set_2_keyboard" {
+             xkb_options ctrl:nocaps
+         }
 input "1133:16500:Logitech_G304" {
     accel_profile flat
-    pointer_accel 0.53
-    # "identifier": "1133:16500:Logitech_G304",
-    #     "name": "Logitech G304",
-    #     "vendor": 1133,
-    #     "product": 16500,
-    #     "type": "pointer",
-    #     "libinput": {
-    #         "send_events": "enabled",
-    #         "accel_speed": 0.0,
-    #         "accel_profile": "adaptive",
-    #         "natural_scroll": "disabled",
-    #         "left_handed": "disabled",
-    #         "middle_emulation": "disabled",
-    #         "scroll_method": "none",
-    #         "scroll_button": 274
-    #     }
+        pointer_accel 0.53
+# "identifier": "1133:16500:Logitech_G304",
+#     "name": "Logitech G304",
+#     "vendor": 1133,
+#     "product": 16500,
+#     "type": "pointer",
+#     "libinput": {
+#         "send_events": "enabled",
+#         "accel_speed": 0.0,
+#         "accel_profile": "adaptive",
+#         "natural_scroll": "disabled",
+#         "left_handed": "disabled",
+#         "middle_emulation": "disabled",
+#         "scroll_method": "none",
+#         "scroll_button": 274
+#     }
 }
 input "1739:0:Synaptics_TM3276-022" {
     tap                enabled
@@ -116,8 +116,8 @@ input "1739:0:Synaptics_TM3276-022" {
 
 input "2:10:TPPS/2_IBM_TrackPoint" {
     pointer_accel      0.6
-    scroll_factor      0.30
-    accel_profile      "adaptive"
+        scroll_factor      0.30
+        accel_profile      "adaptive"
 #    "libinput": {
 #      "send_events": "enabled",
 #      "accel_speed": 0.0,
@@ -132,7 +132,7 @@ input "2:10:TPPS/2_IBM_TrackPoint" {
 
 input "1133:16491:Logitech_M585/M590" {
     pointer_accel 0.8
-    accel_profile "flat"
+        accel_profile "flat"
 #  "identifier": "1133:16491:Logitech_M585\/M590",
 #     "name": "Logitech M585\/M590",
 #     "vendor": 1133,
@@ -237,7 +237,8 @@ bindsym $mod+alt+Right      resize grow   width  20 px or 20 ppt
 bindsym $mod+alt+Up         resize grow   height 20 px or 20 ppt
 bindsym $mod+alt+Down       resize shrink height 20 px or 20 ppt
 bindsym $mod+alt+Left       resize shrink width  20 px or 20 ppt
-bindsym $mod+c              move position center; resize set width 1400 height 900
+bindsym $mod+shift+c        move position center; resize set width 1400 height 900
+bindsym $mod+c              move position center
 #
 # Workspaces:
 #
