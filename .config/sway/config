@@ -1,12 +1,13 @@
 ### default float windows
-# for_window [app_id=".*konsole.*"] floating enable
-# for_window [app_id=".*konsole.*"] border none
-# for_window [app_id=".*konsole.*"] move scratchpad
-# for_window [app_id=".*konsole.*"] scratchpad show
+for_window [class="konsole"]         floating enable
+for_window [class="konsole"]         border none
+for_window [class="konsole"]         move scratchpad
+for_window [class="konsole"]         scratchpad show
 for_window [app_id="xfce4-terminal"] floating enable
 for_window [app_id="xfce4-terminal"] border none
 for_window [app_id="xfce4-terminal"] move scratchpad
 for_window [app_id="xfce4-terminal"] scratchpad show
+for_window [class="Matplotlib"]      floating enable
 
 
 ### Variables
@@ -14,9 +15,9 @@ for_window [app_id="xfce4-terminal"] scratchpad show
 # Logo key. Use Mod1 for Alt.
 set $mod Mod4
 # Home row direction keys, like vim
-set $left h
-set $down j
-set $up k
+set $left  h
+set $down  j
+set $up    k
 set $right l
 # Your preferred terminal emulator
 set $term konsole
@@ -348,7 +349,7 @@ include /etc/sway/config.d/*
 # exec --no-startup-id export GTK_IM_MODULE=ibus
 # exec --no-startup-id export XMODIFIERS="@im=ibus"
 # exec --no-startup-id export QT_IM_MODULE=ibus
-exec --no-startup-id redshift -m wayland -P -O 5200
+exec --no-startup-id redshift -m wayland -P -O 5000
 exec --no-startup-id "fcitx -r -d"
 exec --no-startup-id "/usr/bin/blueman-applet"
 
