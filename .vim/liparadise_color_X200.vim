@@ -51,7 +51,7 @@ function! My_light_theme ()
         hi Operator    guifg=#A58D2E
         hi StatusLine  guibg=#5C6773  guifg=#FFFFFF
         hi VertSplit   guifg=#CCC2C2
-        hi normal      guifg=#4B5057  guibg=#FBFBF7
+        hi normal      guifg=#3A424A  guibg=#FBFBF7
     else
         call s:My_light_theme_fallback()
     endif
