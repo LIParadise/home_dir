@@ -1,0 +1,1 @@
+../../.vim/liparadise_color_X200.vim
