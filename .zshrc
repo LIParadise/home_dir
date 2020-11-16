@@ -134,16 +134,23 @@ export VISUAL="vim"
 autoload edit-command-line
 zle -N edit-command-line
 
+alias nv="nvim"
 alias cp="cp -i"
 alias mv="mv -i"
 alias rm="rm -i"
+alias lr="ls -tr"
 alias ll="ls -alF"
 alias tmux="tmux -u" # utf-8 support
+alias socker="sudo docker"
 alias clangmake="CC=/usr/bin/clang CXX=/usr/bin/clang++ cmake"
+
+function CD(){
+    cd ${1}; cd $(pwd -P)
+}
 
 function reboot_to_windows ()
 {
-   grub_windows_entry=$(grep -i windows /boot/grub/grub.cfg | cut -d "'" -f 2)
+   grub_windows_entry=$(sudo grep -i windows /boot/grub/grub.cfg | cut -d "'" -f 2)
    sudo grub-reboot "$grub_windows_entry" && sudo reboot
 }
 
