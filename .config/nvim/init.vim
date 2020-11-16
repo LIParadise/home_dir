@@ -22,7 +22,7 @@ filetype plugin indent on    " required
 "
 runtime liparadise_coc.vim
 
-set nu ai expandtab tabstop=4 shiftwidth=4 history=3000 cursorline laststatus=2 statusline+=%<%F\ %h%m%r%=%-16.(%l,%c%V%)\ %P ignorecase smartcase showcmd t_Co=256 backspace=indent,eol,start encoding=utf-8 nocompatible ttimeoutlen=5
+set nu ai expandtab tabstop=4 shiftwidth=4 history=3000 cursorline laststatus=2 statusline+=%<%F\ %h%m%r%=%-16.(%l,%c%V%)\ %P ignorecase smartcase showcmd t_Co=256 backspace=indent,eol,start encoding=utf-8 nocompatible ttimeoutlen=5 mouse=a
 set undodir=~/.vim/.undo//
 set backupdir=~/.vim/.backup//
 set directory=~/.vim/.swp//
@@ -45,9 +45,13 @@ autocmd filetype markdown setlocal ts=2 sw=2
 vnoremap <Leader>H c__*<C-r>"*__
 vnoremap <Leader>h c__<C-r>"__
 vnoremap <Leader>a c*<C-r>"*
+" Some miscellaneous key mapping
 nnoremap <Leader>n :set nu!
+nnoremap <Leader>b :windo set scrollbind
+nnoremap <Leader>B :windo set noscrollbind
 nnoremap <C-Up> 
 nnoremap <C-Down> 
+cnoremap Q tabc
 " For opening ctag in new tab
 
 " key mappings
