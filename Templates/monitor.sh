@@ -1,9 +1,9 @@
 #!/usr/bin/env sh
-watch -n 1 "\
-   acpi -t | sed -r 's/ok, //' &&\
+watch -n 1.8 "\
+   acpi -t &&\
    printf \"\n\" &&\
    \
-   grep \"processor\|cpu MHz\" /proc/cpuinfo | rev | cut -d' ' -f 1 | rev | paste -d ' '  - - &&\
+   grep \"MHz\" /proc/cpuinfo | awk '{print \$4}' &&\
    printf \"\n\" &&\
    \
    acpi -b -i"
