@@ -10,27 +10,23 @@ myGreen='\033[0;32m'
 myHiWhite='\033[1m'
 myNoColour='\033[0m'
 
-# xrandr HDMI
-# echo "xrandr --output HDMI-2 --set \"Broadcast RGB\" \"Full\""
-# xrandr --output HDMI-2 --set "Broadcast RGB" "Full"
-
-# sometimes font settings in /etc/vconsole.conf is ignored
-# need package `terminus-font`
-setfont ter-228n
+if [ -z "${DISPLAY}" ]; then
+    setfont ter-332n
+fi
 
 # tuned-adm
 myAcAdapter=$(acpi -a | cut -d' ' -f3 | cut -d- -f1)
+sleep 0.08 # to ensure it's off or on.
 echo "myAcAdapter is ${myAcAdapter}"
 echo ""
 if [ "${myAcAdapter}" = "on" ]; then
-  /usr/sbin/tuned-adm off
+    /usr/sbin/tuned-adm off
 else
-  /usr/sbin/tuned-adm profile laptop
+    /usr/sbin/tuned-adm profile laptop-battery-powersave
 fi
-
 myTunedAdmProfile=$(tuned-adm active | awk 'NF{ print $NF }')
 case "${myTunedAdmProfile}" in
-  laptop)
+  *laptop*)
     echo -e "Power-Efficient Mode: ${myGreen}ON${myNoColour}"
     ;;
   profile.)
@@ -41,25 +37,14 @@ case "${myTunedAdmProfile}" in
     ;;
 esac
 
-echo ""
 if [ "$(command -v intel-undervolt)" ]; then
    sudo intel-undervolt apply
 else
    echo "\`intel-undervolt\` not found"
 fi
 
-# Display red shift
-#
-## myCurrentHourIn24H=$(date +%H)
-## if [ ${myCurrentHourIn24H} -ge 20 ] || [ ${myCurrentHourIn24H} -le 4 ]
-## then
-##   echo ""
-##   echo "Have a good night, ${USER}"
-##   gsettings set org.gnome.settings-daemon.plugins.color night-light-schedule-from 20.0
-##   gsettings set org.gnome.settings-daemon.plugins.color night-light-schedule-to   7.0
-## else
-##   echo ""
-##   echo "Have a nice day, ${USER}"
-##   gsettings set org.gnome.settings-daemon.plugins.color night-light-schedule-from 0.0
-##   gsettings set org.gnome.settings-daemon.plugins.color night-light-schedule-to   23.983333333333331
-## fi
+# libinput gesture support in swaywm
+## Need aur package "libinput-gestures-setup"
+# if [ "$(libinput-gestures-setup status | grep -i run | cut -d' ' -f3)" = "not" ]; then
+#   libinput-gestures-setup restart
+# fi
