@@ -142,10 +142,11 @@ alias lr="ls -tr"
 alias ll="ls -alF"
 alias tmux="tmux -u" # utf-8 support
 alias kl="keychain -l"
+alias ks="source ${HOME}/.keychain/${HOST}-sh"
 alias socker="sudo docker"
 alias clangmake="CC=/usr/bin/clang CXX=/usr/bin/clang++ cmake"
 
-source ${HOME}/.keychain/DESKTOP-IMABPC4-sh
+ks
 
 function CD(){
     cd ${1}; cd $(pwd -P)
