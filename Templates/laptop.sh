@@ -15,11 +15,11 @@ if [ -z "${DISPLAY}" ]; then
 fi
 
 # tuned-adm
-myAcAdapter=$(acpi -a | cut -d' ' -f3 | cut -d- -f1)
+my_ac_adapter=$(acpi -a | cut -d' ' -f3 | cut -d- -f1)
 sleep 0.08 # to ensure it's off or on.
-echo "myAcAdapter is ${myAcAdapter}"
+echo "my_ac_adapter is ${my_ac_adapter}"
 echo ""
-if [ "${myAcAdapter}" = "on" ]; then
+if [ "${my_ac_adapter}" = "on" ]; then
     /usr/sbin/tuned-adm off
 else
     /usr/sbin/tuned-adm profile laptop-battery-powersave
