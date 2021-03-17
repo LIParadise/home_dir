@@ -1,0 +1,1 @@
+pkill -o ibus-daemon; /usr/bin/ibus-daemon --replace --xim --panel disable
