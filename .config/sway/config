@@ -64,9 +64,12 @@ exec swayidle -w \
 #
 # Example configuration:
 #
-         input "1:1:AT_Translated_Set_2_keyboard" {
-             xkb_options ctrl:nocaps
-         }
+input "1:1:AT_Translated_Set_2_keyboard" {
+    xkb_options ctrl:swapcaps
+}
+input "1241:6168:USB_Keyboard" {
+    xkb_options ctrl:swapcaps
+}
 input "1133:16500:Logitech_G304" {
     accel_profile flat
         pointer_accel 0.53
@@ -175,6 +178,7 @@ bindsym $mod+t border toggle
 #
 # Start a terminal
 # bindsym $mod+Return exec $term
+bindsym Control+Alt+r exec alacritty
 bindsym Control+Alt+t exec konsole
 # bindsym Control+Alt+g exec gnome-terminal
 bindsym Control+Alt+g exec xfce4-terminal
@@ -183,7 +187,7 @@ bindsym Control+Alt+g exec xfce4-terminal
 bindsym $mod+Shift+q kill
 
 # Start your launcher
-bindsym $mod+d exec wofi
+bindsym $mod+d exec rofi -show run -modi run
 
 # Sometimes ibus engine got screwed; reset to en input
 # bindsym $mod+Shift+i exec ibus engine xkb:us::eng
@@ -337,7 +341,7 @@ bar {
 
 # When the status_command prints a new line to stdout, swaybar updates.
 # The default just shows the current date and time.
-    font pango:source code pro 15
+    font pango:source code pro 17
         status_command i3blocks
         position bottom
         mode hide
