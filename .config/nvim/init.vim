@@ -51,6 +51,8 @@ nnoremap <Leader>b :windo set scrollbind
 nnoremap <Leader>B :windo set noscrollbind
 nnoremap <C-Up> 
 nnoremap <C-Down> 
+inoremap  <C-w>
+cnoremap  <C-w>
 cnoremap Q tabc
 " For opening ctag in new tab
 
