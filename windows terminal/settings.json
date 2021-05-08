@@ -42,8 +42,8 @@
             "source": "Windows.Terminal.Wsl",
             "historySize": 10000,
             "commandline": "wsl ~",
-            "fontFace": "Cascadia Mono",
-            "acrylicOpacity": 0.8,
+            "fontFace": "SF Mono",
+            "acrylicOpacity": 0.83,
             "useAcrylic": true,
             "cursorShape": "vintage",
             "cursorHeight": 40,
@@ -102,7 +102,11 @@
       // - "split": "auto" makes this pane open in the direction that provides the most surface area.
       // - "splitMode": "duplicate" makes the new pane use the focused pane's profile.
       // To learn more about panes, visit https://aka.ms/terminal-panes
-      { "command": { "action": "splitPane", "split": "auto", "splitMode": "duplicate" }, "keys": "alt+shift+d" }
+      { "command": { "action": "splitPane", "split": "auto", "splitMode": "duplicate" }, "keys": "alt+shift+d" },
+
+      // Shift + PgUp/PgDn to scroll like any other sane terminal settings
+      { "command": { "action": "scrollUpPage"  }, "keys": "shift+pageup"   },
+      { "command": { "action": "scrollDownPage"}, "keys": "shift+pagedown" }
    ]
 }
 
