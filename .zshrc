@@ -143,6 +143,8 @@ alias ll="ls -alF"
 alias tmux="tmux -u" # utf-8 support
 alias kl="keychain -l"
 alias ks="source ${HOME}/.keychain/${HOST}-sh"
+alias jkl="jupyter kernelspec list"
+alias jku="jupyter kernelspec uninstall"
 alias socker="sudo docker"
 alias clangmake="CC=/usr/bin/clang CXX=/usr/bin/clang++ cmake"
 alias rsavp="rsync -av --progress"
