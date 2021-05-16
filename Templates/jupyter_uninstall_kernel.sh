@@ -7,7 +7,7 @@ ask_user_or_exit(){
         exit 1
     fi
     while true; do
-        echo "You're sure you want this?"
+        echo "The script asks the following:"
         read -r -p "$1 " yes_or_no
         case $yes_or_no in
             [Yy]* ) break;;
@@ -22,7 +22,7 @@ if [ "$#" -ne 1 ]; then
     exit 1
 fi
 
-have_kernel="$(jupyter kernelspec list | grep "$1")"
+have_kernel="$(jupyter kernelspec list | grep -E "^[[:space:]]*\b$1\b")"
 if [ "$have_kernel" = "" ]; then
     echo "No \"$1\" kernel found in jupyter. Abort."
     exit 1
