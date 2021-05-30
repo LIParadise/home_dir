@@ -1,0 +1,10 @@
+{
+    "bf": 4,
+    "bitrate": 9000,
+    "gpu": 0,
+    "keyint_sec": 1,
+    "lookahead": true,
+    "max_bitrate": 20000,
+    "preset": "mq",
+    "rate_control": "VBR"
+}
