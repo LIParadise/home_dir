@@ -75,13 +75,15 @@ function! My_obsidian_theme ()
     if MySetAndReturnTermguicolors () == 1
         let g:ayucolor="dark"
         colorscheme ayu
-        hi LineNr      ctermfg=130    guifg=#38414A
-        hi SpecialKey  ctermfg=4      guifg=#6990B5
-        hi StatusLine  guifg=#14191F  guibg=#E6E1CF 
-        hi VertSplit   guifg=#354659
-        hi Normal      ctermfg=255 ctermbg=234 guifg=NONE guibg=NONE
-        hi cursorline  guibg=NONE  gui=underline term=underline
-        hi cursorlinenr guibg=NONE
+        hi LineNr       ctermfg=130    guifg=#0A1009
+        hi SpecialKey   ctermfg=4      guifg=#6990B5
+        hi StatusLine   guifg=#14191F  guibg=#E6E1CF 
+        hi VertSplit    guifg=#354659
+        " hi Normal       ctermfg=255 ctermbg=234 guifg=NONE guibg=NONE
+        hi Normal       ctermbg=NONE   guibg=NONE guifg=#E8EAD0
+        hi NonText      ctermbg=NONE   guibg=NONE
+        hi cursorline   guibg=NONE     gui=NONE ctermbg=NONE
+        hi cursorlinenr guibg=NONE     guifg=#F4B723
     else
         call s:My_obsidian_theme_fallback()
     endif
