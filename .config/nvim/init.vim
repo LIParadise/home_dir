@@ -10,6 +10,7 @@ Plug 'neoclide/coc.nvim', {'branch': 'release'}
 Plug 'Yggdroot/indentLine'
 Plug 'ayu-theme/ayu-vim'
 Plug 'webdevel/tabulous'
+Plug 'rust-lang/rust.vim'
 call plug#end()
 " All of your Plugins must be added before the following line
 filetype plugin indent on    " required
@@ -41,10 +42,6 @@ autocmd filetype cpp setlocal cindent cino=j1,(s,ws,Ws,N-s,m1
 autocmd filetype markdown setlocal ts=2 sw=2
 
 " Some mapleader Settings
-" For quick markdown highlight
-vnoremap <Leader>H c__*<C-r>"*__
-vnoremap <Leader>h c__<C-r>"__
-vnoremap <Leader>a c*<C-r>"*
 " Some miscellaneous key mapping
 nnoremap <Leader>n :set nu!
 nnoremap <Leader>b :windo set scrollbind
