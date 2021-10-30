@@ -1,0 +1,11 @@
+# Bus 001 Device 010: ID 0853:0152 Topre Corporation REALFORCE 87 US
+# Topre Realforce R2 87 US for Mac
+# evemu-describe: "I: 0003 0853 0152 0111"
+evdev:input:b0003v0853p0152e0111*
+ KEYBOARD_KEY_70068=sysrq      # F13             -> SysRq/PrSc
+ KEYBOARD_KEY_70069=rightctrl  # F14             -> Right Control
+ KEYBOARD_KEY_7006a=insert     # F15             -> Insert
+ KEYBOARD_KEY_700e2=leftmeta   # Left "Option"   -> Left Meta
+ KEYBOARD_KEY_700e3=leftalt    # Left "Command"  -> Left Alt
+ KEYBOARD_KEY_700e6=rightmeta  # Right "Option"  -> Right Meta
+ KEYBOARD_KEY_700e7=rightalt   # Right "Command" -> Right Alt
