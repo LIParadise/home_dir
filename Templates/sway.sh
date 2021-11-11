@@ -1,5 +1,5 @@
 #!/usr/bin/env dash
-if [ -z "$DISPLAY" ] && [ "$(tty)" = "/dev/tty1" ] ; then
+if [ -z "$DISPLAY" ] && [ "$(tty)" = "/dev/tty3" ] ; then
    export XMODIFIERS="@im=fcitx"
    export GTK_IM_MODULE=fcitx
    export QT_IM_MODULE=fcitx

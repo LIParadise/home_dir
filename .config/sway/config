@@ -1,12 +1,4 @@
 ### default float windows
-for_window [class="konsole"]         floating enable
-for_window [class="konsole"]         border none
-for_window [class="konsole"]         move scratchpad
-for_window [class="konsole"]         scratchpad show
-for_window [app_id="xfce4-terminal"] floating enable
-for_window [app_id="xfce4-terminal"] border none
-for_window [app_id="xfce4-terminal"] move scratchpad
-for_window [app_id="xfce4-terminal"] scratchpad show
 for_window [class="Matplotlib"]      floating enable
 
 
@@ -20,19 +12,17 @@ set $down  j
 set $up    k
 set $right l
 # Your preferred terminal emulator
-set $term konsole
+set $term alacritty
 # Your preferred application launcher
 # Note: it's recommended that you pass the final command to sway
-set $menu dmenu_path | dmenu | xargs swaymsg exec --
+# set $menu dmenu_path | dmenu | xargs swaymsg exec --
 
 ### Output configuration
 #
 # Default wallpaper (more resolutions are available in /usr/share/backgrounds/sway/)
-# output * bg /usr/share/backgrounds/sway/Sway_Wallpaper_Blue_1920x1080.png fill
-output * bg /usr/share/backgrounds/sway/d3h7ofnt73621.png fill
-font pango:cascadia code 15
-# output LVDS-1 pos 0 768 res 1280x720
-# output VGA-1 pos 0 0 res 1366x768
+output * bg /mnt/sdxc_evo_plus/Pictures/Hololive/gura 20201118.png fill
+font pango:cascadia code 16
+output eDP-1 pos 0 0
 #
 # Example configuration:
 #
@@ -45,7 +35,7 @@ font pango:cascadia code 15
 # Example configuration:
 #
 # set $lock_bg /usr/share/backgrounds/sway/d3h7ofnt73621\ black.png
-set $lock_bg ~/Pictures/hololive/OeTVH1L.png
+set $lock_bg /mnt/sdxc_evo_plus/Pictures/Hololive/EmimlhQVcAAgitz_copy_AmeSame_Buying_Bread.png
 
 bindsym $mod+End exec swaylock -i $lock_bg
 
@@ -70,9 +60,12 @@ input "1:1:AT_Translated_Set_2_keyboard" {
 input "1241:6168:USB_Keyboard" {
     xkb_options ctrl:swapcaps
 }
+input "2131:338:Topre_REALFORCE_87_US" {
+    xkb_options ctrl:swapcaps
+}
 input "1133:16500:Logitech_G304" {
     accel_profile flat
-        pointer_accel 0.53
+        pointer_accel 0.44
 # "identifier": "1133:16500:Logitech_G304",
 #     "name": "Logitech G304",
 #     "vendor": 1133,
@@ -187,7 +180,7 @@ bindsym Control+Alt+g exec xfce4-terminal
 bindsym $mod+Shift+q kill
 
 # Start your launcher
-bindsym $mod+d exec rofi -show run -modi run
+bindsym $mod+d exec wofi -S drun
 
 # Sometimes ibus engine got screwed; reset to en input
 # bindsym $mod+Shift+i exec ibus engine xkb:us::eng
@@ -281,6 +274,7 @@ bindsym $mod+b splitv
 bindsym $mod+v splith
 
 # Switch the current container between different layout styles
+workspace_layout tabbed
 bindsym $mod+s layout stacking
 bindsym $mod+w layout tabbed
 bindsym $mod+x layout toggle split
@@ -292,7 +286,7 @@ bindsym $mod+f fullscreen
 bindsym $mod+Shift+space floating toggle
 
 # Swap focus between the tiling area and the floating area
-bindsym $mod+space focus mode_toggle
+bindsym Alt+space focus mode_toggle
 
 # Move focus to the parent container
 bindsym $mod+a focus parent
@@ -353,9 +347,9 @@ include /etc/sway/config.d/*
 # exec --no-startup-id export GTK_IM_MODULE=ibus
 # exec --no-startup-id export XMODIFIERS="@im=ibus"
 # exec --no-startup-id export QT_IM_MODULE=ibus
-exec --no-startup-id redshift -m wayland -P -O 5000
-exec --no-startup-id "fcitx -r -d"
+exec --no-startup-id redshift -m wayland -P -O 3000
+exec --no-startup-id "fcitx5 -r -d"
 exec --no-startup-id "/usr/bin/blueman-applet"
 
 # remove xwayland support
-# xwayland disable
+xwayland disable
