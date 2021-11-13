@@ -1,0 +1,13 @@
+[Unit]
+Description=Apply suitable tuned-adm profile
+After=dbus.socket tuned.service
+Requires=dbus.socket tuned.service
+
+[Service]
+Type=oneshot
+StandardOutput=journal
+ExecStart=%h/.config/systemd/user/apply_tuned.sh
+
+[Install]
+WantedBy=default.target
+
