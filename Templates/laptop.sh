@@ -20,7 +20,7 @@ case "${myTunedAdmProfile}" in
     echo -e "${declaration}${myGreen}${myTunedAdmProfile}${myNoColour}"
     ;;
   "No current active profile.")
-    echo -e "${declaration}${myRed}OFF${myNoColour}"
+    echo -e "${declaration}${myRed}${myTunedAdmProfile}${myNoColour}"
     ;;
   *)
     echo -e "${declaration}${myHiWhite}${myTunedAdmProfile}${myNoColour}"
