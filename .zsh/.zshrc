@@ -18,11 +18,11 @@ source /etc/bash_completion.d/virtualenvwrapper
 # export PATH=$HOME/bin:/usr/local/bin:$PATH
 
 # Path to your oh-my-zsh installation.
-export ZSH="/home/liparadise/.oh-my-zsh"
-export ZDOTDIR="/home/liparadise/.zsh"
+export ZSH="${HOME}/.oh-my-zsh"
+export ZDOTDIR="${HOME}/.zsh"
 
 # Path for golang
-export GOPATH=$HOME/go
+# export GOPATH=$HOME/go
 
 DISABLE_AUTO_UPDATE="true"
 
@@ -130,7 +130,7 @@ source $ZSH/oh-my-zsh.sh
 # LIParadise Modifications
 
 ## edit line in vim
-export VISUAL="vim"
+export VISUAL="nvim"
 autoload edit-command-line
 zle -N edit-command-line
 

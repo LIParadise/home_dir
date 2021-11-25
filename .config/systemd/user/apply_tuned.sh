@@ -6,7 +6,7 @@ sleep 0.2 # to ensure it's off or on.
 echo "my_ac_adapter is ${my_ac_adapter}"
 echo ""
 if [ "${my_ac_adapter}" = "on" ]; then
-    /usr/sbin/tuned-adm off
+    /usr/sbin/tuned-adm profile throughput-performance
 else
     /usr/sbin/tuned-adm profile laptop-battery-powersave
 fi
