@@ -18,7 +18,7 @@ set $term alacritty
 ### Output configuration
 #
 # Default wallpaper (more resolutions are available in /usr/share/backgrounds/sway/)
-# output * bg /mnt/sdxc_evo_plus/Pictures/Hololive/gura 20201118.png fill
+output * bg ~/Pictures/Wall/Ep84Qb9UwAA10zp.jpg fit
 font pango:cascadia code 16
 # output eDP-1 pos 0 0
 #
@@ -33,7 +33,7 @@ font pango:cascadia code 16
 # Example configuration:
 #
 # set $lock_bg /usr/share/backgrounds/sway/d3h7ofnt73621\ black.png
-# set $lock_bg /mnt/sdxc_evo_plus/Pictures/Hololive/EmimlhQVcAAgitz_copy_AmeSame_Buying_Bread.png
+set $lock_bg ~/Pictures/Wall/7JHxy2UO_400x400.jpg
 
 bindsym $mod+End exec swaylock -i $lock_bg
 
