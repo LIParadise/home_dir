@@ -56,10 +56,10 @@ command=~/.local/bin/statusbar/volume
 interval=once
 signal=10
 
-[brightness]
-command=~/.local/bin/statusbar/brightness
-interval=once
-signal=10
+# [brightness]
+# command=~/.local/bin/statusbar/brightness
+# interval=once
+# signal=10
 
 # [disk]
 # interval=60
@@ -69,7 +69,7 @@ signal=10
 # interval=60
 # command=~/.local/bin/statusbar/disk 🏠
 [date]
-command=date
+command=date +'%Y %b %d %a %R'
 interval=5
 
 [battery]
