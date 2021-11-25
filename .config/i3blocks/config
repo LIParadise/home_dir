@@ -47,33 +47,33 @@ interval=5
 label=💻
 
 [cpu_usage]
-command=/home/liparadise/.local/bin/statusbar/cpu_usage
+command=~/.local/bin/statusbar/cpu_usage
 interval=5
 label=
 
 [volume]
-command=/home/liparadise/.local/bin/statusbar/volume
+command=~/.local/bin/statusbar/volume
 interval=once
 signal=10
 
 [brightness]
-command=/home/liparadise/.local/bin/statusbar/brightness
+command=~/.local/bin/statusbar/brightness
 interval=once
 signal=10
 
 # [disk]
 # interval=60
-# command=/home/liparadise/.local/bin/statusbar/disk /
+# command=~/.local/bin/statusbar/disk /
 
 # [disk]
 # interval=60
-# command=/home/liparadise/.local/bin/statusbar/disk 🏠
+# command=~/.local/bin/statusbar/disk 🏠
 [date]
 command=date
 interval=5
 
 [battery]
-command=/home/liparadise/.local/bin/statusbar/battery BAT0 BAT1
+command=~/.local/bin/statusbar/battery BAT0 BAT1
 interval=5
 
 # [clock]

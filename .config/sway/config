@@ -1,6 +1,4 @@
 ### default float windows
-for_window [class="Matplotlib"]      floating enable
-
 
 ### Variables
 #
@@ -20,9 +18,9 @@ set $term alacritty
 ### Output configuration
 #
 # Default wallpaper (more resolutions are available in /usr/share/backgrounds/sway/)
-output * bg /mnt/sdxc_evo_plus/Pictures/Hololive/gura 20201118.png fill
+# output * bg /mnt/sdxc_evo_plus/Pictures/Hololive/gura 20201118.png fill
 font pango:cascadia code 16
-output eDP-1 pos 0 0
+# output eDP-1 pos 0 0
 #
 # Example configuration:
 #
@@ -35,7 +33,7 @@ output eDP-1 pos 0 0
 # Example configuration:
 #
 # set $lock_bg /usr/share/backgrounds/sway/d3h7ofnt73621\ black.png
-set $lock_bg /mnt/sdxc_evo_plus/Pictures/Hololive/EmimlhQVcAAgitz_copy_AmeSame_Buying_Bread.png
+# set $lock_bg /mnt/sdxc_evo_plus/Pictures/Hololive/EmimlhQVcAAgitz_copy_AmeSame_Buying_Bread.png
 
 bindsym $mod+End exec swaylock -i $lock_bg
 
@@ -112,7 +110,8 @@ input "1739:0:Synaptics_TM3276-022" {
 }
 
 input "2:10:TPPS/2_IBM_TrackPoint" {
-    pointer_accel      0.6
+# ThinkPad X200 TrackPoint
+    pointer_accel      0.17
         scroll_factor      0.30
         accel_profile      "adaptive"
 #    "libinput": {
@@ -171,8 +170,8 @@ bindsym $mod+t border toggle
 #
 # Start a terminal
 # bindsym $mod+Return exec $term
-bindsym Control+Alt+r exec alacritty
-bindsym Control+Alt+t exec konsole
+bindsym Control+Alt+r exec LIBGL_ALWAYS_SOFTWARE=1 alacritty
+# bindsym Control+Alt+t exec konsole
 # bindsym Control+Alt+g exec gnome-terminal
 bindsym Control+Alt+g exec xfce4-terminal
 
@@ -349,7 +348,7 @@ include /etc/sway/config.d/*
 # exec --no-startup-id export QT_IM_MODULE=ibus
 exec --no-startup-id redshift -m wayland -P -O 3000
 exec --no-startup-id "fcitx5 -r -d"
-exec --no-startup-id "/usr/bin/blueman-applet"
+# exec --no-startup-id "/usr/bin/blueman-applet"
 
 # remove xwayland support
 xwayland disable
