@@ -1,32 +1,28 @@
-# Default config for sway
-#
-# Copy this to ~/.config/sway/config and edit it to your liking.
-#
-# Read `man 5 sway` for a complete reference.
+### default float windows
+for_window [class="Matplotlib"]      floating enable
+
 
 ### Variables
 #
 # Logo key. Use Mod1 for Alt.
 set $mod Mod4
 # Home row direction keys, like vim
-set $left h
-set $down j
-set $up k
+set $left  h
+set $down  j
+set $up    k
 set $right l
 # Your preferred terminal emulator
-set $term xfce4-terminal
+set $term alacritty
 # Your preferred application launcher
 # Note: it's recommended that you pass the final command to sway
-set $menu dmenu_path | dmenu | xargs swaymsg exec --
+# set $menu dmenu_path | dmenu | xargs swaymsg exec --
 
 ### Output configuration
 #
 # Default wallpaper (more resolutions are available in /usr/share/backgrounds/sway/)
-# output * bg /usr/share/backgrounds/sway/Sway_Wallpaper_Blue_1920x1080.png fill
-output * bg /usr/share/backgrounds/sway/d3h7ofnt73621.png fill
-font pango:cascadia code 15
-# output LVDS-1 pos 0 768 res 1280x720
-# output VGA-1 pos 0 0 res 1366x768
+output * bg /mnt/sdxc_evo_plus/Pictures/Hololive/gura 20201118.png fill
+font pango:cascadia code 16
+output eDP-1 pos 0 0
 #
 # Example configuration:
 #
@@ -38,16 +34,17 @@ font pango:cascadia code 15
 #
 # Example configuration:
 #
-set $lock_bg /usr/share/backgrounds/sway/d3h7ofnt73621\ black.png
+# set $lock_bg /usr/share/backgrounds/sway/d3h7ofnt73621\ black.png
+set $lock_bg /mnt/sdxc_evo_plus/Pictures/Hololive/EmimlhQVcAAgitz_copy_AmeSame_Buying_Bread.png
 
 bindsym $mod+End exec swaylock -i $lock_bg
 
 exec swayidle -w \
-       timeout 1200 'swaylock -f -c 000000 -i $lock_bg' \
-       timeout 1800 'swaymsg "output * dpms off"' \
-       timeout 25 'if pgrep -x swaylock; then swaymsg "output * dpms off"; fi' \
-       resume 'swaymsg "output * dpms on"' \
-       before-sleep 'swaylock -f -c 000000 -i $lock_bg'
+         timeout 1200 'swaylock -f -c 000000 -i $lock_bg' \
+         timeout 1800 'swaymsg "output * dpms off"' \
+         timeout 5 'if pgrep -x swaylock; then swaymsg "output * dpms off"; fi' \
+         resume 'swaymsg "output * dpms on"' \
+         before-sleep 'swaylock -f -c 000000 -i $lock_bg'
 #
 # This will lock your screen after 300 seconds of inactivity, then turn off
 # your displays after another 300 seconds, and turn your screens back on when
@@ -57,9 +54,100 @@ exec swayidle -w \
 #
 # Example configuration:
 #
-       input "1:1:AT_Translated_Set_2_keyboard" {
-         xkb_options ctrl:nocaps
-       }
+input "1:1:AT_Translated_Set_2_keyboard" {
+    xkb_options ctrl:swapcaps
+}
+input "1241:6168:USB_Keyboard" {
+    xkb_options ctrl:swapcaps
+}
+input "2131:338:Topre_REALFORCE_87_US" {
+    xkb_options ctrl:swapcaps
+}
+input "1133:16500:Logitech_G304" {
+    accel_profile flat
+        pointer_accel 0.44
+# "identifier": "1133:16500:Logitech_G304",
+#     "name": "Logitech G304",
+#     "vendor": 1133,
+#     "product": 16500,
+#     "type": "pointer",
+#     "libinput": {
+#         "send_events": "enabled",
+#         "accel_speed": 0.0,
+#         "accel_profile": "adaptive",
+#         "natural_scroll": "disabled",
+#         "left_handed": "disabled",
+#         "middle_emulation": "disabled",
+#         "scroll_method": "none",
+#         "scroll_button": 274
+#     }
+}
+input "1739:0:Synaptics_TM3276-022" {
+    tap                enabled
+        accel_profile      flat
+        pointer_accel      0.9
+        natural_scroll     enabled
+        click_method       button_areas
+        scroll_method      two_finger
+        scroll_factor      0.25
+#      "identifier": "1739:0:Synaptics_TM3276-022",
+#      "name": "Synaptics TM3276-022",
+#      "vendor": 1739,
+#      "product": 0,
+#      "type": "touchpad",
+#      "libinput": {
+#      "send_events": "enabled",
+#      "tap": "enabled",
+#      "tap_button_map": "lrm",
+#      "tap_drag": "enabled",
+#      "tap_drag_lock": "disabled",
+#      "accel_speed": 0.0,
+#      "accel_profile": "none",
+#      "natural_scroll": "enabled",
+#      "left_handed": "disabled",
+#      "click_method": "button_areas",
+#      "middle_emulation": "disabled",
+#      "scroll_method": "two_finger",
+#      "dwt": "enabled"
+}
+
+input "2:10:TPPS/2_IBM_TrackPoint" {
+# ThinkPad X200 TrackPoint
+    pointer_accel      0.17
+        scroll_factor      0.30
+        accel_profile      "adaptive"
+#    "libinput": {
+#      "send_events": "enabled",
+#      "accel_speed": 0.0,
+#      "accel_profile": "adaptive",
+#      "natural_scroll": "disabled",
+#      "left_handed": "disabled",
+#      "middle_emulation": "disabled",
+#      "scroll_method": "on_button_down",
+#      "scroll_button": 274
+#    }
+}
+
+input "1133:16491:Logitech_M585/M590" {
+    pointer_accel 0.8
+        accel_profile "flat"
+#  "identifier": "1133:16491:Logitech_M585\/M590",
+#     "name": "Logitech M585\/M590",
+#     "vendor": 1133,
+#     "product": 16491,
+#     "type": "pointer",
+#     "libinput": {
+#        "send_events": "enabled",
+#        "accel_speed": 0.0,
+#        "accel_profile": "adaptive",
+#        "natural_scroll": "disabled",
+#        "left_handed": "disabled",
+#        "middle_emulation": "disabled",
+#        "scroll_method": "none",
+#        "scroll_button": 274
+#     }
+}
+
 #
 # You can get the names of your inputs by running: swaymsg -t get_inputs
 # Read `man 5 sway-input` for more information about this section.
@@ -84,17 +172,19 @@ bindsym $mod+t border toggle
 #
 # Start a terminal
 # bindsym $mod+Return exec $term
-bindsym Control+Alt+t exec xfce4-terminal
-bindsym Control+Alt+g exec gnome-terminal
+bindsym Control+Alt+r exec alacritty
+bindsym Control+Alt+t exec konsole
+# bindsym Control+Alt+g exec gnome-terminal
+bindsym Control+Alt+g exec xfce4-terminal
 
 # Kill focused window
 bindsym $mod+Shift+q kill
 
 # Start your launcher
-bindsym $mod+d exec wofi
+bindsym $mod+d exec wofi -S drun
 
 # Sometimes ibus engine got screwed; reset to en input
-bindsym $mod+Shift+i exec ibus engine xkb:us::eng
+# bindsym $mod+Shift+i exec ibus engine xkb:us::eng
 
 # Screenshot
 bindsym $mod+p exec grim -t png "${HOME}/Pictures/Screenshots/$(date +%+4Y%m%d-%H%M%S).png"
@@ -114,31 +204,40 @@ floating_modifier $mod normal
 bindsym $mod+Shift+c reload
 
 # Exit sway (logs you out of your Wayland session)
-bindsym $mod+Shift+e exec swaynag -t warning -m 'You pressed the exit shortcut. Do you really want to exit sway? This will end your Wayland session.' -b 'Yes, exit sway' 'swaymsg exit'
+bindsym $mod+Shift+e exec swaynag -t warning -m 'Exit Sway?' -b 'Yes, exit sway' 'swaymsg exit'
 #
 # Moving around:
 #
 # Move your focus around
-bindsym $mod+$left focus left
-bindsym $mod+$down focus down
-bindsym $mod+$up focus up
+bindsym $mod+$left  focus left
+bindsym $mod+$down  focus down
+bindsym $mod+$up    focus up
 bindsym $mod+$right focus right
 # Or use $mod+[up|down|left|right]
-bindsym $mod+Left focus left
-bindsym $mod+Down focus down
-bindsym $mod+Up focus up
-bindsym $mod+Right focus right
+bindsym $mod+Left   focus left
+bindsym $mod+Down   focus down
+bindsym $mod+Up     focus up
+bindsym $mod+Right  focus right
 
 # Move the focused window with the same, but add Shift
-bindsym $mod+Shift+$left move left
-bindsym $mod+Shift+$down move down
-bindsym $mod+Shift+$up move up
-bindsym $mod+Shift+$right move right
+bindsym $mod+Shift+$left    move left
+bindsym $mod+Shift+$down    move down
+bindsym $mod+Shift+$up      move up
+bindsym $mod+Shift+$right   move right
 # Ditto, with arrow keys
-bindsym $mod+Shift+Left move left
-bindsym $mod+Shift+Down move down
-bindsym $mod+Shift+Up move up
-bindsym $mod+Shift+Right move right
+bindsym $mod+Shift+Left     move left
+bindsym $mod+Shift+Down     move down
+bindsym $mod+Shift+Up       move up
+bindsym $mod+Shift+Right    move right
+# Resizing windows in i3 using keyboard only
+# https://unix.stackexchange.com/q/255344/150597
+# Resizing by 1
+bindsym $mod+alt+Right      resize grow   width  20 px or 20 ppt
+bindsym $mod+alt+Up         resize grow   height 20 px or 20 ppt
+bindsym $mod+alt+Down       resize shrink height 20 px or 20 ppt
+bindsym $mod+alt+Left       resize shrink width  20 px or 20 ppt
+bindsym $mod+alt+c          move position center; resize set width 1400 height 900
+bindsym $mod+c              move position center
 #
 # Workspaces:
 #
@@ -172,10 +271,11 @@ bindsym $mod+Shift+0 move container to workspace 10
 # You can "split" the current object of your focus with
 # $mod+b or $mod+v, for horizontal and vertical splits
 # respectively.
-bindsym $mod+b splith
-bindsym $mod+v splitv
+bindsym $mod+b splitv
+bindsym $mod+v splith
 
 # Switch the current container between different layout styles
+workspace_layout tabbed
 bindsym $mod+s layout stacking
 bindsym $mod+w layout tabbed
 bindsym $mod+x layout toggle split
@@ -187,7 +287,7 @@ bindsym $mod+f fullscreen
 bindsym $mod+Shift+space floating toggle
 
 # Swap focus between the tiling area and the floating area
-bindsym $mod+space focus mode_toggle
+bindsym Alt+space focus mode_toggle
 
 # Move focus to the parent container
 bindsym $mod+a focus parent
@@ -211,20 +311,20 @@ mode "resize" {
 # right will grow the containers width
 # up will shrink the containers height
 # down will grow the containers height
-  bindsym $left resize shrink width 10px
-    bindsym $down resize grow height 10px
-    bindsym $up resize shrink height 10px
-    bindsym $right resize grow width 10px
+    bindsym   $left    resize shrink   width  20px
+        bindsym   $down    resize shrink   height 20px
+        bindsym   $up      resize grow     height 20px
+        bindsym   $right   resize grow     width  20px
 
 # Ditto, with arrow keys
-    bindsym Left resize shrink width 10px
-    bindsym Down resize grow height 10px
-    bindsym Up resize shrink height 10px
-    bindsym Right resize grow width 10px
+        bindsym   Left     resize shrink   width  20px
+        bindsym   Down     resize shrink   height 20px
+        bindsym   Up       resize grow     height 20px
+        bindsym   Right    resize grow     width  20px
 
 # Return to default mode
-    bindsym Return mode "default"
-    bindsym Escape mode "default"
+        bindsym   Return   mode "default"
+        bindsym   Escape   mode "default"
 }
 bindsym $mod+r mode "resize"
 
@@ -236,10 +336,10 @@ bar {
 
 # When the status_command prints a new line to stdout, swaybar updates.
 # The default just shows the current date and time.
-  font pango:source code pro 15
-    status_command i3blocks
-    position top
-    mode dock
+    font pango:source code pro 17
+        status_command i3blocks
+        position bottom
+        mode hide
 }
 
 include /etc/sway/config.d/*
@@ -248,9 +348,9 @@ include /etc/sway/config.d/*
 # exec --no-startup-id export GTK_IM_MODULE=ibus
 # exec --no-startup-id export XMODIFIERS="@im=ibus"
 # exec --no-startup-id export QT_IM_MODULE=ibus
-exec --no-startup-id redshift
-exec --no-startup-id "fcitx -r -d"
+exec --no-startup-id redshift -m wayland -P -O 3000
+exec --no-startup-id "fcitx5 -r -d"
 exec --no-startup-id "/usr/bin/blueman-applet"
 
 # remove xwayland support
-# xwayland disable
+xwayland disable
