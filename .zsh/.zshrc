@@ -14,8 +14,9 @@ source /etc/bash_completion.d/virtualenvwrapper
 # end of NTUOSC ml environmental variables
 #
 
-# If you come from bash you might have to change your $PATH.
-# export PATH=$HOME/bin:/usr/local/bin:$PATH
+# typeset -U PATH path
+# path=("/usr/local/bin" "$HOME/.cargo/bin" "$path[@]")
+# export PATH
 
 # Path to your oh-my-zsh installation.
 export ZSH="${HOME}/.oh-my-zsh"
