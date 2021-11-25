@@ -7,7 +7,6 @@ simple_git_update(){
 
 rustup self update && rustup update &
 
-omz update
 cd ${HOME}/.oh-my-zsh/custom/plugins/zsh-syntax-highlighting
 simple_git_update &
 cd ${HOME}/.oh-my-zsh/custom/plugins/zsh-autosuggestions
