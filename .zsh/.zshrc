@@ -10,13 +10,13 @@ autoload -U +X compinit && compinit
 # NTUOSC ml environmental variables
 export WORKON_HOME=$HOME/.virtualenvs
 export VIRTUALENVWRAPPER_PYTHON=/usr/bin/python3
-source /etc/bash_completion.d/virtualenvwrapper
+source /usr/bin/virtualenvwrapper.sh
 # end of NTUOSC ml environmental variables
 #
 
-# typeset -U PATH path
-# path=("/usr/local/bin" "$HOME/.cargo/bin" "$path[@]")
-# export PATH
+path=("/usr/local/bin" "$HOME/.cargo/bin" "$path[@]")
+typeset -U PATH path
+export PATH
 
 # Path to your oh-my-zsh installation.
 export ZSH="${HOME}/.oh-my-zsh"
