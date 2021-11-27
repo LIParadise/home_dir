@@ -35,7 +35,7 @@ font pango:cascadia code 16
 # set $lock_bg /usr/share/backgrounds/sway/d3h7ofnt73621\ black.png
 set $lock_bg ~/Pictures/Wall/7JHxy2UO_400x400.jpg
 
-bindsym $mod+End exec swaylock -i $lock_bg
+bindsym $mod+Escape exec swaylock -i $lock_bg
 
 exec swayidle -w \
          timeout 1200 'swaylock -f -c 000000 -i $lock_bg' \
@@ -104,6 +104,9 @@ bindsym $mod+Shift+e exec swaynag -t warning -m 'Exit Sway?' -b 'Yes, exit sway'
 #
 # Moving around:
 #
+# What's current focused window?
+# Depend on `flashfocus`
+bindsym $mod+tab exec --no-startup-id flash_window
 # Move your focus around
 bindsym $mod+$left  focus left
 bindsym $mod+$down  focus down
