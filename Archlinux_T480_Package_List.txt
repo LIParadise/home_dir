@@ -204,6 +204,7 @@ texlive-pstricks
 texlive-publishers
 texlive-science
 thunderbird
+tlp
 tmux
 totem
 traceroute
@@ -211,7 +212,6 @@ tracker
 tracker-miners
 tracker3
 tracker3-miners
-tuned
 turbostat
 uboot-tools
 usbutils
@@ -223,7 +223,6 @@ virtualbox-host-dkms
 visual-studio-code-bin
 vlc
 wget
-wireless_tools
 wl-clipboard
 wofi
 x86_energy_perf_policy
