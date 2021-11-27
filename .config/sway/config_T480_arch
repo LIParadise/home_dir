@@ -46,111 +46,8 @@ exec swayidle -w \
          resume 'swaymsg "output * dpms on"' \
          before-sleep 'swaylock -f -c 000000 -i $lock_bg'
 #
-# This will lock your screen after 300 seconds of inactivity, then turn off
 # your displays after another 300 seconds, and turn your screens back on when
 # resumed. It will also lock your screen before your computer goes to sleep.
-
-### Input configuration
-#
-# Example configuration:
-#
-input "1:1:AT_Translated_Set_2_keyboard" {
-    xkb_options ctrl:swapcaps
-}
-input "1241:6168:USB_Keyboard" {
-    xkb_options ctrl:swapcaps
-}
-input "2131:338:Topre_REALFORCE_87_US" {
-    xkb_options ctrl:swapcaps
-}
-input "1133:16500:Logitech_G304" {
-    accel_profile flat
-        pointer_accel 0.44
-# "identifier": "1133:16500:Logitech_G304",
-#     "name": "Logitech G304",
-#     "vendor": 1133,
-#     "product": 16500,
-#     "type": "pointer",
-#     "libinput": {
-#         "send_events": "enabled",
-#         "accel_speed": 0.0,
-#         "accel_profile": "adaptive",
-#         "natural_scroll": "disabled",
-#         "left_handed": "disabled",
-#         "middle_emulation": "disabled",
-#         "scroll_method": "none",
-#         "scroll_button": 274
-#     }
-}
-input "1739:0:Synaptics_TM3276-022" {
-    tap                enabled
-        accel_profile      flat
-        pointer_accel      0.9
-        natural_scroll     enabled
-        click_method       button_areas
-        scroll_method      two_finger
-        scroll_factor      0.25
-#      "identifier": "1739:0:Synaptics_TM3276-022",
-#      "name": "Synaptics TM3276-022",
-#      "vendor": 1739,
-#      "product": 0,
-#      "type": "touchpad",
-#      "libinput": {
-#      "send_events": "enabled",
-#      "tap": "enabled",
-#      "tap_button_map": "lrm",
-#      "tap_drag": "enabled",
-#      "tap_drag_lock": "disabled",
-#      "accel_speed": 0.0,
-#      "accel_profile": "none",
-#      "natural_scroll": "enabled",
-#      "left_handed": "disabled",
-#      "click_method": "button_areas",
-#      "middle_emulation": "disabled",
-#      "scroll_method": "two_finger",
-#      "dwt": "enabled"
-}
-
-input "2:10:TPPS/2_IBM_TrackPoint" {
-# ThinkPad X200 TrackPoint
-    pointer_accel      0.17
-        scroll_factor      0.30
-        accel_profile      "adaptive"
-#    "libinput": {
-#      "send_events": "enabled",
-#      "accel_speed": 0.0,
-#      "accel_profile": "adaptive",
-#      "natural_scroll": "disabled",
-#      "left_handed": "disabled",
-#      "middle_emulation": "disabled",
-#      "scroll_method": "on_button_down",
-#      "scroll_button": 274
-#    }
-}
-
-input "1133:16491:Logitech_M585/M590" {
-    pointer_accel 0.8
-        accel_profile "flat"
-#  "identifier": "1133:16491:Logitech_M585\/M590",
-#     "name": "Logitech M585\/M590",
-#     "vendor": 1133,
-#     "product": 16491,
-#     "type": "pointer",
-#     "libinput": {
-#        "send_events": "enabled",
-#        "accel_speed": 0.0,
-#        "accel_profile": "adaptive",
-#        "natural_scroll": "disabled",
-#        "left_handed": "disabled",
-#        "middle_emulation": "disabled",
-#        "scroll_method": "none",
-#        "scroll_button": 274
-#     }
-}
-
-#
-# You can get the names of your inputs by running: swaymsg -t get_inputs
-# Read `man 5 sway-input` for more information about this section.
 
 ### Brightness and Volume Control
 #
@@ -343,9 +240,10 @@ bar {
 }
 
 include /etc/sway/config.d/*
+include ${HOME}/.config/sway/inputs/*
 
 # exec --no-startup-id redshift
-exec --no-startup-id "fcitx5 -r -d"
+exec_always --no-startup-id "fcitx5 -r -d"
 # https://github.com/fennerm/flashfocus
 # Indicator for which window is under focus
 # exec_always --no-startup-id flashfocus
