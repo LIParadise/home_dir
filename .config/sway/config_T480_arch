@@ -20,7 +20,7 @@ set $term alacritty
 ### Output configuration
 #
 # Default wallpaper (more resolutions are available in /usr/share/backgrounds/sway/)
-output * bg /mnt/sdxc_evo_plus/Pictures/Hololive/gura 20201118.png fill
+output * bg /mnt/sdxc_evo_plus/Pictures/Hololive/gura 20211128.png fill
 font pango:cascadia code 16
 output eDP-1 pos 0 0
 #
@@ -106,6 +106,9 @@ bindsym $mod+Shift+e exec swaynag -t warning -m 'Exit Sway?' -b 'Yes, exit sway'
 #
 # Moving around:
 #
+# What's current focused window?
+# Depend on `flashfocus`
+bindsym $mod+tab exec --no-startup-id flash_window
 # Move your focus around
 bindsym $mod+$left  focus left
 bindsym $mod+$down  focus down
