@@ -30,7 +30,7 @@ for idx in "${!batArr[@]}"; do
   stat=$(cat /sys/class/power_supply/"${batArr[${idx}]}"/status)
   [ "${stat}" = "Charging" ] && acpower=1
 
-  str="${str}${idx}:{$(cat /sys/class/power_supply/"${batArr[${idx}]}"/status)= $(echo "${c}" | sed -e 's/$/%/')} "
+  str="${str}${idx}:$(cat /sys/class/power_supply/"${batArr[${idx}]}"/status)= $(echo "${c}" | sed -e 's/$/%/') "
   energy=$(expr ${energy} + ${e})
   energy_full=$(expr ${energy_full} + ${ef})
   energy_full_design=$(expr ${energy_full_design} + ${efd})
@@ -55,4 +55,4 @@ fi
 
 [ "${acpower}" = 1 ] && color="#ffffcc"
 
-printf "<span color='%s'>%s%s%s</span>\n" "$color" "${status}" "$warn" "${str} || $(echo "$energy_per" | sed -e 's/$/%/') : $(echo "$energy_total_per" | sed -e 's/$/%/')"
+printf "<span color='%s'>%s%s%s</span>\n" "$color" "${status}" "$warn" "${str} ~ $(echo "$energy_per" | sed -e 's/$/%/'):$(echo "$energy_total_per" | sed -e 's/$/%/')"

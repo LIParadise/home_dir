@@ -40,7 +40,7 @@ markup=pango
 
 [memory]
 interval=5
-label=mem: 
+label=
 
 [cpu]
 interval=5
