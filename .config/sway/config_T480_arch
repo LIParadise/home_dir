@@ -20,7 +20,7 @@ set $term alacritty
 ### Output configuration
 #
 # Default wallpaper (more resolutions are available in /usr/share/backgrounds/sway/)
-output * bg /mnt/sdxc_evo_plus/Pictures/Hololive/gura 20211128.png fill
+output * bg /mnt/sdxc_evo_plus/Pictures/Hololive/Ep84Qb9UwAA10zp.jpg fit
 font pango:cascadia code 16
 output eDP-1 pos 0 0
 #
@@ -61,8 +61,8 @@ bindsym XF86AudioRaiseVolume  exec --no-startup-id "pamixer -u -i 1 && pkill -RT
 bindsym $mod+prior            exec --no-startup-id "pamixer -u -i 5 && pkill -RTMIN+10 i3blocks"
 bindsym XF86AudioLowerVolume  exec --no-startup-id "pamixer -d    1 && pkill -RTMIN+10 i3blocks"
 bindsym $mod+next             exec --no-startup-id "pamixer -d    5 && pkill -RTMIN+10 i3blocks"
-bindsym $mod+t border toggle
-bindsym $mod+shift+t border none
+bindsym $mod+t border none
+bindsym $mod+shift+t border toggle
 
 ### Key bindings
 #
