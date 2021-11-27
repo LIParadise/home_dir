@@ -344,13 +344,12 @@ bar {
 
 include /etc/sway/config.d/*
 
-# IBus
-# exec --no-startup-id export GTK_IM_MODULE=ibus
-# exec --no-startup-id export XMODIFIERS="@im=ibus"
-# exec --no-startup-id export QT_IM_MODULE=ibus
-exec --no-startup-id redshift -m wayland -P -O 3000
+# exec --no-startup-id redshift
 exec --no-startup-id "fcitx5 -r -d"
-exec --no-startup-id "/usr/bin/blueman-applet"
+# https://github.com/fennerm/flashfocus
+# Indicator for which window is under focus
+# exec_always --no-startup-id flashfocus
+# exec --no-startup-id "/usr/bin/blueman-applet"
 
 # remove xwayland support
 xwayland disable

@@ -342,7 +342,7 @@ bar {
 
 include /etc/sway/config.d/*
 
-exec --no-startup-id redshift -m wayland -P -O 3000
+# exec --no-startup-id redshift
 exec --no-startup-id "fcitx5 -r -d"
 # https://github.com/fennerm/flashfocus
 # Indicator for which window is under focus
