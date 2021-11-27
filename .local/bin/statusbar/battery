@@ -11,7 +11,7 @@ L: battery very low!
 - Text color reflects charge left" ;;
 esac
 
-batLs="$(ls /sys/class/power_supply | grep -i bat | tr '\n' ' ')"
+batLs="$(ls /sys/class/power_supply | grep BAT | tr '\n' ' ')"
 batArr=(${batLs})
 batArrLen=${#batArr[@]}
 energy=0
