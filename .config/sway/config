@@ -60,6 +60,7 @@ bindsym $mod+prior            exec --no-startup-id "pamixer -u -i 5 && pkill -RT
 bindsym XF86AudioLowerVolume  exec --no-startup-id "pamixer -d    1 && pkill -RTMIN+10 i3blocks"
 bindsym $mod+next             exec --no-startup-id "pamixer -d    5 && pkill -RTMIN+10 i3blocks"
 bindsym $mod+t border toggle
+bindsym $mod+shift+t border none
 
 ### Key bindings
 #
