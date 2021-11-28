@@ -59,8 +59,10 @@ bindsym XF86AudioRaiseVolume  exec --no-startup-id "pamixer -u -i 1 && pkill -RT
 bindsym $mod+prior            exec --no-startup-id "pamixer -u -i 5 && pkill -RTMIN+10 i3blocks"
 bindsym XF86AudioLowerVolume  exec --no-startup-id "pamixer -d    1 && pkill -RTMIN+10 i3blocks"
 bindsym $mod+next             exec --no-startup-id "pamixer -d    5 && pkill -RTMIN+10 i3blocks"
-bindsym $mod+t border none
-bindsym $mod+shift+t border toggle
+
+default_border none
+bindsym $mod+t border toggle
+bindsym $mod+shift+t border none
 
 ### Key bindings
 #
@@ -235,7 +237,7 @@ bar {
 
 # When the status_command prints a new line to stdout, swaybar updates.
 # The default just shows the current date and time.
-    font pango:source code pro 17
+    font pango:cascadia code 13
         status_command i3blocks
         position bottom
         mode hide
