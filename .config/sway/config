@@ -250,7 +250,7 @@ include ${HOME}/.config/sway/inputs/*
 exec_always --no-startup-id "fcitx5 -r -d"
 # https://github.com/fennerm/flashfocus
 # Indicator for which window is under focus
-# exec_always --no-startup-id flashfocus
+# exec_always --no-startup-id "killall flashfocus; flashfocus"
 # exec --no-startup-id "/usr/bin/blueman-applet"
 
 # remove xwayland support
