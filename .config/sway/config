@@ -27,7 +27,6 @@ font pango:cascadia code 0
 bindsym $mod+s font pango: cascadia code 0
 bindsym $mod+shift+s font pango: cascadia code 16
 
-# output eDP-1 pos 0 0
 #
 # Example configuration:
 #
@@ -58,14 +57,16 @@ exec swayidle -w \
 #
 # Need package "brightnessctl" and "pamixer"
 #
-bindsym XF86MonBrightnessUp   exec --no-startup-id "brightnessctl -d intel_backlight s 2%+ && pkill -RTMIN+10 i3blocks"
-bindsym XF86MonBrightnessDown exec --no-startup-id "brightnessctl -d intel_backlight s 2%- && pkill -RTMIN+10 i3blocks"
-bindsym XF86AudioMute         exec --no-startup-id "pamixer -t      && pkill -RTMIN+10 i3blocks"
-bindsym $mod+m                exec --no-startup-id "pamixer -t      && pkill -RTMIN+10 i3blocks"
-bindsym XF86AudioRaiseVolume  exec --no-startup-id "pamixer -u -i 1 && pkill -RTMIN+10 i3blocks"
-bindsym $mod+prior            exec --no-startup-id "pamixer -u -i 5 && pkill -RTMIN+10 i3blocks"
-bindsym XF86AudioLowerVolume  exec --no-startup-id "pamixer -d    1 && pkill -RTMIN+10 i3blocks"
-bindsym $mod+next             exec --no-startup-id "pamixer -d    5 && pkill -RTMIN+10 i3blocks"
+bindsym XF86MonBrightnessUp        exec --no-startup-id "brightnessctl -d intel_backlight s 2%+ && pkill -RTMIN+10 i3blocks"
+bindsym XF86MonBrightnessDown      exec --no-startup-id "brightnessctl -d intel_backlight s 2%- && pkill -RTMIN+10 i3blocks"
+bindsym XF86AudioMute              exec --no-startup-id "pamixer -t      && pkill -RTMIN+10 i3blocks"
+bindsym $mod+m                     exec --no-startup-id "pamixer -t      && pkill -RTMIN+10 i3blocks"
+bindsym XF86AudioRaiseVolume       exec --no-startup-id "pamixer -u -i 1 && pkill -RTMIN+10 i3blocks"
+bindsym $mod+prior                 exec --no-startup-id "pamixer -u -i 5 && pkill -RTMIN+10 i3blocks"
+bindsym XF86AudioLowerVolume       exec --no-startup-id "pamixer -d    1 && pkill -RTMIN+10 i3blocks"
+bindsym $mod+next                  exec --no-startup-id "pamixer -d    5 && pkill -RTMIN+10 i3blocks"
+bindsym $mod+XF86AudioLowerVolume  exec --no-startup-id "pamixer -d    1 && pkill -RTMIN+10 i3blocks"
+bindsym $mod+XF86AudioRaiseVolume  exec --no-startup-id "pamixer -u -i 1 && pkill -RTMIN+10 i3blocks"
 
 default_border none
 bindsym $mod+t border toggle
