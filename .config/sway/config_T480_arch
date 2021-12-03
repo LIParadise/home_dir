@@ -89,7 +89,7 @@ bindsym Control+Alt+g exec xfce4-terminal
 bindsym $mod+Shift+q kill
 
 # Start your launcher
-bindsym $mod+d exec wofi -S drun
+bindsym $mod+d exec wofi -i -S drun
 
 # Sometimes ibus engine got screwed; reset to en input
 # bindsym $mod+Shift+i exec ibus engine xkb:us::eng
