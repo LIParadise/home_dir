@@ -63,6 +63,8 @@ alias socker="sudo docker"
 alias clangmake="CC=/usr/bin/clang CXX=/usr/bin/clang++ cmake"
 alias rsavp="rsync -av --progress"
 
+ks
+
 function CD(){
     cd ${1}; cd $(pwd -P)
 }
