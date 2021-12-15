@@ -100,7 +100,7 @@ input "1133:16491:Logitech_M585/M590" {
 input "5426:123:Razer_Razer_Viper_Ultimate_Dongle" {
     accel_profile "flat"
         pointer_accel 0.42
-        scroll_factor 0.42
+        scroll_factor 0.5
 #     "identifier": "5426:123:Razer_Razer_Viper_Ultimate_Dongle",
 #     "name": "Razer Razer Viper Ultimate Dongle",
 #     "vendor": 5426,
