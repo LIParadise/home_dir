@@ -1,0 +1,11 @@
+[Unit]
+Description=Delete ddclient cache file
+DefaultDependencies=no
+After=final.target
+
+[Service]
+Type=oneshot
+ExecStart=/usr/bin/rm /var/cache/ddclient/ddclient.cache
+
+[Install]
+WantedBy=final.target
