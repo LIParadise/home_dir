@@ -3,8 +3,7 @@
 # IPv4/IPv6 Simple & Safe firewall ruleset.
 # More examples in /usr/share/nftables/ and /usr/share/doc/nftables/examples/.
 
-table inet filter
-delete table inet filter
+flush ruleset
 table inet filter {
         chain input {
                 type filter hook input priority filter
@@ -15,12 +14,21 @@ table inet filter {
                 iifname lo accept comment "allow from loopback"
                 ip protocol icmp accept comment "allow icmp"
                 meta l4proto ipv6-icmp accept comment "allow icmp v6"
-                tcp dport ssh accept comment "allow sshd"
+                iifname wlan0 jump my_wlan0
+                iifname eth0 jump my_eth0
                 pkttype host limit rate 5/second counter reject with icmpx type admin-prohibited
                 counter
+        }
+        chain my_wlan0 {
+                tcp dport ssh accept comment "allow sshd"
+        }
+        chain my_eth0 {
+                tcp dport ssh accept comment "allow sshd"
+                # tcp dport 5201 accept comment "default iperf3 port"
         }
         chain forward {
                 type filter hook forward priority filter
                 policy drop
         }
 }
+
