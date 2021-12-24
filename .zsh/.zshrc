@@ -71,7 +71,8 @@ function CD(){
 
 function reboot_to_windows () {
     grub_windows_entry=$(sudo grep -i windows /boot/grub/grub.cfg | cut -d "'" -f 2)
-    sudo grub-reboot "$grub_windows_entry" && sudo reboot
+    sudo grub-reboot "$grub_windows_entry"
+    sudo sync; sudo sync; sudo systemctl reboot
 }
 
 function copy() {
