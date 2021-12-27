@@ -30,8 +30,8 @@ set directory=~/.vim/.swp//
 
 syntax on
 
-runtime liparadise_color_X200.vim
-runtime liparadise_pclose.vim
+runtime liparadise_color.vim
+runtime plugins/coc_scroll_in_insert_mode.vim
 
 autocmd VimEnter * call My_stop_hide_underscore()
 if !&diff
