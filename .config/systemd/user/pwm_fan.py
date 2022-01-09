@@ -11,13 +11,13 @@ class my_pwm:
     # Configuration
     FAN_PIN   = 24           # BCM pin used to drive PWM fan
     WAIT_TIME = 2            # [s] Time to wait between each refresh
-    PWM_FREQ  = 50           # [kHz] 50Hz for Noctua PWM control
+    PWM_FREQ  = 200
 
     # Configurable temperature and fan speed
-    MIN_TEMP = 53
-    MAX_TEMP = 58
+    MIN_TEMP = 52.3
+    MAX_TEMP = 57.4
     FAN_OFF  = 0
-    FAN_LOW  = 85
+    FAN_LOW  = 88
     FAN_MAX  = 100
 
     def __init__(self):
@@ -48,7 +48,7 @@ class my_pwm:
     def setFanSpeed(self, speed):
         if speed != self.FAN_OFF:
             self.fan.ChangeDutyCycle(self.FAN_MAX)
-            time.sleep(1)
+            time.sleep(0.1)
         self.fan.ChangeDutyCycle(speed)
         return()
 
