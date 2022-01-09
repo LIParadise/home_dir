@@ -1,0 +1,12 @@
+[Unit]
+Description=PWM Fan Control Service
+After=default.target
+
+[Service]
+Type=simple
+ExecStart=/home/pi/.config/systemd/user/pwm_fan.py
+WorkingDirectory=/home/pi
+Restart=always
+
+[Install]
+WantedBy=default.target
