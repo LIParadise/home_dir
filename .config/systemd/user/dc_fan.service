@@ -1,0 +1,12 @@
+[Unit]
+Description=DC Fan Control Service
+After=default.target
+
+[Service]
+Type=simple
+ExecStart=/home/pi/.config/systemd/user/dc_fan.py
+WorkingDirectory=/home/pi
+Restart=always
+
+[Install]
+WantedBy=default.target
