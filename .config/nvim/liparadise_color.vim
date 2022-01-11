@@ -42,7 +42,7 @@ function! s:My_obsidian_theme_fallback ()
 endfunction
 
 function! s:Coc_Rust_Analyzer_Colors ()
-    hi CocRustTypeHint ctermfg=246 guifg=#949494
+    hi CocRustTypeHint ctermfg=248 guifg=#a8a8a8
     hi CocRustChainingHint ctermfg=243 guifg=#767676
 endfunction
 
