@@ -30,16 +30,17 @@ set directory=~/.vim/.swp//
 
 syntax on
 
-runtime liparadise_color.vim
 runtime plugins/coc_scroll_in_insert_mode.vim
+runtime liparadise_color.vim
 
 autocmd VimEnter * call My_stop_hide_underscore()
-if !&diff
-    autocmd VimEnter * call My_dark_theme()
-endif
+augroup my_color
+    autocmd!
+    autocmd ColorScheme * if !&diff | call My_dark_theme() | endif
+augroup END
 autocmd filetype c setlocal cindent cino=j1,(s,ws,Ws,N-s,m1
 autocmd filetype cpp setlocal cindent cino=j1,(s,ws,Ws,N-s,m1
-autocmd filetype markdown setlocal ts=2 sw=2
+if !&diff | colorscheme ayu | endif
 
 " Some mapleader Settings
 " Some miscellaneous key mapping
