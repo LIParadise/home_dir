@@ -42,8 +42,8 @@ function! s:My_obsidian_theme_fallback ()
 endfunction
 
 function! s:Coc_Rust_Analyzer_Colors ()
-    hi CocRustTypeHint ctermfg=248 guifg=#a8a8a8
-    hi CocRustChainingHint ctermfg=243 guifg=#767676
+    hi CocRustTypeHint ctermfg=66 guifg=#5f8787
+    hi CocRustChainingHint ctermfg=109 guifg=#87afaf
 endfunction
 
 function! My_light_theme ()
