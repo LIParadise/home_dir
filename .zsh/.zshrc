@@ -62,6 +62,7 @@ alias jku="jupyter kernelspec uninstall"
 alias socker="sudo docker"
 alias clangmake="CC=/usr/bin/clang CXX=/usr/bin/clang++ cmake"
 alias rsavp="rsync -av --progress"
+alias git-no-mode="git -c core.fileMode=false status"
 
 ks
 
