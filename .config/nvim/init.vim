@@ -47,6 +47,7 @@ if !&diff | colorscheme ayu | endif
 nnoremap <Leader>n :set nu!
 nnoremap <Leader>b :windo set scrollbind
 nnoremap <Leader>B :windo set noscrollbind
+nnoremap <Leader>g gg=Gzz
 nnoremap <C-Up> 
 nnoremap <C-Down> 
 inoremap  <C-w>
