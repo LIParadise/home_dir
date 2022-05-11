@@ -1,0 +1,8 @@
+---
+Language: Cpp
+BasedOnStyle: LLVM
+AlignConsecutiveBitFields: true
+AlignConsecutiveMacros: true
+# IndentAccessModifiers: true
+IndentWidth: 4
+Standard: c++17
