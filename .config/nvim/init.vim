@@ -41,7 +41,11 @@ syntax on
 autocmd filetype c setlocal cindent cino=j1,(s,ws,Ws,N-s,m1
 autocmd filetype cpp setlocal cindent cino=j1,(s,ws,Ws,N-s,m1
 if !&diff
-    luafile ~/.config/nvim/plugins/liparadise_colors/Colorscheme_Kanagawa.lua
+    if has('nvim-0.5')
+        luafile ~/.config/nvim/plugins/liparadise_colors/Colorscheme_Kanagawa.lua
+    else
+        runtime ~/.config/nvim/plugins/liparadise_colors/Colorscheme_Kanagawa.vim
+    endif
 endif
 
 " Some mapleader Settings
