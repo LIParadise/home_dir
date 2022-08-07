@@ -61,9 +61,9 @@ nmap <silent> gn :call CocAction('jumpDefinition', 'tabe')
 
 " Use K to show documentation in preview window.
 if has('nvim')
-    nnoremap <silent> <c-space> :call <SID>ShowDocumentation()<CR>
+    nnoremap <silent> <c-space> :call ShowDocumentation()<CR>
 else
-    nnoremap <silent> <c-@> :call <SID>ShowDocumentation()<CR>
+    nnoremap <silent> <c-@> :call ShowDocumentation()<CR>
 endif
 
 function! ShowDocumentation()
