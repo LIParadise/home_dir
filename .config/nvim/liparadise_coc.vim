@@ -9,9 +9,6 @@ set cmdheight=2
 " delays and poor user experience.
 set updatetime=300
 
-" Don't pass messages to |ins-completion-menu|.
-set shortmess+=c
-
 " Always show the signcolumn, otherwise it would shift the text each time
 " diagnostics appear/become resolved.
 if has("nvim-0.5.0") || has("patch-8.1.1564")
@@ -24,30 +21,27 @@ endif
 " Use tab for trigger completion with characters ahead and navigate.
 " NOTE: Use command ':verbose imap <tab>' to make sure tab is not mapped by
 " other plugin before putting this into your config.
-function! s:check_back_space() abort
-    let col = col('.') - 1
-    return !col || getline('.')[col - 1]  =~ '\s'
-endfunction
 inoremap <silent><expr> <TAB>
             \ coc#pum#visible() ? coc#pum#next(1):
-            \ <SID>check_back_space() ? "\<Tab>" :
+            \ CheckBackspace() ? "\<Tab>" :
             \ coc#refresh()
 inoremap <expr><S-TAB> coc#pum#visible() ? coc#pum#prev(1) : "\<C-h>"
+
+" Make <CR> to accept selected completion item or notify coc.nvim to format
+" <C-g>u breaks current undo, please make your own choice.
+inoremap <silent><expr> <CR> coc#pum#visible() ? coc#pum#confirm()
+            \: "\<C-g>u\<CR>\<c-r>=coc#on_enter()\<CR>"
+
+function! CheckBackspace() abort
+    let col = col('.') - 1
+    return !col || getline('.')[col - 1]  =~# '\s'
+endfunction
 
 " Use <c-space> to trigger completion.
 if has('nvim')
     inoremap <silent><expr> <c-space> coc#refresh()
 else
     inoremap <silent><expr> <c-@> coc#refresh()
-endif
-
-" Make <CR> auto-select the first completion item and notify coc.nvim to
-" format on enter, <cr> could be remapped by other vim plugin
-if exists('*complete_info')
-    inoremap <expr> <cr> complete_info()["selected"] != "-1" ? "\<C-y>" : "\<C-g>u\<CR>"
-else
-    inoremap <silent><expr> <cr> pumvisible() ? coc#_select_confirm()
-                \: "\<C-g>u\<CR>\<c-r>=coc#on_enter()\<CR>"
 endif
 
 " Use `[g` and `]g` to navigate diagnostics
@@ -67,18 +61,20 @@ nmap <silent> gn :call CocAction('jumpDefinition', 'tabe')
 
 " Use K to show documentation in preview window.
 if has('nvim')
-    nnoremap <silent> <c-space> :call <SID>show_documentation()<CR>
+    nnoremap <silent> <c-space> :call <SID>ShowDocumentation()<CR>
 else
-    nnoremap <silent> <c-@> :call <SID>show_documentation()<CR>
+    nnoremap <silent> <c-@> :call <SID>ShowDocumentation()<CR>
 endif
 
-function! s:show_documentation()
-    if (index(['vim','help'], &filetype) >= 0)
-        execute 'h '.expand('<cword>')
-    elseif (coc#rpc#ready())
+function! ShowDocumentation()
+    if CocAction('hasProvider', 'hover')
         call CocActionAsync('doHover')
     else
-        execute '!' . &keywordprg . " " . expand('<cword>')
+        if has('nvim')
+            call feedkeys('<C-space>', 'in')
+        else
+            call feedkeys('<C-@>', 'in')
+        endif
     endif
 endfunction
 
@@ -131,7 +127,7 @@ nmap <silent> <C-s> <Plug>(coc-range-select)
 xmap <silent> <C-s> <Plug>(coc-range-select)
 
 " Add `:Format` command to format current buffer.
-command! -nargs=0 Format :call CocAction('format')
+command! -nargs=0 Format :call CocActionAsync('format')
 
 " Add `:Fold` command to fold current buffer.
 command! -nargs=? Fold :call     CocAction('fold', <f-args>)
