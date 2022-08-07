@@ -8,10 +8,15 @@ call plug#begin('~/.vim/plugged')
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
 " Beautify Indentation
 Plug 'Yggdroot/indentLine'
+" Many, many colorschemes
 Plug 'ayu-theme/ayu-vim'
 Plug 'sonph/onehalf', { 'rtp': 'vim' }
 Plug 'chriskempson/base16-vim'
+Plug 'sainnhe/everforest'
+Plug 'rebelot/kanagawa.nvim'
+" Tab is a must
 Plug 'webdevel/tabulous'
+" Rusty
 Plug 'rust-lang/rust.vim'
 call plug#end()
 " All of your Plugins must be added before the following line
@@ -24,6 +29,7 @@ filetype plugin indent on    " required
 " coc setup
 "
 runtime liparadise_coc.vim
+runtime plugins/*.vim
 
 set nu ai expandtab tabstop=4 shiftwidth=4 history=10000 cursorline laststatus=2 statusline+=%<%F\ %h%m%r%=%-16.(%l,%c%V%)\ %P ignorecase smartcase showcmd t_Co=256 backspace=indent,eol,start encoding=utf-8 fileencodings=utf-8 nocompatible ttimeoutlen=5 mouse=a
 set undodir=~/.vim/.undo//
@@ -32,12 +38,11 @@ set directory=~/.vim/.swp//
 
 syntax on
 
-runtime plugins/coc_scroll_in_insert_mode.vim
-" runtime liparadise_color.vim
-
 autocmd filetype c setlocal cindent cino=j1,(s,ws,Ws,N-s,m1
 autocmd filetype cpp setlocal cindent cino=j1,(s,ws,Ws,N-s,m1
-if !&diff | colorscheme onehalfdark | endif
+if !&diff
+    luafile ~/.config/nvim/plugins/liparadise_colors/Colorscheme_Kanagawa.lua
+endif
 
 " Some mapleader Settings
 " Some miscellaneous key mapping
