@@ -14,6 +14,7 @@ Plug 'sonph/onehalf', { 'rtp': 'vim' }
 Plug 'chriskempson/base16-vim'
 Plug 'sainnhe/everforest'
 Plug 'rebelot/kanagawa.nvim'
+Plug 'morhetz/gruvbox'
 " Tab is a must
 Plug 'webdevel/tabulous'
 " Rusty
