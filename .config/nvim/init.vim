@@ -44,7 +44,7 @@ if !&diff
     if has('nvim-0.5')
         luafile ~/.config/nvim/plugins/liparadise_colors/Colorscheme_Kanagawa.lua
     else
-        runtime ~/.config/nvim/plugins/liparadise_colors/Colorscheme_Kanagawa.vim
+        runtime ~/.config/nvim/plugins/liparadise_colors/Colorscheme_Gruvbox.vim
     endif
 endif
 
