@@ -36,7 +36,14 @@
     "initialRows": 30,
     "profiles": 
     {
-        "defaults": {},
+        "defaults": 
+        {
+            "bellStyle": 
+            [
+                "window",
+                "taskbar"
+            ]
+        },
         "list": 
         [
             {
