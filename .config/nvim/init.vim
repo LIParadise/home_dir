@@ -30,7 +30,7 @@ filetype plugin indent on    " required
 " coc setup
 "
 runtime liparadise_coc.vim
-runtime plugins/*.vim
+runtime! plugins/*.vim
 
 set nu ai expandtab tabstop=4 shiftwidth=4 history=10000 cursorline laststatus=2 statusline+=%<%F\ %h%m%r%=%-16.(%l,%c%V%)\ %P ignorecase smartcase showcmd t_Co=256 backspace=indent,eol,start encoding=utf-8 fileencodings=utf-8 nocompatible ttimeoutlen=5 mouse=a
 set undodir=~/.vim/.undo//
