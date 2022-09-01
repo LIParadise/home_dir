@@ -10,4 +10,4 @@ export MOZ_ENABLE_WAYLAND=1
 # QT support under wayland
 # https://wiki.archlinux.org/title/Wayland#Qt
 # Requires `qt5-wayland` or `qt6-wayland` on Archlinux
-export QT_QPA_PLATFORM=wayland
+export QT_QPA_PLATFORM="wayland;xcb"

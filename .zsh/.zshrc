@@ -14,7 +14,7 @@ source /usr/bin/virtualenvwrapper.sh
 # end of NTUOSC ml environmental variables
 #
 
-path=("/usr/local/bin" "$HOME/.cargo/bin" "$path[@]")
+path=("$HOME/.cargo/bin" "/usr/local/bin" "$path[@]")
 typeset -U PATH path
 export PATH
 
@@ -31,7 +31,7 @@ DISABLE_AUTO_UPDATE="true"
 # load a random theme each time oh-my-zsh is loaded, in which case,
 # to know which specific one was loaded, run: echo $RANDOM_THEME
 # See https://github.com/robbyrussell/oh-my-zsh/wiki/Themes
-ZSH_THEME="gentoo"
+ZSH_THEME="evil_apple"
 
 plugins=(
     git
