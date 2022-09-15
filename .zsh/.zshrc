@@ -66,6 +66,16 @@ alias git-no-mode="git -c core.fileMode=false status"
 
 ks
 
+function pgnd() {
+    cargo new ${1}
+    if [ -d ${1} ]; then
+        if [ -d ${1}/src ]; then
+            touch ${1}/src/lib.rs
+        fi
+        cd ${1}
+    fi
+}
+
 function CD(){
     cd ${1}; cd $(pwd -P)
 }
@@ -77,7 +87,8 @@ function reboot_to_windows () {
 }
 
 function copy() {
-    cat ${1} | xclip -selection c
+    cat ${1} |
+    if grep -qi microsoft /proc/version; then clip.exe; else xclip -selection c; fi
 }
 
 function liparadise_compile {
