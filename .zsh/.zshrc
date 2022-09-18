@@ -86,9 +86,19 @@ function reboot_to_windows () {
     sudo sync; sudo sync; sudo systemctl reboot
 }
 
+function liparadise_wm_type() {
+    loginctl show-session $(awk '/tty/ {print $1}' <(loginctl)) -p Type | awk -F= '{print $2}'
+}
+
 function copy() {
     cat ${1} |
-    if grep -qi microsoft /proc/version; then clip.exe; else xclip -selection c; fi
+    if grep -qi microsoft /proc/version; then
+        clip.exe
+    elif [ "wayland" = "$(liparadise_wm_type)" ]; then
+        wl-copy
+    else
+        xclip -selection c
+    fi
 }
 
 function liparadise_compile {
