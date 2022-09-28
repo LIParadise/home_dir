@@ -6,7 +6,7 @@ param(
 )
 
 Function Show-Help-And-Exit {
-   Write-Host "Usage: .\create_gif.ps1 <input> <output_filename_without_gif> <fps> <width>"
+   Write-Host "Usage: .\create_gif.ps1 -source <file> -output <gif> -fps <fps> -width <width>"
    [Environment]::Exit(255)
 }
 
