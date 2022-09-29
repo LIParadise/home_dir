@@ -1,1 +1,1 @@
-hi CocHintSign guifg=#827a83
+hi CocHintSign guifg=#595043

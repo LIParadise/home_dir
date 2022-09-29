@@ -43,8 +43,8 @@ autocmd filetype c setlocal cindent cino=j1,(s,ws,Ws,N-s,m1
 autocmd filetype cpp setlocal cindent cino=j1,(s,ws,Ws,N-s,m1
 if !&diff
     if has('nvim-0.5')
-        " luafile ~/.config/nvim/plugins/liparadise_colors/Colorscheme_Kanagawa.lua
-        runtime plugins/liparadise_colors/Colorscheme_Everforest.vim
+        luafile ~/.config/nvim/plugins/liparadise_colors/Colorscheme_Kanagawa.lua
+        " runtime plugins/liparadise_colors/Colorscheme_Everforest.vim
     else
         runtime plugins/liparadise_colors/Colorscheme_Gruvbox.vim
     endif
@@ -56,6 +56,7 @@ nnoremap <Leader>n :set nu!
 nnoremap <Leader>b :windo set scrollbind
 nnoremap <Leader>B :windo set noscrollbind
 nnoremap <Leader>g gg=Gzz
+nnoremap <Leader>w :w
 nnoremap <C-Up> 
 nnoremap <C-Down> 
 inoremap  <C-w>
