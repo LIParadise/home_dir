@@ -13,7 +13,12 @@ Plug 'ayu-theme/ayu-vim'
 Plug 'sonph/onehalf', { 'rtp': 'vim' }
 Plug 'chriskempson/base16-vim'
 Plug 'sainnhe/everforest'
-Plug 'rebelot/kanagawa.nvim'
+if has('nvim-0.8')
+    Plug 'rebelot/kanagawa.nvim'
+else
+    " https://github.com/rebelot/kanagawa.nvim/issues/79#issuecomment-1285054740
+    Plug 'rebelot/kanagawa.nvim', {'commit': 'fc2e308'}
+endif
 Plug 'morhetz/gruvbox'
 " Tab is a must
 Plug 'webdevel/tabulous'
