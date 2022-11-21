@@ -1,4 +1,7 @@
-# For executing most Windows app, like "wsl.exe --shutdown"
-C: /mnt/c drvfs defaults 0 0
-# For intuitive *nix file permission
-D: /mnt/d drvfs uid=1000,gid=1000,fmask=133,dmask=022,metadata 0 0
+C: /mnt/c drvfs metadata,uid=1000,gid=1000,umask=0022,fmask=11,case=off 0 0
+D: /mnt/d drvfs metadata,uid=1000,gid=1000,umask=0022,fmask=11,case=off 0 0
+E: /mnt/e drvfs metadata,uid=1000,gid=1000,umask=0022,fmask=11,case=off 0 0
+F: /mnt/f drvfs metadata,uid=1000,gid=1000,umask=0022,fmask=11,case=off 0 0
+G: /mnt/g drvfs metadata,uid=1000,gid=1000,umask=0022,fmask=11,case=off 0 0
+H: /mnt/h drvfs metadata,uid=1000,gid=1000,umask=0022,fmask=11,case=off 0 0
+UUID=xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx /mnt/p44pro btrfs noatime,autodefrag,compress=zstd,nofail 0 0
