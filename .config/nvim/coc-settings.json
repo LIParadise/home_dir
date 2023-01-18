@@ -1,4 +1,5 @@
 {
     "python.jediEnabled": false,
-    "rust-analyzer.checkOnSave.target": []
+    "rust-analyzer.checkOnSave.target": [],
+    "rust-analyzer.updates.prompt": false
 }
