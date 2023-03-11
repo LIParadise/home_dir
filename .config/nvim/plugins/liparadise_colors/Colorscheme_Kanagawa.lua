@@ -1,6 +1,15 @@
-local overrides = {
+require('kanagawa').setup({
+    compile = true,
+    overrides = function(colors)
     -- symbols e.g.  is too dim by default
-    NonText = { fg = "#6D846E" }
-}
-require'kanagawa'.setup({ overrides = overrides, colors = my_colors })
+        return {
+            NonText = { fg = "#6D846E" }
+        }
+    end,
+    -- theme = "dragon",
+    -- background = {
+    --     dark = "dragon",
+    --     light = "lotus"
+    -- },
+})
 vim.cmd("colorscheme kanagawa")
