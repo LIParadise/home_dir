@@ -1,8 +1,6 @@
 . "$HOME/.cargo/env"
 # fcitx5
 export XMODIFIERS="@im=fcitx"
-export GTK_IM_MODULE=fcitx
-export QT_IM_MODULE=fcitx
 export XIM=fcitx
 export XIM_ARGS="-rd"
 # Mozila Firefox wayland support

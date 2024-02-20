@@ -57,7 +57,8 @@ endif
 
 " Some mapleader Settings
 " Some miscellaneous key mapping
-nnoremap <Leader>n :set nu!
+nnoremap <Leader>N :set nu!
+nnoremap <Leader>n :noh
 nnoremap <Leader>b :windo set scrollbind
 nnoremap <Leader>B :windo set noscrollbind
 nnoremap <Leader>g gg=Gzz
