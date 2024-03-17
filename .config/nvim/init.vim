@@ -61,10 +61,12 @@ nnoremap <Leader>N :set nu!
 nnoremap <Leader>n :noh
 nnoremap <Leader>b :windo set scrollbind
 nnoremap <Leader>B :windo set noscrollbind
+nnoremap <Leader>t :hi Normal guibg=NONE ctermbg=NONE | hi LineNr guibg=NONE ctermbg=NONE | hi cursorline guibg=NONE ctermbg=NONE | hi cursorlinenr guibg=NONE ctermbg=NONE | hi statusline guibg=NONE ctermbg=NONE
 nnoremap <Leader>g gg=Gzz
 nnoremap <Leader>w :w
 nnoremap <C-Up> 
 nnoremap <C-Down> 
+
 inoremap  <C-w>
 cnoremap  <C-w>
 cnoremap Q tabc
