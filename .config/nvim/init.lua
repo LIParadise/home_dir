@@ -50,6 +50,12 @@ if vim.fn.has('termguicolors') == 1 then
 end
 nvim_set = nil
 
+-- remove scratch window upon completion
+vim.api.nvim_create_autocmd('CompleteDone', {
+    pattern = '*',
+    command = 'pclose',
+})
+
 --[[
 -- vim-plug
 --]]
@@ -97,7 +103,7 @@ if not vim.opt.diff:get() then
 end
 
 --[[
--- Section: lspconfig and rust-analyzer
+-- LSP: rust-analyzer
 --]]
 
 local nvim_lsp = require('lspconfig')
