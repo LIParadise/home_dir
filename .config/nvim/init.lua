@@ -64,6 +64,7 @@ local Plug = require('usermod.vimplug')
 Plug.begin()
 
 Plug 'neovim/nvim-lspconfig'
+-- Plug ('nvim-treesitter/nvim-treesitter', {do = ':TSUpdate'})
 Plug 'Yggdroot/indentLine'
 Plug 'ayu-theme/ayu-vim'
 Plug 'chriskempson/base16-vim'
