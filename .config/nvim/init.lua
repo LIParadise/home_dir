@@ -64,14 +64,23 @@ local Plug = require('usermod.vimplug')
 Plug.begin()
 
 Plug 'neovim/nvim-lspconfig'
+Plug 'hrsh7th/cmp-nvim-lsp'
+Plug 'hrsh7th/cmp-buffer'
+Plug 'hrsh7th/cmp-path'
+Plug 'hrsh7th/cmp-cmdline'
+Plug 'hrsh7th/nvim-cmp'
+Plug 'hrsh7th/cmp-vsnip'
+Plug 'hrsh7th/vim-vsnip'
 Plug ('nvim-treesitter/nvim-treesitter', {run = ':TSUpdate'})
 Plug 'Yggdroot/indentLine'
 Plug 'ayu-theme/ayu-vim'
 Plug 'chriskempson/base16-vim'
 Plug 'sainnhe/everforest'
 Plug 'morhetz/gruvbox'
+Plug 'NLKNguyen/papercolor-theme'
 Plug 'webdevel/tabulous'
 if vim.fn.has('nvim-0.8') then
+    Plug 'projekt0n/github-nvim-theme'
     Plug 'rebelot/kanagawa.nvim'
 else
     -- https://github.com/rebelot/kanagawa.nvim/issues/79#issuecomment-1285054740
@@ -95,12 +104,20 @@ Plug = nil
 -- Apply colorscheme from plugins
 --]]
 if not vim.opt.diff:get() then
+    if vim.fn.has('nvim-0.8') == 1 then
+        vim.opt.background = 'light'
+        vim.cmd.colorscheme('PaperColor')
+    else
+        vim.cmd.colorscheme('desert')
+    end
+    --[[
     if vim.fn.has('nvim-0.5') == 1 then
         vim.cmd('luafile ~/.config/nvim/plugins/liparadise_colors/Colorscheme_Kanagawa.lua')
         -- runtime plugins/liparadise_colors/Colorscheme_Everforest.vim
     else
         vim.cmd('runtime plugins/liparadise_colors/Colorscheme_Gruvbox.vim')
     end
+    --]]
 end
 
 --[[
