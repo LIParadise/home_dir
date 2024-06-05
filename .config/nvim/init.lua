@@ -13,7 +13,7 @@ nvim_set_keymap('n', '<C-Up>', '', opts)
 nvim_set_keymap('n', '<C-Down>', '', opts)
 nvim_set_keymap('i', '', '<C-w>', opts)
 nvim_set_keymap('c', '', '<C-w>', opts)
-nvim_set_keymap('c', 'Q', 'tabc', opts)
+nvim_set_keymap('c', 'Q', ':tabc<CR>', opts)
 nvim_set_keymap('n', 'Q', ':tabc<CR>', opts)
 
 vim.opt.wildignore = { '*.o', '*.a', '__pycache__' }
