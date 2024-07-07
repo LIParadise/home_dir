@@ -77,6 +77,23 @@ function pgnd() {
     fi
 }
 
+function wincp() {
+    if [ -f "clip.exe" ]; then
+        if [ $# -eq "1" ] && [ -f "${1}" ]; then
+            clip.exe < "${1}"
+            return 0
+        elif [ $# -eq "2" ] && [ -f "${1}" ] && [ "${2}" -eq "${2}" ]; then
+            sed -n "${2},${2}p" "${1}" | clip.exe
+            return 0
+        elif [ $# -eq "3" ] && [ -f "${1}" ] && [ "${2}" -lt "${3}" ]; then
+            sed -n "${2},${3}p" "${1}" | clip.exe
+            return 0
+        fi
+    fi
+    echo "usage: wincp <file> [start line [end line]]"
+    return 1
+}
+
 function CD(){
     cd ${1}; cd $(pwd -P)
 }
