@@ -40,9 +40,9 @@ nvim_set.fileencodings = {'utf-8'}
 nvim_set.compatible = false
 nvim_set.ttimeoutlen = 5
 nvim_set.mouse = 'a'
-nvim_set.undodir = '~/.vim/.undo//'
-nvim_set.backupdir = '~/.vim/.backup//'
-nvim_set.directory = '~/.vim/.swp//'
+nvim_set.undodir = vim.fn.expand '~/.vim/.undo//'
+nvim_set.backupdir = vim.fn.expand '~/.vim/.backup//'
+nvim_set.directory = vim.fn.expand '~/.vim/.swp//'
 nvim_set.syntax = on
 nvim_set.statusline:append('%<%F\\ %h%m%r%=%-16.(%l,%c%V%)\\ %P')
 if vim.fn.has('termguicolors') == 1 then
@@ -77,11 +77,12 @@ Plug 'ayu-theme/ayu-vim'
 Plug 'chriskempson/base16-vim'
 Plug 'sainnhe/everforest'
 Plug 'morhetz/gruvbox'
-Plug 'NLKNguyen/papercolor-theme'
+-- Plug 'NLKNguyen/papercolor-theme'
 Plug 'webdevel/tabulous'
 if vim.fn.has('nvim-0.8') then
     Plug 'projekt0n/github-nvim-theme'
     Plug 'rebelot/kanagawa.nvim'
+    Plug 'EdenEast/nightfox.nvim'
 else
     -- https://github.com/rebelot/kanagawa.nvim/issues/79#issuecomment-1285054740
     Plug ('rebelot/kanagawa.nvim', {commit = 'fc2e308'})
@@ -105,8 +106,9 @@ Plug = nil
 --]]
 if not vim.opt.diff:get() then
     if vim.fn.has('nvim-0.8') == 1 then
-        vim.opt.background = 'light'
-        vim.cmd.colorscheme('PaperColor')
+        -- vim.opt.background = 'light'
+        -- vim.cmd.colorscheme('PaperColor')
+        vim.cmd.colorscheme('dayfox')
     else
         vim.cmd.colorscheme('desert')
     end
@@ -125,3 +127,4 @@ end
 --]]
 
 local liparadise_rust_analyzer = require('usermod.liparadise_rust')
+local liparadise_go_pls = require('usermod.liparadise_go')
