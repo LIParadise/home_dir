@@ -77,23 +77,6 @@ function pgnd() {
     fi
 }
 
-function wincp() {
-    if [ -f "clip.exe" ]; then
-        if [ $# -eq "1" ] && [ -f "${1}" ]; then
-            clip.exe < "${1}"
-            return 0
-        elif [ $# -eq "2" ] && [ -f "${1}" ] && [ "${2}" -eq "${2}" ]; then
-            sed -n "${2},${2}p" "${1}" | clip.exe
-            return 0
-        elif [ $# -eq "3" ] && [ -f "${1}" ] && [ "${2}" -lt "${3}" ]; then
-            sed -n "${2},${3}p" "${1}" | clip.exe
-            return 0
-        fi
-    fi
-    echo "usage: wincp <file> [start line [end line]]"
-    return 1
-}
-
 function CD(){
     cd ${1}; cd $(pwd -P)
 }
@@ -104,18 +87,45 @@ function reboot_to_windows () {
     sudo sync; sudo sync; sudo systemctl reboot
 }
 
+# https://stackoverflow.com/a/8811800/9933842
+# contains(string, substring)
+#
+# Returns 0 if the specified string contains the specified substring,
+# otherwise returns 1.
+function contains() {
+    string="$1"
+    substring="$2"
+    if [ "${string#*"$substring"}" != "$string" ]; then
+        return 0    # $substring is in $string
+    else
+        return 1    # $substring is not in $string
+    fi
+}
+
 function liparadise_wm_type() {
     loginctl show-session $(awk '/tty/ {print $1}' <(loginctl)) -p Type | awk -F= '{print $2}'
 }
 
 function copy() {
-    cat ${1} |
-    if grep -qi microsoft /proc/version; then
-        clip.exe
-    elif [ "wayland" = "$(liparadise_wm_type)" ]; then
-        wl-copy
-    else
-        xclip -selection c
+    local binaries=""
+    grep -qi microsoft /proc/version && type 'clip.exe' >/dev/null && local binaries="${binaries}ms "
+    [ "$(liparadise_wm_type)" = "wayland" ] && type 'wl-copy' >/dev/null && local binaries="${binaries}wl "
+    xset q >/dev/null 2>&1 && type 'xclip' >/dev/null && local binaries="${binaries}x"
+    if [ $# -eq "1" ] && [ -f "${1}" ]; then
+        contains "${binaries}" ms && clip.exe                   < "${1}"
+        contains "${binaries}" wl && wl-copy                    < "${1}"
+        contains "${binaries}" x  && xclip -selection clipboard < "${1}"
+        return 0
+    elif [ $# -eq "2" ] && [ -f "${1}" ] && [ "${2}" -eq "${2}" ]; then
+        contains "${binaries}" ms && sed -n "${2},${2}p" "${1}" | clip.exe
+        contains "${binaries}" wl && sed -n "${2},${2}p" "${1}" | wl-copy
+        contains "${binaries}" x  && sed -n "${2},${2}p" "${1}" | xclip -sel c
+        return 0
+    elif [ $# -eq "3" ] && [ -f "${1}" ] && [ "${2}" -lt "${3}" ]; then
+        contains "${binaries}" ms && sed -n "${2},${3}p" "${1}" | clip.exe
+        contains "${binaries}" wl && sed -n "${2},${3}p" "${1}" | wl-copy
+        contains "${binaries}" x  && sed -n "${2},${3}p" "${1}" | xclip -sel c
+        return 0
     fi
 }
 
