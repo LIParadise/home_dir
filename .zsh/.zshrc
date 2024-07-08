@@ -88,11 +88,11 @@ function reboot_to_windows () {
 }
 
 # https://stackoverflow.com/a/8811800/9933842
-# contains(string, substring)
+# liparadise_contains(string, substring)
 #
 # Returns 0 if the specified string contains the specified substring,
 # otherwise returns 1.
-function contains() {
+function liparadise_contains() {
     string="$1"
     substring="$2"
     if [ "${string#*"$substring"}" != "$string" ]; then
@@ -112,19 +112,19 @@ function copy() {
     [ "$(liparadise_wm_type)" = "wayland" ] && type 'wl-copy' >/dev/null && local binaries="${binaries}wl "
     xset q >/dev/null 2>&1 && type 'xclip' >/dev/null && local binaries="${binaries}x"
     if [ $# -eq "1" ] && [ -f "${1}" ]; then
-        contains "${binaries}" ms && clip.exe                   < "${1}"
-        contains "${binaries}" wl && wl-copy                    < "${1}"
-        contains "${binaries}" x  && xclip -selection clipboard < "${1}"
+        liparadise_contains "${binaries}" ms && clip.exe                   < "${1}"
+        liparadise_contains "${binaries}" wl && wl-copy                    < "${1}"
+        liparadise_contains "${binaries}" x  && xclip -selection clipboard < "${1}"
         return 0
     elif [ $# -eq "2" ] && [ -f "${1}" ] && [ "${2}" -eq "${2}" ]; then
-        contains "${binaries}" ms && sed -n "${2},${2}p" "${1}" | clip.exe
-        contains "${binaries}" wl && sed -n "${2},${2}p" "${1}" | wl-copy
-        contains "${binaries}" x  && sed -n "${2},${2}p" "${1}" | xclip -sel c
+        liparadise_contains "${binaries}" ms && sed -n "${2},${2}p" "${1}" | clip.exe
+        liparadise_contains "${binaries}" wl && sed -n "${2},${2}p" "${1}" | wl-copy
+        liparadise_contains "${binaries}" x  && sed -n "${2},${2}p" "${1}" | xclip -sel c
         return 0
     elif [ $# -eq "3" ] && [ -f "${1}" ] && [ "${2}" -lt "${3}" ]; then
-        contains "${binaries}" ms && sed -n "${2},${3}p" "${1}" | clip.exe
-        contains "${binaries}" wl && sed -n "${2},${3}p" "${1}" | wl-copy
-        contains "${binaries}" x  && sed -n "${2},${3}p" "${1}" | xclip -sel c
+        liparadise_contains "${binaries}" ms && sed -n "${2},${3}p" "${1}" | clip.exe
+        liparadise_contains "${binaries}" wl && sed -n "${2},${3}p" "${1}" | wl-copy
+        liparadise_contains "${binaries}" x  && sed -n "${2},${3}p" "${1}" | xclip -sel c
         return 0
     fi
 }
