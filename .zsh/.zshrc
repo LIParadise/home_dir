@@ -47,6 +47,7 @@ autoload edit-command-line
 zle -N edit-command-line
 
 alias nv="nvim"
+alias nvc="nvim --clean +'set nu ai ic sc et sts=4 ts=4 hlsearch paste|colorscheme slate'"
 alias cp="cp -i"
 alias mv="mv -i"
 alias rm="rm -i"
@@ -64,6 +65,14 @@ alias clangmake="CC=/usr/bin/clang CXX=/usr/bin/clang++ cmake"
 alias rsavp="rsync -av --progress"
 alias git-no-mode="git -c core.fileMode=false status"
 alias git-push-new-branch="git push --set-upstream origin \$(git describe --all --exact-match | sed 's~heads/~~')"
+
+function gs() {
+    case $# in
+        0) git status -u;;
+        1) [ -d "${1}" ] && git -C "${1}" status -u || echo "dir \"${1}\" not found";;
+        2) [ "-C" = "${1}" ] && [ -d "${2}" ] && git -C "${2}" status -u || echo "dir \"${2}\" not found";;
+    esac
+}
 
 ks
 
