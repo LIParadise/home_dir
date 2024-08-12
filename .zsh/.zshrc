@@ -66,13 +66,40 @@ alias rsavp="rsync -av --progress"
 alias git-no-mode="git -c core.fileMode=false status"
 alias git-push-new-branch="git push --set-upstream origin \$(git describe --all --exact-match | sed 's~heads/~~')"
 
-function gs() {
-    case $# in
-        0) git status -u;;
-        1) [ -d "${1}" ] && git -C "${1}" status -u || echo "dir \"${1}\" not found";;
-        2) [ "-C" = "${1}" ] && [ -d "${2}" ] && git -C "${2}" status -u || echo "dir \"${2}\" not found";;
+# handy `git status` shortcut
+function my_git_util() {
+    dir=""
+    action=""
+
+    case "${1}" in
+        status) action="status -u";;
+        diff) action="diff";;
     esac
+    [ -z "${action}" ] && echo "wrong usage" && exit 1
+
+    case $# in
+        1) dir=".";;
+        2) [ -d "${2}" ] && dir="${2}";;
+        3) [ "-C" = "${2}" ] && [ -d "${3}" ] && dir="${3}";;
+    esac
+
+    # The `dir` variable must be either empty or valid directory
+    #     (except in the rare case where local `.` is no longer present,
+    #      e.g. after `git checkout` or `rm -rf`;
+    #      in that case we'd like to know what's going on anyway)
+    #
+    # `git rev-parse --show-toplevel` gives git root folder of that repo
+    # (note that it shows submodule root if submodule)
+    # finally show `git` output
+    #
+    # Note that we intentionlly allow word splitting for `action` by `$=action`, for e.g. `git status -u`
+    # This is NOT portable but ZSH specific syntax!!!
+    # https://unix.stackexchange.com/questions/419148
+    [ -z "${dir}" ] && echo "\"${dir}\" not found" || printf "git ${action} for directory %s\n" "$(git -C "${dir}" rev-parse --show-toplevel)" && git -C "${dir}" "$=action"
 }
+
+alias gs="my_git_util status"
+alias gd="my_git_util diff"
 
 ks
 
