@@ -108,7 +108,19 @@ if not vim.opt.diff:get() then
     if vim.fn.has('nvim-0.8') == 1 then
         -- vim.opt.background = 'light'
         -- vim.cmd.colorscheme('PaperColor')
-        vim.cmd.colorscheme('dayfox')
+        local options = {
+            transparent = true
+        }
+        local groups = {
+            nightfox = {
+                NonText = { fg = "#ad86a3" }
+            }
+        }
+        require('nightfox').setup({
+            options = options,
+            groups = groups
+        })
+        vim.cmd.colorscheme('nightfox')
     else
         vim.cmd.colorscheme('desert')
     end
