@@ -2,7 +2,9 @@
 -- LSP (rust-analyzer), treesitter, and hrsh7th nvim-cmp
 --]]
 
-local hrsh7th = require'cmp'
+require ('usermod.liparadise_lib')
+
+local hrsh7th = require('cmp')
 hrsh7th.setup({
     snippet = {
         -- REQUIRED - you must specify a snippet engine
@@ -72,8 +74,8 @@ hrsh7th.setup.cmdline(':', {
 --]]
 
 -- Set up lspconfig.
-local capabilities = require('cmp_nvim_lsp').default_capabilities()
-local nvim_lsp = require('lspconfig')
+local capabilities = prequire('cmp_nvim_lsp').default_capabilities()
+local nvim_lsp = prequire('lspconfig')
 -- Enable rust_analyzer
 nvim_lsp.rust_analyzer.setup({
     capabilities = capabilities,
@@ -134,7 +136,7 @@ nvim_lsp.rust_analyzer.setup({
 })
 
 -- Treesitter Plugin Setup 
-require('nvim-treesitter.configs').setup {
+prequire('nvim-treesitter.configs', {
     ensure_installed = { "lua", "rust", "toml" },
     auto_install = true,
     highlight = {
@@ -147,5 +149,5 @@ require('nvim-treesitter.configs').setup {
         extended_mode = true,
         max_file_lines = nil,
     }
-}
+})
 
