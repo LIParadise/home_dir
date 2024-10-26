@@ -6,10 +6,10 @@ require('kanagawa').setup({
             NonText = { fg = "#6D846E" }
         }
     end,
-    -- theme = "dragon",
-    -- background = {
-    --     dark = "dragon",
-    --     light = "lotus"
-    -- },
+    theme = "dragon",
+    background = {
+        dark = "dragon",
+        light = "dragon"
+    },
 })
 vim.cmd("colorscheme kanagawa")

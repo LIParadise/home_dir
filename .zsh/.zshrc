@@ -133,11 +133,11 @@ function CD(){
     cd ${1}; cd $(pwd -P)
 }
 
-function reboot_to_windows () {
-    grub_windows_entry=$(sudo grep -i windows /boot/grub/grub.cfg | cut -d "'" -f 2)
-    sudo grub-reboot "$grub_windows_entry"
-    sudo sync; sudo sync; sudo systemctl reboot
-}
+# function reboot_to_windows () {
+#     grub_windows_entry=$(sudo grep -i windows /boot/grub/grub.cfg | cut -d "'" -f 2)
+#     sudo grub-reboot "$grub_windows_entry"
+#     sudo sync; sudo sync; sudo systemctl reboot
+# }
 
 # https://stackoverflow.com/a/8811800/9933842
 # liparadise_contains(string, substring)
@@ -179,99 +179,4 @@ function copy() {
         liparadise_contains "${binaries}" x  && sed -n "${2},${3}p" "${1}" | xclip -sel c
         return 0
     fi
-}
-
-function liparadise_compile {
-    myCompiler="${1}"
-    myCompileFlags="${2}"
-    myLinkFlags="${3}"
-
-    myInputFilename=
-    myObj_Ext=".o"
-    myInputFilename_o=
-    myCompiledOutput=
-
-    if [ "$#" -eq 4 ]; then
-        myInputFilename="${4%\.*}"
-        myInputFilename_o=${myInputFilename}${myObj_Ext}
-        myCompiledOutput="test"
-    elif [ "$#" -eq 5 ]; then
-        myInputFilename="${4%\.*}"
-        myInputFilename_o=${myInputFilename}${myObj_Ext}
-        myCompiledOutput="${5}"
-    else
-        echo "Usage: <compile> code.cc <executable>"
-        echo "where \"code.cc\" is a simple C++ code,"
-        echo "\"executable\" being final executable name"
-        exit 1
-    fi
-
-    echo "${myCompiler} ${myCompileFlags} \"${4}\""
-    eval ${myCompiler} ${myCompileFlags} "${4}"
-    echo "${myCompiler} ${myLinkFlags} \"${myCompiledOutput}\" \"${myInputFilename_o}\""
-    eval ${myCompiler} ${myLinkFlags} "${myCompiledOutput}" "${myInputFilename_o}"
-}
-
-function G++ {
-    myCompiler="g++"
-    myCompileFlags="--std=c++11 -Wall -O2 -march=native -mtune=native -c"
-    myLinkFlags="-lpthread -o"
-
-    liparadise_compile "${myCompiler}" "${myCompileFlags}" "${myLinkFlags}" "${@}"
-}
-
-function Clang++ {
-    myCompiler="clang++"
-    myCompileFlags="--std=c++11 -Wall -O2 -mtune=native -c"
-    myLinkFlags="-lpthread -o"
-
-    liparadise_compile "${myCompiler}" "${myCompileFlags}" "${myLinkFlags}" "${@}"
-}
-
-function G++0 {
-    myCompiler="g++"
-    myCompileFlags="--std=c++11 -Wall -O0 -g -c"
-    myLinkFlags="-lpthread -o"
-
-    liparadise_compile "${myCompiler}" "${myCompileFlags}" "${myLinkFlags}" "${@}"
-}
-
-function Clang++0 {
-    myCompiler="clang++"
-    myCompileFlags="--std=c++11 -Wall -O0 -g -c"
-    myLinkFlags="-lpthread -o"
-
-    liparadise_compile "${myCompiler}" "${myCompileFlags}" "${myLinkFlags}" "${@}"
-}
-
-function GCC {
-    myCompiler="gcc"
-    myCompileFlags="--std=c99 -Wall -O2 -march=native -mtune=native -c"
-    myLinkFlags="-lpthread -o"
-
-    liparadise_compile "${myCompiler}" "${myCompileFlags}" "${myLinkFlags}" "${@}"
-}
-
-function Clang {
-    myCompiler="clang"
-    myCompileFlags="--std=c99 -Wall -O2 -mtune=native -c"
-    myLinkFlags="-lpthread -o"
-
-    liparadise_compile "${myCompiler}" "${myCompileFlags}" "${myLinkFlags}" "${@}"
-}
-
-function GCC0 {
-    myCompiler="gcc"
-    myCompileFlags="--std=c99 -Wall -O0 -g -c"
-    myLinkFlags="-lpthread -o"
-
-    liparadise_compile "${myCompiler}" "${myCompileFlags}" "${myLinkFlags}" "${@}"
-}
-
-function Clang0 {
-    myCompiler="clang"
-    myCompileFlags="--std=c99 -Wall -O0 -g -c"
-    myLinkFlags="-lpthread -o"
-
-    liparadise_compile "${myCompiler}" "${myCompileFlags}" "${myLinkFlags}" "${@}"
 }
