@@ -15,6 +15,7 @@ nvim_set_keymap('i', '', '<C-w>', opts)
 nvim_set_keymap('c', '', '<C-w>', opts)
 nvim_set_keymap('c', 'Q', ':tabc<CR>', opts)
 nvim_set_keymap('n', 'Q', ':tabc<CR>', opts)
+nvim_set_keymap('n', '<leader>%"', [[:redir @" | echon getreg('%') | redir END<CR>]], opts)
 
 vim.opt.wildignore = { '*.o', '*.a', '__pycache__' }
 vim.opt.wildignore:append { "*.pyc", "node_modules" }
