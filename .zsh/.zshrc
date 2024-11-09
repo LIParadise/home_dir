@@ -47,7 +47,7 @@ autoload edit-command-line
 zle -N edit-command-line
 
 alias nv="nvim"
-alias nvc="nvim --clean +'set nu ai ic sc et sts=4 ts=4 hlsearch paste|colorscheme slate'"
+alias nvc="nvim --clean +'set nu ai ic sc et sts=4 ts=4 hlsearch paste|colorscheme habamax'"
 alias cp="cp -i"
 alias mv="mv -i"
 alias rm="rm -i"
