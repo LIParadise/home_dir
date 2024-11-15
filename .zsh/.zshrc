@@ -117,6 +117,69 @@ alias gs="my_git_util status"
 alias gd="my_git_util diff"
 alias gl="my_git_util log"
 
+function my_find_util {
+    local dir
+    local file_types
+    local search_phrase
+    dir=""
+    file_types=""
+    search_phrase=""
+
+
+    if [ $# -eq 1 ] && [ ! -d "${1}" ]; then
+        dir="."
+        search_phrase="${1}"
+    elif [ $# -eq 2 ] && [ -d "${1}" ] && [ ! -z "${2}" ]; then
+        dir="${1}"
+        search_phrase="${2}"
+    elif [ $# -eq 3 ] && [ -d "${1}" ]; then
+        dir="${1}"
+        file_types="-name \"${2}\""
+        search_phrase="${3}"
+    elif [ $# -gt 3 ] && [ -d "${1}" ]; then
+        dir="${1}"
+
+        # POSIX hack to get last argument
+        for __hack_get_last in ${@}; do :; done
+        search_phrase="${__hack_get_last}"
+
+        # get all arguments except first and last
+        # note that the spaces remain in the variable
+        file_types="${*%${search_phrase}}"
+        file_types="${file_types#${dir}}"
+        # trim leading/trailing spaces
+        file_types="$(printf "${file_types}" | awk '{$1=$1;print}')"
+        # replace the space in between to '|'
+        file_types="$(printf "${file_types}" | sed -E 's/[[:space:]]+/|/g')"
+        echo "file_types is ${file_types}"
+        file_types="$(printf "${file_types}" | sed -E 's#([^|]+)#-name "\1"#g')"
+        echo "file_types is ${file_types}"
+        file_types="$(printf "${file_types}" | sed -E 's/\|/ -or /g')"
+        # finally add the parenthesis for `find`
+        file_types="\\( "${file_types}" \\)"
+    fi
+
+    if [ ! -z "${dir}" ] && [ ! -z "${search_phrase}" ]; then
+        if [ ! -z "${MYSHELLDEBUG}" ]; then
+            echo "dir is ${dir}"
+            echo "file_types is ${file_types}"
+            echo "search_phrase is ${search_phrase}"
+            echo "<C-c> to cancel run"
+            sleep 5
+        fi
+        local cmd
+        cmd="find ${dir} -type f ${file_types} -print0 | xargs -0 -P7 grep -nH --color=always ${search_phrase}"
+        type wl-copy  >/dev/null 2>&1 && echo "${cmd}" | wl-copy
+        type clip.exe >/dev/null 2>&1 && echo "${cmd}" | clip.exe
+        type xclip    >/dev/null 2>&1 && echo "${cmd}" | xclip -sel c
+        echo "Search command is in your clipboard, use e.g. \"Shift + Insert\""
+    else
+        echo "unknown error"
+        exit 1
+    fi
+}
+alias google="my_find_util"
+
 ks
 
 function pgnd() {
