@@ -126,10 +126,10 @@ function my_find_util {
     search_phrase=""
 
 
-    if [ $# -eq 1 ] && [ ! -d "${1}" ]; then
+    if [ $# -eq 1 ] && [ -n "${1}" ]; then
         dir="."
         search_phrase="${1}"
-    elif [ $# -eq 2 ] && [ -d "${1}" ] && [ ! -z "${2}" ]; then
+    elif [ $# -eq 2 ] && [ -d "${1}" ] && [ -n "${2}" ]; then
         dir="${1}"
         search_phrase="${2}"
     elif [ $# -eq 3 ] && [ -d "${1}" ]; then
@@ -140,27 +140,27 @@ function my_find_util {
         dir="${1}"
 
         # POSIX hack to get last argument
-        for __hack_get_last in ${@}; do :; done
+        for __hack_get_last in "${@}"; do :; done
         search_phrase="${__hack_get_last}"
 
         # get all arguments except first and last
         # note that the spaces remain in the variable
-        file_types="${*%${search_phrase}}"
-        file_types="${file_types#${dir}}"
+        file_types="${*%"${search_phrase}"}"
+        file_types="${file_types#"${dir}"}"
         # trim leading/trailing spaces
-        file_types="$(printf "${file_types}" | awk '{$1=$1;print}')"
+        file_types="$(printf '%s' "${file_types}" | awk '{$1=$1;print}')"
         # replace the space in between to '|'
-        file_types="$(printf "${file_types}" | sed -E 's/[[:space:]]+/|/g')"
+        file_types="$(printf '%s' "${file_types}" | sed -E 's/[[:space:]]+/|/g')"
         echo "file_types is ${file_types}"
-        file_types="$(printf "${file_types}" | sed -E 's#([^|]+)#-name "\1"#g')"
+        file_types="$(printf '%s' "${file_types}" | sed -E 's#([^|]+)#-name "\1"#g')"
         echo "file_types is ${file_types}"
-        file_types="$(printf "${file_types}" | sed -E 's/\|/ -or /g')"
+        file_types="$(printf '%s' "${file_types}" | sed -E 's/\|/ -or /g')"
         # finally add the parenthesis for `find`
-        file_types="\\( "${file_types}" \\)"
+        file_types="\\( ${file_types} \\)"
     fi
 
-    if [ ! -z "${dir}" ] && [ ! -z "${search_phrase}" ]; then
-        if [ ! -z "${MYSHELLDEBUG}" ]; then
+    if [ -n "${dir}" ] && [ -n "${search_phrase}" ]; then
+        if [ -n "${MYSHELLDEBUG}" ]; then
             echo "dir is ${dir}"
             echo "file_types is ${file_types}"
             echo "search_phrase is ${search_phrase}"
