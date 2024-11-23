@@ -169,10 +169,10 @@ function my_find_util {
         fi
         local cmd
         cmd="find ${dir} -type f ${file_types} -print0 | xargs -0 -P7 grep -nH --color=always ${search_phrase}"
-        type wl-copy  >/dev/null 2>&1 && echo "${cmd}" | wl-copy
-        type clip.exe >/dev/null 2>&1 && echo "${cmd}" | clip.exe
-        type xclip    >/dev/null 2>&1 && echo "${cmd}" | xclip -sel c
-        echo "Search command is in your clipboard, use e.g. \"Shift + Insert\""
+        type wl-copy  >/dev/null 2>&1 && printf '%s' "${cmd}" | wl-copy
+        type clip.exe >/dev/null 2>&1 && printf '%s' "${cmd}" | clip.exe
+        type xclip    >/dev/null 2>&1 && printf '%s' "${cmd}" | xclip -sel c
+        echo 'Search command is in your clipboard, use e.g. "Shift + Insert"'
     else
         echo "unknown error"
         exit 1
