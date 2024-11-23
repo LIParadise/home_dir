@@ -138,3 +138,4 @@ end
 local liparadise_rust_analyzer = require('usermod.liparadise_rust')
 local liparadise_go_pls = require('usermod.liparadise_go')
 local liparadise_clangd = require('usermod.liparadise_clangd')
+local liparadise_go_back = require('usermod.liparadise_go_back')
