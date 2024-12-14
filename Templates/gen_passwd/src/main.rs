@@ -27,7 +27,7 @@ impl Type_ {
             let mut ret = [0_u8; NUM_PRINTABLE_ASCII];
             let mut idx = 0;
             while idx < ret.len() {
-                ret[idx] = '!' as u8 + idx as u8;
+                ret[idx] = b'!' + idx as u8;
                 idx += 1;
             }
             ret
@@ -46,7 +46,7 @@ impl Type_ {
 fn main() {
     let cli = Cli::parse();
     let mut bytes = Vec::from_iter(std::iter::repeat_n(0, cli.len));
-    let mut rng = Pcg64::seed_from_u64(OsRng.next_u64());
+    let mut rng = Pcg64::from_rng(OsRng).expect("Failed to seed RNG");
     rng.fill_bytes(&mut bytes);
     bytes.iter_mut().for_each(cli.type_.clamp_u8());
     println!("{}", unsafe { String::from_utf8_unchecked(bytes) });
