@@ -1,6 +1,5 @@
 use clap::Parser;
-use rand::SeedableRng;
-use rand::{rngs::OsRng, RngCore};
+use rand::{rngs::OsRng, RngCore, SeedableRng};
 use rand_pcg::Pcg64;
 
 #[derive(clap::Parser)]
@@ -32,7 +31,7 @@ impl Type_ {
             }
             ret
         };
-        fn clamp_u8_with(u: u8, list_of_u8_s: &[u8]) -> u8 {
+        const fn clamp_u8_with(u: u8, list_of_u8_s: &[u8]) -> u8 {
             list_of_u8_s[u as usize * list_of_u8_s.len() / (u8::MAX as usize + 1)]
         }
         match self {
