@@ -16,8 +16,8 @@ if [ "${#}" -ne 1 ]; then
 fi
 
 ENABLED=
-haystack="enabled" needle="${1}" sh -c 'test "${haystack#"${needle}"}" != "${haystack}"' && ENABLED=true
-haystack="disabled" needle="${1}" sh -c 'test "${haystack#"${needle}"}" != "${haystack}"' && ENABLED=false
+haystack="enabled"  needle="$(printf "%s" "${1}" | tr '[:upper:]' '[:lower:]')" sh -c 'test "${haystack#"${needle}"}" != "${haystack}"' && ENABLED=true
+haystack="disabled" needle="$(printf "%s" "${1}" | tr '[:upper:]' '[:lower:]')" sh -c 'test "${haystack#"${needle}"}" != "${haystack}"' && ENABLED=false
 
 case "${ENABLED}" in
     false)
