@@ -183,12 +183,14 @@ alias google="my_find_util"
 ks
 
 function pgnd() {
-    cargo new ${1}
-    if [ -d ${1} ]; then
-        if [ -d ${1}/src ]; then
-            touch ${1}/src/lib.rs
+    if [ "${#}" -eq 1 ] && ! [ -d "${1}" ] && ! [ -f "${1}" ]; then
+        cargo new "${1}"
+        if [ -d "${1}" ]; then
+            if [ -d "${1}"/src ]; then
+                touch "${1}"/src/lib.rs
+            fi
+            cd "${1}" || exit 69
         fi
-        cd ${1}
     fi
 }
 
