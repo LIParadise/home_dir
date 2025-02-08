@@ -3,6 +3,7 @@
 --]]
 
 vim.g.mapleader = " "
+vim.g.editorconfig = false
 local nvim_set_keymap = vim.api.nvim_set_keymap
 local opts = { noremap=true, silent=true }
 nvim_set_keymap('n', '<leader>n', ':noh<CR>', opts)
