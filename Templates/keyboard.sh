@@ -21,9 +21,9 @@ haystack="disabled" needle="$(printf "%s" "${1}" | tr '[:upper:]' '[:lower:]')" 
 
 case "${ENABLED}" in
     false)
-        kwriteconfig6 --file kxkbrc --group Layout --key Options --delete;;
+        kwriteconfig6 --notify --file kxkbrc --group Layout --key Options --delete;;
     true)
-        kwriteconfig6 --file kxkbrc --group Layout --key Options ctrl:swapcaps;;
+        kwriteconfig6 --notify --file kxkbrc --group Layout --key Options ctrl:swapcaps;;
     *)
         echo "Failed to parse, assume no-op, exit"
         exit 0;;
