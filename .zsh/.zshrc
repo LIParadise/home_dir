@@ -25,6 +25,9 @@ export ZDOTDIR="${HOME}/.zsh"
 # Path for golang
 # export GOPATH=$HOME/go
 
+# Enable `less` mouse support
+export LESS='--mouse --wheel-lines=2'
+
 DISABLE_AUTO_UPDATE="true"
 
 # Set name of the theme to load --- if set to "random", it will
@@ -46,25 +49,23 @@ export VISUAL="nvim"
 autoload edit-command-line
 zle -N edit-command-line
 
-alias nv="nvim"
-alias nvc="nvim --clean +'set nu ai ic sc et sts=4 ts=4 hlsearch paste|colorscheme habamax'"
 alias cp="cp -i"
-alias mv="mv -i"
-alias rm="rm -i"
-alias lr="ls -tr"
-alias ll="ls -alF"
-alias tmux="tmux -u" # utf-8 support
-alias kl="keychain -l"
-alias ks="source ${HOME}/.keychain/${HOST}-sh"
-alias tl="tmux ls"
-alias ta="tmux a"
+alias git-no-mode="git -c core.fileMode=false status"
 alias jkl="jupyter kernelspec list"
 alias jku="jupyter kernelspec uninstall"
-alias socker="sudo docker"
-alias clangmake="CC=/usr/bin/clang CXX=/usr/bin/clang++ cmake"
+alias kl="keychain -l"
+alias ks="source ${HOME}/.keychain/${HOST}-sh"
+alias lr="ls -tr"
+alias ll="ls -alF"
+alias mv="mv -i"
+alias nv="nvim"
+alias nvc="nvim --clean +'set nu ai ic sc et sts=4 ts=4 hlsearch paste|colorscheme habamax'"
 alias rsavp="rsync -av --progress"
-alias git-no-mode="git -c core.fileMode=false status"
-alias git-push-new-branch="git push --set-upstream origin \$(git describe --all --exact-match | sed 's~heads/~~')"
+alias rm="rm -i"
+alias socker="sudo docker"
+alias tmux="tmux -u" # utf-8 support
+alias ta="tmux a"
+alias tl="tmux ls"
 
 # handy `git status` shortcut
 function my_git_util() {
