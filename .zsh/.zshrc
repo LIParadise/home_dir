@@ -26,7 +26,7 @@ export ZDOTDIR="${HOME}/.zsh"
 # export GOPATH=$HOME/go
 
 # Enable `less` mouse support
-export LESS='--mouse --wheel-lines=2'
+export LESS='--mouse --wheel-lines=2 -R -i'
 
 DISABLE_AUTO_UPDATE="true"
 
