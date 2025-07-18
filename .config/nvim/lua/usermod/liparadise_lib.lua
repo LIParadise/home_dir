@@ -12,6 +12,12 @@ function on_attach (client, bufnr)
     -- vim.lsp.inlay_hint.enable(true, { bufnr = bufnr })
     local function buf_set_keymap(...) vim.api.nvim_buf_set_keymap(bufnr, ...) end
     local function buf_set_option(...) vim.api.nvim_buf_set_option(bufnr, ...) end
+	-- local function lsp_buf_code_action_quick_fix()
+	-- 	vim.lsp.buf.code_action({
+	-- 		filter = function(x) return x.isPreferred end,
+	-- 		apply  = true
+	-- 	})
+	-- end
 
     -- buf_set_option('omnifunc', 'v:lua.vim.lsp.omnifunc')
 
@@ -33,6 +39,8 @@ function on_attach (client, bufnr)
     buf_set_keymap('n', '<leader>e', '<Cmd>lua vim.diagnostic.open_float({scope = "line"})<CR>', opts)
     buf_set_keymap('n', '[d', '<Cmd>lua vim.diagnostic.goto_prev()<CR>', opts)
     buf_set_keymap('n', ']d', '<Cmd>lua vim.diagnostic.goto_next()<CR>', opts)
-    buf_set_keymap('n', '<leader>q', '<Cmd>lua vim.lsp.diagnostic.set_loclist()<CR>', opts)
+    buf_set_keymap('n', '<leader>ll', '<Cmd>lua vim.lsp.diagnostic.set_loclist()<CR>', opts)
+    -- https://stackoverflow.com/questions/67988374
+    buf_set_keymap('n', '<leader>qf', '<Cmd>lua vim.lsp.buf.code_action({ filter = function(a) return a.isPreferred end, apply = true })<CR>', opts)
     buf_set_keymap('n', '<leader>F', '<Cmd>lua vim.lsp.buf.format()<CR>', opts)
 end
