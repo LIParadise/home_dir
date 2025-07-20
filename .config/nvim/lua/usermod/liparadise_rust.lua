@@ -93,7 +93,7 @@ nvim_lsp.rust_analyzer.setup({
                 prefix = "self",
             },
             check = {
-                allTargets = {}
+                allTargets = true
             },
             cargo = {
                 buildScripts = {
