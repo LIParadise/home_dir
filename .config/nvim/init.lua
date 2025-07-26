@@ -82,9 +82,9 @@ Plug 'morhetz/gruvbox'
 -- Plug 'NLKNguyen/papercolor-theme'
 Plug 'webdevel/tabulous'
 if vim.fn.has('nvim-0.8') then
-    Plug 'projekt0n/github-nvim-theme'
     Plug 'rebelot/kanagawa.nvim'
     Plug 'EdenEast/nightfox.nvim'
+    Plug ('rose-pine/neovim', {as = 'rose-pine.nvim'})
 else
     -- https://github.com/rebelot/kanagawa.nvim/issues/79#issuecomment-1285054740
     Plug ('rebelot/kanagawa.nvim', {commit = 'fc2e308'})
@@ -112,13 +112,13 @@ if not vim.opt.diff:get() then
     if vim.fn.has('nvim-0.8') == 1 then
         -- vim.opt.background = 'light'
         -- vim.cmd.colorscheme('PaperColor')
-        local groups = {
-            nightfox = {
-                NonText = { fg = "#ad86a3" },
-            }
-        }
-        prequire('nightfox', { groups = groups })
-        vim.cmd.colorscheme('nightfox')
+        -- local groups = {
+        --     nightfox = {
+        --         NonText = { fg = "#ad86a3" },
+        --     }
+        -- }
+        -- prequire('nightfox', { groups = groups })
+        vim.cmd.colorscheme('rose-pine')
     else
         vim.cmd.colorscheme('desert')
     end
