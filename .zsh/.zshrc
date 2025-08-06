@@ -27,6 +27,7 @@ export ZDOTDIR="${HOME}/.zsh"
 
 # Enable `less` mouse support
 export LESS='--mouse --wheel-lines=2 -R -i'
+export SCCACHE_SERVER_UDS="${HOME}/.cache/sccache.sock"
 
 DISABLE_AUTO_UPDATE="true"
 
