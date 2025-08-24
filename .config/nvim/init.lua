@@ -84,7 +84,7 @@ Plug 'webdevel/tabulous'
 if vim.fn.has('nvim-0.8') then
     Plug 'rebelot/kanagawa.nvim'
     Plug 'EdenEast/nightfox.nvim'
-    Plug ('rose-pine/neovim', {as = 'rose-pine.nvim'})
+    Plug ('sainnhe/sonokai', {as = 'sonokai.nvim'})
 else
     -- https://github.com/rebelot/kanagawa.nvim/issues/79#issuecomment-1285054740
     Plug ('rebelot/kanagawa.nvim', {commit = 'fc2e308'})
@@ -118,7 +118,7 @@ if not vim.opt.diff:get() then
         --     }
         -- }
         -- prequire('nightfox', { groups = groups })
-        vim.cmd.colorscheme('rose-pine')
+        vim.cmd.colorscheme('sonokai')
     else
         vim.cmd.colorscheme('desert')
     end
