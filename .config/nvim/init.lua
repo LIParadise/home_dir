@@ -73,11 +73,11 @@ Plug 'hrsh7th/cmp-cmdline'
 Plug 'hrsh7th/nvim-cmp'
 Plug 'hrsh7th/cmp-vsnip'
 Plug 'hrsh7th/vim-vsnip'
-Plug ('nvim-treesitter/nvim-treesitter', {run = ':TSUpdate'})
+Plug ('nvim-treesitter/nvim-treesitter', { run = ':TSUpdate' })
 Plug 'Yggdroot/indentLine'
 Plug 'ayu-theme/ayu-vim'
 Plug 'chriskempson/base16-vim'
-Plug 'sainnhe/everforest'
+Plug ('neanias/everforest-nvim', { branch = 'main' })
 Plug 'morhetz/gruvbox'
 -- Plug 'NLKNguyen/papercolor-theme'
 Plug 'webdevel/tabulous'
@@ -118,7 +118,15 @@ if not vim.opt.diff:get() then
         --     }
         -- }
         -- prequire('nightfox', { groups = groups })
-        vim.cmd.colorscheme('sonokai')
+        local everforest_options = {
+            background = "hard",
+            italics = true,
+            disable_italic_comments = false,
+            inlay_hints_background = "dimmed",
+        }
+        require("everforest").setup(everforest_options)
+        vim.opt.background = 'light'
+        vim.cmd.colorscheme('everforest')
     else
         vim.cmd.colorscheme('desert')
     end
