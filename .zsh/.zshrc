@@ -65,9 +65,23 @@ alias nvv="nvim -R"
 alias rsavp="rsync -av --progress"
 alias rm="rm -i"
 alias socker="sudo docker"
+alias tch='if [ "${TMUX+inside_tmux}" = "inside_tmux" ]; then tmux clearhist; fi'
 alias tmux="tmux -u" # utf-8 support
 alias ta="tmux a"
 alias tl="tmux ls"
+
+# rename current TMUX window name
+function trn() {
+    if [ "${TMUX:+tmux_well_defined}" != "tmux_well_defined" ]; then
+        echo "Cannot rename current tmux window: \${TMUX} is '${TMUX}'"
+        return 1
+    fi
+    if [ "${#}" -ne 1 ]; then
+        echo "Cannot rename current tmux window: only one argument allowed"
+        return 1
+    fi
+    tmux set-window-option automatic-rename-format "#{pane_current_command}@${1}"
+}
 
 # handy `git status` shortcut
 function my_git_util() {
