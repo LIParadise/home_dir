@@ -46,6 +46,7 @@ nvim_set.undodir = vim.fn.expand '~/.vim/.undo//'
 nvim_set.backupdir = vim.fn.expand '~/.vim/.backup//'
 nvim_set.directory = vim.fn.expand '~/.vim/.swp//'
 nvim_set.syntax = on
+
 nvim_set.statusline:append('%<%F\\ %h%m%r%=%-16.(%l,%c%V%)\\ %P')
 if vim.fn.has('termguicolors') == 1 then
     nvim_set.termguicolors = true
@@ -73,8 +74,8 @@ Plug 'hrsh7th/cmp-cmdline'
 Plug 'hrsh7th/nvim-cmp'
 Plug 'hrsh7th/cmp-vsnip'
 Plug 'hrsh7th/vim-vsnip'
-Plug ('nvim-treesitter/nvim-treesitter', { run = ':TSUpdate' })
-Plug 'Yggdroot/indentLine'
+Plug ('nvim-treesitter/nvim-treesitter', {run = ':TSUpdate'})
+Plug 'lukas-reineke/indent-blankline.nvim'
 Plug 'ayu-theme/ayu-vim'
 Plug 'chriskempson/base16-vim'
 Plug ('neanias/everforest-nvim', { branch = 'main' })
@@ -148,3 +149,9 @@ local liparadise_rust_analyzer = require('usermod.liparadise_rust')
 local liparadise_go_pls = require('usermod.liparadise_go')
 local liparadise_clangd = require('usermod.liparadise_clangd')
 local liparadise_go_back = require('usermod.liparadise_go_back')
+
+--[[
+-- show identation lines
+--]]
+require("ibl").setup()
+
