@@ -1,7 +1,6 @@
 require ('usermod.liparadise_lib')
 
-local lspconfig = prequire('lspconfig')
-lspconfig.clangd.setup({
+vim.lsp.config('clangd', {
     cmd = {'clangd', '--background-index', '--clang-tidy', '--log=verbose'},
     capabilities = {
         offsetEncoding = { "utf-16" },
@@ -22,3 +21,4 @@ lspconfig.clangd.setup({
     },
     on_attach = on_attach,
 })
+vim.lsp.enable('clangd')

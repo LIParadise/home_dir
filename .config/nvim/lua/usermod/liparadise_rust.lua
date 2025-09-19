@@ -73,11 +73,8 @@ hrsh7th.setup.cmdline(':', {
 })
 --]]
 
--- Set up lspconfig.
 local capabilities = prequire('cmp_nvim_lsp').default_capabilities()
-local nvim_lsp = prequire('lspconfig')
--- Enable rust_analyzer
-nvim_lsp.rust_analyzer.setup({
+vim.lsp.config('rust_analyzer', {
     capabilities = capabilities,
     on_attach = on_attach,
     flags = {
@@ -106,6 +103,7 @@ nvim_lsp.rust_analyzer.setup({
         }
     }
 })
+vim.lsp.enable('rust_analyzer')
 
 -- Treesitter Plugin Setup 
 prequire('nvim-treesitter.configs', {
