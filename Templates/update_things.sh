@@ -12,11 +12,10 @@ simple_git_update(){
     git -C "${dir}" pull
 }
 
-rustup self update && rustup update &
+sh -c "rustup self update && rustup update" &
+sh -c "nvim +PlugUpgrade +PlugUpdate +TSUpdate +qall" &
 
 simple_git_update "${HOME}/.oh-my-zsh/custom/plugins/zsh-syntax-highlighting" &
 simple_git_update "${HOME}/.oh-my-zsh/custom/plugins/zsh-autosuggestions" &
-
-nvim +PlugUpgrade +PlugUpdate +TSUpdate +qall &
 
 wait
