@@ -66,13 +66,6 @@ local Plug = require('usermod.vimplug')
 Plug.begin()
 
 Plug 'neovim/nvim-lspconfig'
-Plug 'hrsh7th/cmp-nvim-lsp'
-Plug 'hrsh7th/cmp-buffer'
-Plug 'hrsh7th/cmp-path'
-Plug 'hrsh7th/cmp-cmdline'
-Plug 'hrsh7th/nvim-cmp'
-Plug 'hrsh7th/cmp-vsnip'
-Plug 'hrsh7th/vim-vsnip'
 Plug ('nvim-treesitter/nvim-treesitter', {run = ':TSUpdate'})
 Plug 'lukas-reineke/indent-blankline.nvim'
 Plug 'ayu-theme/ayu-vim'
@@ -102,8 +95,6 @@ Plug('echasnovski/mini.comment', {
 
 Plug.ends()
 Plug = nil
-
-require('usermod.liparadise_lib')
 
 --[[
 -- Apply colorscheme from plugins
@@ -141,16 +132,40 @@ if not vim.opt.diff:get() then
 end
 
 --[[
--- LSP: rust-analyzer
---]]
+    Auto Completion
+    https://gpanders.com/blog/whats-new-in-neovim-0-11/#lspa
+    https://vi.stackexchange.com/questions/46749
+ --]]
+vim.api.nvim_create_autocmd('LspAttach', {
+  callback = function(ev)
+    local client = vim.lsp.get_client_by_id(ev.data.client_id)
+    if not client then
+      return
+    end
+    if client:supports_method('textDocument/completion') then
+      vim.lsp.completion.enable(true, client.id, ev.buf, { autotrigger = true })
+    end
+    local liparadise_lib = require('usermod.liparadise_lib')
+    on_attach(client, ev.buf)
+  end,
+})
+vim.diagnostic.config({
+  virtual_lines = {
+    -- Only show virtual line diagnostics for the current cursor line
+    current_line = true,
+  },
+})
+vim.cmd('set completeopt+=noselect')
+vim.o.winborder = 'rounded'
+vim.lsp.enable('rust_analyzer')
+vim.lsp.enable('go_pls')
+vim.lsp.enable('clangd')
+vim.lsp.enable('ruff')
+vim.lsp.enable('pyright')
 
-local liparadise_rust_analyzer = require('usermod.liparadise_rust')
-local liparadise_go_pls = require('usermod.liparadise_go')
-local liparadise_clangd = require('usermod.liparadise_clangd')
 local liparadise_go_back = require('usermod.liparadise_go_back')
 
 --[[
 -- show identation lines
 --]]
 require("ibl").setup()
-
