@@ -62,27 +62,28 @@ vim.api.nvim_create_autocmd('CompleteDone', {
 -- vim-plug
 --]]
 
-local Plug = require('usermod.vimplug')
-Plug.begin()
+local vim = vim
+local Plug = vim.fn['plug#']
+vim.call('plug#begin')
 
-Plug 'neovim/nvim-lspconfig'
-Plug ('nvim-treesitter/nvim-treesitter', {run = ':TSUpdate'})
-Plug 'lukas-reineke/indent-blankline.nvim'
-Plug 'ayu-theme/ayu-vim'
-Plug 'chriskempson/base16-vim'
-Plug ('neanias/everforest-nvim', { branch = 'main' })
-Plug 'morhetz/gruvbox'
--- Plug 'NLKNguyen/papercolor-theme'
-Plug 'webdevel/tabulous'
+Plug('neovim/nvim-lspconfig')
+Plug('nvim-treesitter/nvim-treesitter', { ['run'] = ':TSUpdate'})
+Plug('lukas-reineke/indent-blankline.nvim')
+Plug('ayu-theme/ayu-vim')
+Plug('chriskempson/base16-vim')
+Plug('neanias/everforest-nvim')
+Plug('morhetz/gruvbox')
+Plug('webdevel/tabulous')
+Plug('saghen/blink.cmp', { ['tag'] = 'v1.*' })
+
 if vim.fn.has('nvim-0.8') then
-    Plug 'rebelot/kanagawa.nvim'
-    Plug 'EdenEast/nightfox.nvim'
-    Plug ('sainnhe/sonokai', {as = 'sonokai.nvim'})
+    Plug('rebelot/kanagawa.nvim')
+    Plug('EdenEast/nightfox.nvim')
+    Plug('sainnhe/sonokai')
 else
     -- https://github.com/rebelot/kanagawa.nvim/issues/79#issuecomment-1285054740
-    Plug ('rebelot/kanagawa.nvim', {commit = 'fc2e308'})
+    Plug('rebelot/kanagawa.nvim', { ['commit'] = 'fc2e308'})
 end
--- Plug 'sonph/onehalf', { 'rtp': 'vim' }
 
 --[[
 Plug('junegunn/goyo.vim', {ft = 'markdown'})
@@ -93,7 +94,7 @@ Plug('echasnovski/mini.comment', {
 })
 --]]
 
-Plug.ends()
+vim.call('plug#end')
 Plug = nil
 
 --[[
@@ -131,31 +132,13 @@ if not vim.opt.diff:get() then
     --]]
 end
 
---[[
-    Auto Completion
-    https://gpanders.com/blog/whats-new-in-neovim-0-11/#lspa
-    https://vi.stackexchange.com/questions/46749
- --]]
-vim.api.nvim_create_autocmd('LspAttach', {
-  callback = function(ev)
-    local client = vim.lsp.get_client_by_id(ev.data.client_id)
-    if not client then
-      return
-    end
-    if client:supports_method('textDocument/completion') then
-      vim.lsp.completion.enable(true, client.id, ev.buf, { autotrigger = true })
-    end
-    local liparadise_lib = require('usermod.liparadise_lib')
-    on_attach(client, ev.buf)
-  end,
-})
 vim.diagnostic.config({
-  virtual_lines = {
-    -- Only show virtual line diagnostics for the current cursor line
-    current_line = true,
-  },
+    virtual_lines = {
+        -- Only show virtual line diagnostics for the current cursor line
+        current_line = true,
+    },
 })
-vim.cmd('set completeopt+=noselect')
+
 vim.o.winborder = 'rounded'
 vim.lsp.enable('rust_analyzer')
 vim.lsp.enable('go_pls')
@@ -163,7 +146,9 @@ vim.lsp.enable('clangd')
 vim.lsp.enable('ruff')
 vim.lsp.enable('pyright')
 
-local liparadise_go_back = require('usermod.liparadise_go_back')
+require('plugins/blink_cmp')
+require('plugins/liparadise_go_back')
+require('plugins/liparadise_lsp_attach')
 
 --[[
 -- show identation lines
