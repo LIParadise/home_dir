@@ -1,20 +1,8 @@
-# mbed-cli bash completion
-
 # https://github.com/eddiezane/lunchy/issues/57
-# for more details
 autoload -U +X bashcompinit && bashcompinit
 autoload -U +X compinit && compinit
-# source /home/liparadise/.bash_completion.d/mbed
-# End of mbed-cli bash completion
 
-# NTUOSC ml environmental variables
-export WORKON_HOME=$HOME/.virtualenvs
-export VIRTUALENVWRAPPER_PYTHON=/usr/bin/python3
-source /usr/bin/virtualenvwrapper.sh
-# end of NTUOSC ml environmental variables
-#
-
-path=("$HOME/.cargo/bin" "/usr/local/bin" "$path[@]")
+path=("${HOME}/.cargo/bin" "${HOME}/.local/bin" "/usr/local/bin" "$path[@]")
 typeset -U PATH path
 export PATH
 
@@ -82,6 +70,29 @@ function trn() {
     fi
     tmux set-window-option automatic-rename-format "#{pane_current_command}@${1}"
 }
+
+# activate Python `uv`/`uvx` ZSH completion
+function uu() {
+    if command -v uv 2>&1 >/dev/null; then
+        eval "$(uv generate-shell-completion zsh)"
+        if [ "${TMUX+set}" = "set" ]; then
+            # hash of e.g. Jan-01 11:22:33
+            local hash=$(date +"%b-%d %H:%M:%S" | sha256sum | cut -c1-6)
+            trn "PythonUv@${hash}"
+        fi
+        alias nv="uv run nvim"
+        alias nvv="uv run nvim -R"
+    else
+        echo 'uv not found'
+        exit 1
+    fi
+    if command -v uvx 2>&1 >/dev/null; then
+        eval "$(uvx --generate-shell-completion zsh)"
+    else
+        echo 'uvx not found'
+    fi
+}
+
 
 # handy `git status` shortcut
 function my_git_util() {
