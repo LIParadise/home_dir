@@ -143,8 +143,8 @@ vim.o.winborder = 'rounded'
 vim.lsp.enable('rust_analyzer')
 vim.lsp.enable('gopls')
 vim.lsp.enable('clangd')
-vim.lsp.enable('ruff')
 vim.lsp.enable('pyright')
+vim.lsp.enable('ruff')
 
 require('plugins/blink_cmp')
 require('plugins/liparadise_go_back')
