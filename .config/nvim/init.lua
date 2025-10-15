@@ -141,7 +141,7 @@ vim.diagnostic.config({
 
 vim.o.winborder = 'rounded'
 vim.lsp.enable('rust_analyzer')
-vim.lsp.enable('go_pls')
+vim.lsp.enable('gopls')
 vim.lsp.enable('clangd')
 vim.lsp.enable('ruff')
 vim.lsp.enable('pyright')
