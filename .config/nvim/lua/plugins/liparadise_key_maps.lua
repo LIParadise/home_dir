@@ -16,6 +16,43 @@
 -- [b, ]b, [B, ]B navigate through the buffer list
 -- [<Space>, ]<Space> add an empty line above and below the cursor
 --]]
+
+--[[
+-- Intercept generic nvim `vim.lsp.buf.document_symbol()` call,
+-- then filter only those who are functions.
+--]]
+local function document_symbol_filter_for_functions (symbols)
+    if symbols == nil or symbols.items == nil then
+        print("No symbols fetched from current buffer??!")
+        return
+    end
+
+    local functions = symbols.items
+    -- manipulate table in-place: first, consolidate the entries to front
+    local old_size = #functions
+    local idx = 1
+    for ignored, symbol in pairs(functions) do
+        if symbol and symbol.kind and symbol.kind == "Function" then
+            functions[idx] = symbol
+            idx = idx + 1
+        end
+    end
+    -- abort if no function found
+    if idx == 1 then
+        print("No functions found in current buffer...")
+        return
+    end
+    -- manipulate table in-place: trim those were to be discarded
+    for jdx = idx, old_size do functions[jdx] = nil end
+
+    -- replace the location list
+    vim.fn.setloclist(0, functions, "r")
+
+    -- jump to location list if it's not already opened
+    -- TODO how to jump to location automatically list when it IS already opened?
+    vim.cmd.lwindow()
+end
+
 function key_maps (client, bufnr)
     -- vim.lsp.inlay_hint.enable(true, { bufnr = bufnr })
     -- local function buf_set_keymap(...) vim.api.nvim_buf_set_keymap(bufnr, ...) end
@@ -29,6 +66,15 @@ function key_maps (client, bufnr)
     -- buf_set_option('omnifunc', 'v:lua.vim.lsp.omnifunc')
 
     -- See `:help vim.lsp.*` for documentation on any of the below functions
+    vim.keymap.set(
+        'n',
+        'gP',
+        function()
+            vim.lsp.buf.document_symbol({
+                on_list = document_symbol_filter_for_functions
+            })
+        end
+    )
     vim.keymap.set('n', 'gD', vim.lsp.buf.declaration)
     vim.keymap.set('n', 'gd', vim.lsp.buf.definition)
     vim.keymap.set('n', '<leader>D', vim.lsp.buf.type_definition)
