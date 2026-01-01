@@ -74,6 +74,7 @@ Plug('chriskempson/base16-vim')
 Plug('neanias/everforest-nvim')
 Plug('morhetz/gruvbox')
 Plug('webdevel/tabulous')
+Plug('ziglang/zig.vim') -- https://github.com/ziglang/zig.vim
 Plug('saghen/blink.cmp', { ['tag'] = 'v1.*' })
 
 if vim.fn.has('nvim-0.8') then
@@ -145,6 +146,7 @@ vim.lsp.enable('gopls')
 vim.lsp.enable('clangd')
 vim.lsp.enable('pyright')
 vim.lsp.enable('ruff')
+vim.lsp.enable('zls')
 
 require('plugins/blink_cmp')
 require('plugins/liparadise_go_back')
