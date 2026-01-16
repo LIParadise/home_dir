@@ -9,9 +9,9 @@ config.font_size = 14.0
 config.audible_bell = "Disabled" -- Disables the system beep
 config.visual_bell = {
     fade_in_function = 'EaseIn',
-    fade_in_duration_ms = 150,
+    fade_in_duration_ms = 120,
     fade_out_function = 'EaseOut',
-    fade_out_duration_ms = 120,
+    fade_out_duration_ms = 103,
 }
 
 -- Trigger custom command on bell (mimics command_on_bell)
