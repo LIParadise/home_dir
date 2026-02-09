@@ -23,7 +23,7 @@ vim.opt.wildignore:append { "*.pyc", "node_modules" }
 nvim_set_keymap = nil
 
 local nvim_set = vim.opt
-nvim_set.number = true
+nvim_set.number = false
 nvim_set.autoindent = true
 nvim_set.expandtab = true
 nvim_set.tabstop = 4
