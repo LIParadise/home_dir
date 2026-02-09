@@ -2,7 +2,11 @@ local wezterm = require 'wezterm'
 local config = wezterm.config_builder()
 
 -- Font settings
-config.font = wezterm.font("Iosevka")
+config.font = wezterm.font_with_fallback({
+  "Iosevka Nerd Font",
+  "Noto Color Emoji",
+  "Symbols Nerd Font Mono",
+})
 config.font_size = 14.0
 
 -- Bell settings
