@@ -93,9 +93,13 @@ function key_maps (client, bufnr)
         'n',
         '<leader>v',
         function()
-            local new_config = not vim.diagnostic.config().virtual_lines
-            vim.diagnostic.config({ virtual_lines = new_config })
-            print(string.format("virtual_lines set to %s", new_config))
+            local new = false
+            local old = vim.diagnostic.config().virtual_lines
+            if old == nil or old == false then
+                new = { current_line = true }
+            end
+            vim.diagnostic.config({ virtual_lines = new })
+            print(string.format("virtual_lines set to %s", new and new.current_line or false))
         end,
         { desc = 'Toggle diagnostic virtual_lines' }
     )
