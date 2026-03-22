@@ -9,7 +9,7 @@ nvidia-utils nvidia-open nvidia-utils nvidia-container-toolkit nvtop \
 \
 \
 $(: '--- KDE plasma with fcitx5 ---') \
-plasma-meta firefox fcitx5-chewing fcitx5 fcitx5-anthy noto-fonts-cjk noto-fonts noto-fonts-extra noto-fonts-emoji nerd-fonts vlc vlc-plugin-ffmpeg vdpauinfo vulkan-tools bluez pipewire pipewire-docs pipewire-pulse \
+plasma-meta plasma-login-manager firefox fcitx5-chewing fcitx5 fcitx5-anthy noto-fonts-cjk noto-fonts noto-fonts-extra noto-fonts-emoji nerd-fonts vlc vlc-plugin-ffmpeg vdpauinfo vulkan-tools bluez pipewire pipewire-docs pipewire-pulse \
 \
 \
 \
