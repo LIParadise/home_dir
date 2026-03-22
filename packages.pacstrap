@@ -1,0 +1,17 @@
+pacstrap -K /mnt \
+$(: '--- base ---') \
+amd-ucode refind btrfs-progs linux linux-firmware networkmanager terminus-font doas base lvm2 archlinux-keyring nftables fail2ban \
+\
+\
+$(: '--- nvidia ---') \
+nvidia-utils nvidia-open nvidia-utils nvidia-container-toolkit nvtop \
+\
+\
+\
+$(: '--- KDE plasma with fcitx5 ---') \
+plasma-meta firefox fcitx5-chewing fcitx5 fcitx5-anthy noto-fonts-cjk noto-fonts noto-fonts-extra noto-fonts-emoji nerd-fonts vlc vlc-plugin-ffmpeg vdpauinfo vulkan-tools bluez pipewire pipewire-docs pipewire-pulse \
+\
+\
+\
+$(: '--- Daily utils ---') \
+tmux git gcc clang python man-db man-pages texinfo neovim zed btop fastfetch openssh libbpf bpftop bpftrace keychain kitty wezterm xfce4-terminal zig valgrind llvm lldb gdb podman qemu sccache risc-v riscv64-linux-gnu-gdb linux-headers uv fd ripgrep pigz tar tree rust autoconf automake binutils bison debugedit fakeroot file findutils flex gawk gettext grep groff gzip libtool m4 make pacman patch pkgconf sed texinfo which 7zip zsh bc flatpak lxc lxd wl-clipboard
