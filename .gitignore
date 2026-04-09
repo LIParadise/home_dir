@@ -1,1 +1,2 @@
 .zsh/.zcompdump*
+.config/nvim/nvim-pack-lock.json

@@ -13,7 +13,13 @@ simple_git_update(){
 }
 
 sh -c "rustup self update && rustup update" &
-sh -c "nvim +PlugUpgrade +PlugUpdate +TSUpdate +qall" &
+if [ "$(nvim -v | rg NVIM | cut -d' ' -f2 | cut -d'.' -f2)" -ge 12 ]; then
+    # neovim 0.12 built-in manager
+    sh -c "nvim +'lua vim.pack.update()' +TSUpdate +qall" &
+else
+    # neovim 0.11 uses [vim-plug](https://github.com/junegunn/vim-plug)
+    sh -c "nvim +PlugUpgrade +PlugUpdate +TSUpdate +qall" &
+fi
 
 simple_git_update "${HOME}/.oh-my-zsh/custom/plugins/zsh-syntax-highlighting" &
 simple_git_update "${HOME}/.oh-my-zsh/custom/plugins/zsh-autosuggestions" &

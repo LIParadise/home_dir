@@ -46,92 +46,35 @@ nvim_set.backupdir = vim.fn.expand '~/.vim/.backup//'
 nvim_set.directory = vim.fn.expand '~/.vim/.swp//'
 nvim_set.syntax = on
 
-nvim_set.statusline:append('%<%F\\ %h%m%r%=%-16.(%l,%c%V%)\\ %P')
 if vim.fn.has('termguicolors') == 1 then
     nvim_set.termguicolors = true
 end
 nvim_set = nil
 
--- remove scratch window upon completion
-vim.api.nvim_create_autocmd('CompleteDone', {
-    pattern = '*',
-    command = 'pclose',
+vim.pack.add({
+    'https://github.com/neovim/nvim-lspconfig',
+    'https://github.com/nvim-treesitter/nvim-treesitter',
+    'https://github.com/lukas-reineke/indent-blankline.nvim',
+    'https://github.com/neanias/everforest-nvim',
+    'https://github.com/webdevel/tabulous',
+    'https://github.com/ziglang/zig.vim',
+    {
+        src = 'https://github.com/saghen/blink.cmp',
+        -- Version constraint, see |vim.version.range()|
+        version = vim.version.range('1'),
+    },
 })
 
---[[
--- vim-plug
---]]
-
-local vim = vim
-local Plug = vim.fn['plug#']
-vim.call('plug#begin')
-
-Plug('neovim/nvim-lspconfig')
-Plug('nvim-treesitter/nvim-treesitter', { ['run'] = ':TSUpdate'})
-Plug('lukas-reineke/indent-blankline.nvim')
-Plug('ayu-theme/ayu-vim')
-Plug('chriskempson/base16-vim')
-Plug('neanias/everforest-nvim')
-Plug('morhetz/gruvbox')
-Plug('webdevel/tabulous')
-Plug('ziglang/zig.vim') -- https://github.com/ziglang/zig.vim
-Plug('saghen/blink.cmp', { ['tag'] = 'v1.*' })
-
-if vim.fn.has('nvim-0.8') then
-    Plug('rebelot/kanagawa.nvim')
-    Plug('EdenEast/nightfox.nvim')
-    Plug('sainnhe/sonokai')
-else
-    -- https://github.com/rebelot/kanagawa.nvim/issues/79#issuecomment-1285054740
-    Plug('rebelot/kanagawa.nvim', { ['commit'] = 'fc2e308'})
-end
-
---[[
-Plug('junegunn/goyo.vim', {ft = 'markdown'})
-Plug('echasnovski/mini.comment', {
-    config = function()
-        require('mini.comment').setup()
-    end
-})
---]]
-
-vim.call('plug#end')
-Plug = nil
-
---[[
--- Apply colorscheme from plugins
---]]
-if not vim.opt.diff:get() then
-    if vim.fn.has('nvim-0.8') == 1 then
-        -- vim.opt.background = 'light'
-        -- vim.cmd.colorscheme('PaperColor')
-        -- local groups = {
-        --     nightfox = {
-        --         NonText = { fg = "#ad86a3" },
-        --     }
-        -- }
-        -- prequire('nightfox', { groups = groups })
-        local everforest_options = {
-            background = "hard",
-            italics = true,
-            disable_italic_comments = false,
-            inlay_hints_background = "dimmed",
-        }
-        require("everforest").setup(everforest_options)
-        vim.opt.background = 'light'
-        vim.cmd.colorscheme('everforest')
-    else
-        vim.cmd.colorscheme('desert')
-    end
-    --[[
-    if vim.fn.has('nvim-0.5') == 1 then
-        vim.cmd('luafile ~/.config/nvim/plugins/liparadise_colors/Colorscheme_Kanagawa.lua')
-        -- runtime plugins/liparadise_colors/Colorscheme_Everforest.vim
-    else
-        vim.cmd('runtime plugins/liparadise_colors/Colorscheme_Gruvbox.vim')
-    end
-    --]]
-end
+-- colorscheme
+local everforest_options = {
+    background = "hard",
+    italics = true,
+    disable_italic_comments = false,
+    inlay_hints_background = "dimmed",
+}
+require("everforest").setup(everforest_options)
+vim.opt.background = 'light'
+vim.cmd.colorscheme('everforest')
 
 vim.diagnostic.config({
     virtual_lines = {
