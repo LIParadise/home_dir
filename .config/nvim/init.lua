@@ -90,6 +90,7 @@ vim.lsp.enable('clangd')
 vim.lsp.enable('pyright')
 vim.lsp.enable('ruff')
 vim.lsp.enable('zls')
+vim.lsp.enable('hls')
 
 require('plugins/blink_cmp')
 require('plugins/liparadise_go_back')

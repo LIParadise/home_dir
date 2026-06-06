@@ -81,6 +81,7 @@ function key_maps (client, bufnr)
     vim.keymap.set('n', 'g<C-D>', "<cmd>tab split | lua vim.lsp.buf.declaration()<CR>", {})
     vim.keymap.set('n', '<leader>D', vim.lsp.buf.type_definition)
     vim.keymap.set('n', '<leader>F', vim.lsp.buf.format)
+    vim.keymap.set('n', '<leader>qf', vim.lsp.buf.code_action)
     vim.keymap.set('n', '<C-s>', vim.lsp.buf.signature_help, opts)
     vim.keymap.set(
         'n',

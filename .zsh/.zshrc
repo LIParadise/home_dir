@@ -2,7 +2,8 @@
 autoload -U +X bashcompinit && bashcompinit
 autoload -U +X compinit && compinit
 
-path=("${HOME}/.cargo/bin" "${HOME}/.local/bin" "/usr/local/bin" "$path[@]")
+# [ -f "/home/chibi/.ghcup/env" ] && . "/home/chibi/.ghcup/env" # ghcup-env
+path=("${HOME}/.cargo/bin" "${HOME}/.cabal/bin" "${HOME}/.ghcup/bin" "${HOME}/.local/bin" "/usr/local/bin" "$path[@]")
 typeset -U PATH path
 export PATH
 
