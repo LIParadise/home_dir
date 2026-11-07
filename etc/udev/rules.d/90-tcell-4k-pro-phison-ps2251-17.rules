@@ -1,0 +1,10 @@
+# /etc/udev/rules.d/90-tcell-4k-pro-phison-ps2251-17.rules
+#
+# Supposedly we should run this line, but
+# `cat /sys/block/sda/device/scsi_disk/*/provisioning_mode`
+# keeps reporting `full`
+#
+# ACTION=="add|change", SUBSYSTEM=="scsi_disk", ATTRS{idVendor}=="13fe", ATTRS{idProduct}=="6500", ATTR{provisioning_mode}="unmap"
+#
+# workaround via https://askubuntu.com/a/1567042
+ACTION=="add|change", ATTRS{idVendor}=="13fe", ATTRS{idProduct}=="6500", SUBSYSTEM=="block", ENV{DEVTYPE}=="disk", ATTR{../../scsi_disk/*/provisioning_mode}="unmap"
